@@ -1,5 +1,8 @@
 <script>
     import welcome_page_bg from '$lib/assets/welcome_page_bg.png'
+
+    import CalulatedCost from "./CalulatedCost.svelte"
+    import SwiperComponent from './SwiperComponent.svelte';
 </script>
 
 <div class="main_content">
@@ -35,6 +38,11 @@
     </section>
     <section class="cost_calculation_block pd_section">
         <p class="header2">Рассчитайте стоимость строительства вашего дома самостоятельно, ответив на 6 вопросов</p>
+        <CalulatedCost/>
+    </section>
+    <section class="swiper_section">
+        <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ ДОМ ВАШЕЙ МЕЧТЫ</p>
+        <SwiperComponent/>
     </section>
 </div>
 
@@ -45,8 +53,16 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 46px;
+        
     }
-    
+    .swiper_section{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 0 0 46px;
+    }
+    .swiper_section p{
+        width: 40%;
+    }
     .welcome_page{
         height: 672px;
         position: relative;
@@ -110,10 +126,10 @@
         z-index: -2;
     }
     .tagline_title{
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 28px;
+        font-family: "BebasNeue" !important;
+        font-size: 48px;
         font-weight: 700;
-        line-height: 35.8px;
+        line-height: 52.8px;
     }
 
     /* achievements */
@@ -132,7 +148,6 @@
     .completed_projects,.construction_experience{
         display: flex;
         flex-direction: column;
-        row-gap: 24px;
         justify-content: space-between;
         align-items: center;
         width: 50%;
@@ -141,23 +156,22 @@
 
     }
     .achievements_cnt{
-        font-size: 120px;
+        font-size: 144px;
         font-weight: 700;
-        line-height: 101.4px;
+        line-height: 158.4px;
         text-align: center;
-        font-family: "Bebas Neue", sans-serif;
-        font-style: normal;
-        font-stretch: ultra-condensed;
+        font-family: "BebasNeue" !important;
+
     }
-    
     .cost_calculation_block{
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
     .cost_calculation_block .header2{
         text-align: center;
-        max-width: 70%;
+        max-width: 50%;
         margin-bottom: 32px;
     }
 </style>

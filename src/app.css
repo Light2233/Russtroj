@@ -16,7 +16,6 @@ display: block;
 width: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
-font-family: 'Playfair Display';
 font-weight: normal;
 letter-spacing: 1px;
 }
@@ -36,23 +35,27 @@ button,input{
 }
 
 
+@font-face {
+    font-family: "BebasNeue";
+    src: url("lib/font/BebasNeue.ttf");
+}
+
 /* Font */
 
 .header1{
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "BebasNeue" !important;
     font-size: 48px;
     font-weight: 700;
     line-height: 52.8px;
-    font-stretch: ultra-condensed;
 }
 .header2{
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "BebasNeue" !important;
     font-size: 32px;
     font-weight: 700;
     line-height: 35.2px;
 }
 .header3{
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "BebasNeue" !important;
     font-size: 24px;
     font-weight: 400;
     line-height: 26.4px;
@@ -99,11 +102,12 @@ button,input{
     color: var( --Neutral_100);
     padding: 16px;
     max-width: fit-content;
-    border: solid transparent 1px;
     cursor: pointer;
 }
 .main_black_btn:hover{
-    background-color: var(--Neutral_100);
-    color: var( --Neutral_900);
-    border: solid var( --Neutral_900) 1px;
+    background-color: var(--Neutral_800);
 }
+.main_black_btn:active{
+    background-color: var(--Neutral_700);
+}
+
