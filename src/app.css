@@ -3,6 +3,7 @@ box-sizing: border-box;
 padding: 0;
 margin: 0;
 transition: .2s ease-in-out;
+-webkit-tap-highlight-color: transparent;
 }
 ul {
 list-style: none;
@@ -100,6 +101,7 @@ button,input{
 .main_black_btn{
     background-color: var(--Neutral_900);
     color: var( --Neutral_100);
+    border: 1px solid var(--Neutral_900);
     padding: 16px;
     max-width: fit-content;
     cursor: pointer;
@@ -110,4 +112,19 @@ button,input{
 .main_black_btn:active{
     background-color: var(--Neutral_700);
 }
+
+.main_white_btn{
+    background-color: var(--Neutral_100);
+    color: var( --Neutral_900);
+    padding: 16px;
+    max-width: fit-content;
+    cursor: pointer;
+}
+.main_white_btn:hover{
+    background-color: var(--Neutral_200);
+}
+.main_white_btn:active{
+    background-color: var(--Neutral_300);
+}
+
 

@@ -3,6 +3,7 @@
 
     import CalulatedCost from "./CalulatedCost.svelte"
     import SwiperComponent from './SwiperComponent.svelte';
+    import HouseStyles from './HouseStyles.svelte';
 </script>
 
 <div class="main_content">
@@ -44,6 +45,9 @@
         <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ ДОМ ВАШЕЙ МЕЧТЫ</p>
         <SwiperComponent/>
     </section>
+    <section class="house_styles">
+        <HouseStyles/>
+    </section>
 </div>
 
 <style>
@@ -59,6 +63,10 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 0 0 46px;
+    }
+    .house_styles{
+        max-width: 1200px;
+        margin: 0 auto;
     }
     .swiper_section p{
         width: 40%;

@@ -3,9 +3,9 @@
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import 'swiper/css';
 
-    import slidebg1 from "$lib/assets/slide1.png"
-    import slidebg2 from "$lib/assets/slide2.png"
-    import slidebg3 from "$lib/assets/slide3.png"
+    import slidebg1 from "$lib/assets/slides/slide1.png"
+    import slidebg2 from "$lib/assets/slides/slide2.png"
+    import slidebg3 from "$lib/assets/slides/slide3.png"
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
 
     let countSlide = 1 ;
@@ -107,9 +107,11 @@
        
         {#each slides as slide (slide.id)}
             <SwiperSlide>
-                <div class="slider_content">
+                <button class="slider_content">
+                    <p class="header2">{ slide.name }</p>
                     <img class="slide_bg" src="{ slide.url }" alt="">
-                </div>
+                    <button class="main_white_btn main_sm_14">Подробнее</button>
+                </button>
             </SwiperSlide>
         {/each}
        
@@ -123,6 +125,7 @@
     .slider_content{
         width: 356px;
         height: 600px;
+        cursor: pointer;
     }
     .slider{
         width: 100%;
@@ -134,7 +137,8 @@
         object-position: 50%;
         height: 100%;
         width: 100%;
-        filter: brightness(60%)
+        filter: brightness(60%);
+        transform: translateZ(0);
     }
     .swiper_btn{
         height: 44px;
@@ -186,5 +190,22 @@
     }
     .pag_active{
         background-color: var(--Neutral_900);
+    }
+    .slider_content button{
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        opacity: 0;
+        left: 0;
+    }
+    .slider_content:hover button{
+        opacity: 1;
+
+    }
+    .slider_content p{
+        position: absolute;
+        z-index: 2;
+        color: var(--Neutral_100);
+        padding: 20px;
     }
 </style>
