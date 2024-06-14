@@ -4,6 +4,7 @@
     import CalulatedCost from "./CalulatedCost.svelte"
     import SwiperComponent from './SwiperComponent.svelte';
     import HouseStyles from './HouseStyles.svelte';
+    import Application from './Application.svelte'
 </script>
 
 <div class="main_content">
@@ -47,6 +48,24 @@
     </section>
     <section class="house_styles">
         <HouseStyles/>
+    </section>
+    <section class="general_director pd_section">
+        <div class="general_director_img_div">
+            <div class="general_director_img">
+                
+            </div>
+        </div>
+        <div class="general_director_info">
+            <p class="header3 general_director_status">Генеральный директор</p>
+            <div class="">
+                <p class="header2  general_director_name">ВЛАДИСЛАВ РЯБУХА</p>
+                <p class="main_sm_18">Строительством я занимаюсь уже более 15 лет. За это время мне удалось сформировать сплоченный коллектив в России и Сербии, работающий по отобранным мною технологиям строительства. Я слежу за тем, чтобы каждый сотрудник совершенствовал свои навыки, за счет этого мы можем гарантировать долговечность и качество выполненных нами проектов. </p>
+            </div>
+            <button class="header3">Показать больше…</button>
+        </div>
+    </section>
+    <section class="pd_section">
+        <Application/>
     </section>
 </div>
 
@@ -181,5 +200,44 @@
         text-align: center;
         max-width: 50%;
         margin-bottom: 32px;
+    }
+
+    /* general_director */
+
+    .general_director{
+        display: flex;
+        padding-top: 200px;
+        padding-bottom: 200px;
+
+    }
+    .general_director_img_div{
+        padding-right: 57px;
+        border-right: 1px solid var(--Neutral_300);
+    }
+    .general_director_img{
+        width: 450px;
+        height: 450px;
+        border: 1px solid var(--Neutral_900);
+        background: var(--Neutral_200);
+    }
+    .general_director_info{
+        max-width: 601px;
+        padding: 69px 0 40px 57px;
+       
+    }
+    .general_director_status{
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--Neutral_300);
+        margin-bottom: 20px;
+    }
+    .general_director_info div{
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+    }
+    .general_director_info button{
+        margin-top: 20px;
+        color: var(--Neutral_400);
+        cursor: pointer;
     }
 </style>
