@@ -5,6 +5,9 @@
     import SwiperComponent from './SwiperComponent.svelte';
     import HouseStyles from './HouseStyles.svelte';
     import Application from './Application.svelte'
+    import Reviews from './Reviews.svelte';
+
+    import telegram_bg from "$lib/assets/tg_image.png"
 </script>
 
 <div class="main_content">
@@ -67,9 +70,25 @@
     <section class="pd_section">
         <Application/>
     </section>
+    <section class="reviews_section">
+        <p class="header2">ОТЗЫВЫ О НАШЕЙ РАБОТЕ</p>
+        <Reviews/>
+    </section>
+    <section class="pd_section">
+        <div class="telegram_content">
+            <div class="info">
+                <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
+                <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
+                <button class="main_black_btn">Перейти</button>
+            </div>
+            <div class="telegram_img">
+                <img src="{ telegram_bg }" alt="">
+            </div>
+        </div>
+    </section>
 </div>
 
-<style>
+<style lang="less">
     /* welcome_page */
 
     .pd_section{
@@ -79,6 +98,11 @@
         
     }
     .swiper_section{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 0 0 46px;
+    }
+    .reviews_section{
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 0 0 46px;
@@ -202,7 +226,7 @@
         margin-bottom: 32px;
     }
 
-    /* general_director */
+    /* general_director */  
 
     .general_director{
         display: flex;
@@ -239,5 +263,22 @@
         margin-top: 20px;
         color: var(--Neutral_400);
         cursor: pointer;
+    }
+
+    /* telegram_content */
+
+    .telegram_content{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 20px;
+        margin-top: 200px;
+    }
+    .telegram_content .info{
+        max-width: 465px;
+        
+    }
+    .telegram_content .main_black_btn{
+        margin-top: 24px;
     }
 </style>

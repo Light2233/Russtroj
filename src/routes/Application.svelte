@@ -42,6 +42,7 @@
         border: 1px solid var(--Neutral_300);
         display: flex;
         column-gap: 40px;
+        margin-bottom: 200px;
     }
     form{
         max-width: 50%;
@@ -115,6 +116,12 @@
         top: 0;
         left: 0;
         cursor: pointer;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    input[type="file"]::file-selector-button{
+        display: none;
     }
     .project{
         position: relative;
@@ -128,7 +135,8 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-    }
+        
+    }   
     .project div{
         display: flex;
         align-items: center;
