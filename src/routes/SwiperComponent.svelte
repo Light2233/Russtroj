@@ -78,7 +78,6 @@
     let slidesLenght = slides.length
 
     let pagLength = Math.round(slidesLenght/3);
-    $: console.log(countSlide)
 </script>
 <div class="slider">
 

@@ -8,7 +8,7 @@
 
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
 
-    let countSlide = 1 ;
+    let count = 1 ;
 
     
 
@@ -54,19 +54,19 @@
             username:"Ольга"
         }
     ]
-    let slidesLenght = slides.length
+    let slidesLenght2 = slides.length
 </script>
 <div class="slider reviews">
 
 
-    <button class="prev swiper_btn" class:disable={countSlide<=1} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="prev1 swiper_btn" class:disable={count<=1} on:click={()=>{ count > 1 ? count-- : count }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
     spaceBetween={ -220 }
     slidesPerView={ 2 }
     navigation = {
-        {nextEl: '.next',
-        prevEl: ".prev",}
+        {nextEl: '.next1',
+        prevEl: ".prev1",}
     }
     scrollbar={{ draggable: false }}
     pagination={{ clickable: true }}
@@ -101,14 +101,13 @@
         
         
     </Swiper>
-    <button class="next swiper_btn" on:click={()=>{ countSlide < slidesLenght ? countSlide++ : countSlide }} class:disable={countSlide > (slidesLenght-2)}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="next1 swiper_btn" on:click={()=>{ count < slidesLenght2 ? count++ : count }} class:disable={count > (slidesLenght2-2)}><img src="{ swiper_arrow }" alt=""></button>
 </div>
 
 <style>
     .slider_content{
         width: 450px;
         height: 402px;
-        cursor: pointer;
         background: var(--Neutral_150);
         padding: 32px 20px;
         display: flex;
@@ -143,13 +142,13 @@
         height: 20px;
         width: 20px;
     }
-    .prev{
+    .prev1{
         margin-left: 12px;
     }
-    .prev img{
+    .prev1 img{
         rotate: -180deg;
     }
-    .next{
+    .next1{
         right: 0;
         margin-right: 58px;
     }

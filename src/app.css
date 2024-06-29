@@ -93,6 +93,7 @@ button,input{
     --Neutral_700: #505050;
     --Neutral_800: #333333;
     --Neutral_900: #161616;
+    --Error: #EE0003;
 }
 .body{
     background-color: var(--Neutral_100) !important;
@@ -119,6 +120,7 @@ button,input{
     padding: 16px;
     max-width: fit-content;
     cursor: pointer;
+    border: 1px solid var(--Neutral_100);
 }
 .main_white_btn:hover{
     background-color: var(--Neutral_200);

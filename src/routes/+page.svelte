@@ -273,6 +273,7 @@
         justify-content: space-between;
         column-gap: 20px;
         margin-top: 200px;
+        margin-bottom: 200px;
     }
     .telegram_content .info{
         max-width: 465px;
