@@ -147,7 +147,7 @@
     let showModal = false;
 </script>
 
-<!-- <HouseStyleModal bind:showModal style_name={styleSelected} styles={stylesmodal}/> -->
+<HouseStyleModal bind:showModal style_name={styleSelected} styles={stylesmodal}/>
 
 <div class="styles_grid">
     {#each styles as style, index}
@@ -159,7 +159,7 @@
     {/each}
 </div>
 
-<style>
+<style lang="less">
     .style{
         position: relative;
         cursor: pointer;

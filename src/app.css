@@ -72,6 +72,7 @@ button,input{
     font-size: 14px;
     font-weight: 500;
     line-height: 16.1px;
+    color: var(--Neutral_900);
 }
 .main_sm_11{
     font-family: 'Inter';

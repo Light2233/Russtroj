@@ -33,7 +33,8 @@
     </div>
 </header>
 <slot/>
-<footer style="background:url({footer_bg})">
+<footer style="background:url({footer_bg});background-repeat: no-repeat;
+        background-size: cover;">
     <div class="footer_application">
         <form class=""  on:submit>
             <p class="header1 white">Выезд инженера на объект за счёт компании</p>
@@ -110,9 +111,11 @@
     footer{
         max-height: 658px;
         height: 100%;
-        max-width: 1200px;
+        width: 100%;
         margin: 0 auto;
         padding-top: 184px;
+        background-repeat: no-repeat;
+        background-size:auto;
     }
     .link{
         display: inline;

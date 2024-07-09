@@ -30,10 +30,10 @@ on:click|self={() => dialog.close()}
     <div class="dialog_content">
         <div class="style_info">
             <div class="title">
-                <button on:click={()=>{showModal=false;dialog.close()}}><img src="{ close }" alt=""></button>
+                <button on:click={()=>{showModal=false;dialog.close()}} class="close_btn"><img src="{ close }" alt=""></button>
                 <p class="header1">{styleSelected?.name}</p>
             </div>
-            <p class="main_sm_18">{styleSelected?.desc}</p>
+            <p class="main_sm_18">{styleSelected?.desc ? styleSelected?.desc : ''}</p>
             {#if styleSelected?.ul}
                 <div class="ul">
                     {#if styleSelected.ulTitle}
@@ -73,6 +73,7 @@ on:click|self={() => dialog.close()}
         display: flex;
         align-items: center;
         justify-content: center;
+        display: none;
 
 	}
 	dialog::backdrop {
@@ -82,6 +83,7 @@ on:click|self={() => dialog.close()}
 		padding: 1em;
 	}
 	dialog[open] {
+        display: flex;
 		animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 	@keyframes zoom {
@@ -107,10 +109,12 @@ on:click|self={() => dialog.close()}
 		display: block;
 	}
     .dialog_content {
-        max-width: 1108px;
-        max-height: 490px;
-        width: 100%;
+        max-width: 86.5%;
         height: 100%;
+        max-height: 490px;
+        height: 100%;
+        width: 100%;
+        
         background: white;
         display: flex;
         justify-content: space-between;
@@ -161,5 +165,8 @@ on:click|self={() => dialog.close()}
         border-radius: 10px;
         margin-top: .55rem;
         margin-right: 8px;
+    }
+    .close_btn{
+        cursor: pointer;
     }
 </style>

@@ -87,7 +87,7 @@
             
         },
         {
-            id:3,
+            id:4,
             name:"ГАЗО И ПЕНО-БЕТОННЫЕ ДОМА",
             url:slidebg3,
             ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ГАЗО И ПЕНО-БЕТОННОГО ДОМА",
@@ -117,6 +117,7 @@
     let pagLength = Math.round(slidesLenght/3);
 </script>
 
+<HouseStyleModal bind:showModal style_name={houseName} styles={slides}/>
 
 <div class="slider">
 

@@ -113,7 +113,7 @@
         padding: 0 0 0 46px;
     }
     .house_styles{
-        max-width: 1200px;
+        width: 100%;
         margin: 0 auto;
     }
     .swiper_section p{
