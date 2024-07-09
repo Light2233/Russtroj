@@ -2,6 +2,7 @@
     import { Navigation, Pagination, Scrollbar, A11y, FreeMode,Mousewheel } from 'swiper';
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import 'swiper/css';
+    import 'swiper/css/pagination';
 
     import slidebg1 from "$lib/assets/slides/slide1.png"
     import slidebg2 from "$lib/assets/slides/slide2.png"
@@ -81,25 +82,19 @@
 </script>
 <div class="slider">
 
-    <div class="pag_line">
-        {#each {length: pagLength} as _ , i}
-            <div class="pag" >
-            </div>
-        {/each}
-    </div>
-
-
     <button class="prev swiper_btn" class:disable={countSlide<=1} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
-    spaceBetween={ 10 }
-    slidesPerView={ 3.1 }
+    spaceBetween={ -20 }
+    slidesPerView={ 3 }
     navigation = {
         {nextEl: '.next',
         prevEl: ".prev",}
     }
     scrollbar={{ draggable: false }}
-    pagination={{ clickable: true }}
+    pagination={{ 
+        clickable: false,
+    }}
     simulateTouch={false}
     
     >
@@ -125,6 +120,7 @@
         width: 356px;
         height: 600px;
         cursor: pointer;
+        
     }
     .slider{
         width: 100%;
@@ -206,5 +202,23 @@
         z-index: 2;
         color: var(--Neutral_100);
         padding: 20px;
+    }
+    :global(.swiper){
+        overflow: visible;
+    }
+    :global(.swiper-pagination){
+        position: absolute;
+        top:-40px;
+        text-align: end;
+        z-index: -1;
+    }
+    :global(.swiper-pagination-bullet){
+        width: 12px;
+        height: 12px;
+        border-radius: 0px;
+        background: var(--Neutral_400);
+    }
+    :global(.swiper-pagination-bullet-active){
+        background: var(--Neutral_900);
     }
 </style>

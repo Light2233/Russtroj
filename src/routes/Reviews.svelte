@@ -69,7 +69,6 @@
         prevEl: ".prev1",}
     }
     scrollbar={{ draggable: false }}
-    pagination={{ clickable: true }}
     simulateTouch={false}
     
     >
@@ -188,5 +187,8 @@
         opacity: 0.3;
         z-index: -1;
         transition: all .2s ease-out;
+    }
+    .slider{
+        overflow: hidden;
     }
 </style>

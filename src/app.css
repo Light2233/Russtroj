@@ -106,6 +106,7 @@ button,input{
     padding: 16px;
     max-width: fit-content;
     cursor: pointer;
+    font-family: 'Inter';
 }
 .main_black_btn:hover{
     background-color: var(--Neutral_800);
@@ -121,6 +122,7 @@ button,input{
     max-width: fit-content;
     cursor: pointer;
     border: 1px solid var(--Neutral_100);
+    font-family: 'Inter';
 }
 .main_white_btn:hover{
     background-color: var(--Neutral_200);

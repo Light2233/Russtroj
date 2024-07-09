@@ -8,6 +8,7 @@
     import Reviews from './Reviews.svelte';
 
     import telegram_bg from "$lib/assets/tg_image.png"
+    import director from "$lib/assets/director.jpg"
 </script>
 
 <div class="main_content">
@@ -55,7 +56,7 @@
     <section class="general_director pd_section">
         <div class="general_director_img_div">
             <div class="general_director_img">
-                
+                <img src="{ director }" alt="">
             </div>
         </div>
         <div class="general_director_info">
@@ -79,7 +80,7 @@
             <div class="info">
                 <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
                 <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
-                <button class="main_black_btn">Перейти</button>
+                <a href="https://t.me/russtroj" class="main_black_btn">Перейти</a>
             </div>
             <div class="telegram_img">
                 <img src="{ telegram_bg }" alt="">
@@ -244,6 +245,11 @@
         border: 1px solid var(--Neutral_900);
         background: var(--Neutral_200);
     }
+    .general_director_img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
     .general_director_info{
         max-width: 601px;
         padding: 69px 0 40px 57px;
@@ -263,6 +269,8 @@
         margin-top: 20px;
         color: var(--Neutral_400);
         cursor: pointer;
+        display: flex;
+
     }
 
     /* telegram_content */
@@ -281,5 +289,11 @@
     }
     .telegram_content .main_black_btn{
         margin-top: 24px;
+        display: flex;
+        font-family: 'Inter';
+    }
+
+    .swiper_section{
+        overflow: hidden;
     }
 </style>

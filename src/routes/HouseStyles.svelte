@@ -8,6 +8,8 @@
     import shale_style from "$lib/assets/housestyles/shale_style.png"
     import viking_style from "$lib/assets/housestyles/viking_style.png"
 
+    import HouseStyleModal from "./HouseStyleModal.svelte"
+
     let styles = [
         {
             name:"АНГЛИЙСКИЙ СТИЛЬ",
@@ -58,12 +60,15 @@
             url: viking_style
         },
     ]
+    let styleSelected = '';
+    let showModal = false;
 </script>
 
+<HouseStyleModal bind:showModal style_name={styleSelected}/>
 
 <div class="styles_grid">
     {#each styles as style, index}
-        <button class="style { style.style }">
+        <button class="style { style.style }" on:click={()=>{showModal = true;styleSelected=style.name}}>
             <img src="{ style.url }" alt="">
             <p class="header2">{ style.name }</p>
             <button class="main_white_btn main_sm_14">Подробнее</button>
