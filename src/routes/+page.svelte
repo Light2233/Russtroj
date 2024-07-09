@@ -6,10 +6,14 @@
     import HouseStyles from './HouseStyles.svelte';
     import Application from './Application.svelte'
     import Reviews from './Reviews.svelte';
+    import DirectorModal from './DirectorModal.svelte';
 
     import telegram_bg from "$lib/assets/tg_image.png"
     import director from "$lib/assets/director.jpg"
+    let showModal;
 </script>
+
+<DirectorModal bind:showModal/>
 
 <div class="main_content">
     <section class="welcome_page pd_section">
@@ -65,7 +69,7 @@
                 <p class="header2  general_director_name">ВЛАДИСЛАВ РЯБУХА</p>
                 <p class="main_sm_18">Строительством я занимаюсь уже более 15 лет. За это время мне удалось сформировать сплоченный коллектив в России и Сербии, работающий по отобранным мною технологиям строительства. Я слежу за тем, чтобы каждый сотрудник совершенствовал свои навыки, за счет этого мы можем гарантировать долговечность и качество выполненных нами проектов. </p>
             </div>
-            <button class="header3">Показать больше…</button>
+            <button class="header3" on:click={()=>{showModal=true}}>Показать больше…</button>
         </div>
     </section>
     <section class="pd_section">
