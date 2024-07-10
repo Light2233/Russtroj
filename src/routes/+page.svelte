@@ -1,5 +1,5 @@
 <script>
-    import welcome_page_bg from '$lib/assets/welcome_page_bg.png'
+
 
     import CalulatedCost from "./CalulatedCost.svelte"
     import SwiperComponent from './SwiperComponent.svelte';
@@ -18,7 +18,7 @@
 <div class="main_content">
     <section class="welcome_page pd_section">
         <div class="image_block">
-            <img src="{ welcome_page_bg }" alt="">
+            
         </div>
         <div class="info_block">
             <div class="company_info">
@@ -132,6 +132,7 @@
         height: 100%;
         right: 0;
         z-index: -1;
+        max-width: 450px;
     }
     .info_block{
         width: 100%;

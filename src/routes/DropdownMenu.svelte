@@ -7,19 +7,19 @@
     let options = [
         {
             name:"Строительство домов",
-            path:"/"
+            path:"/pages/main"
         },
         {
             name:"Строительство бань",
-            path:"/pages/$baths"
+            path:"/pages/baths"
         },
         {
             name:"Строительство бассейнов",
-            path:"/pages/$pools"
+            path:"/pages/pools"
         },
         {
             name:"Строительство зон отдыха",
-            path:"/pages/$recreationAreas"
+            path:"/pages/recreationAreas"
         },
         
     ]
