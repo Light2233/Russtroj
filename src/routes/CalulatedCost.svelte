@@ -1,6 +1,8 @@
 <script lang="ts">
     let ans = [];
 
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
+
     import quest_img_1 from "$lib/assets/quest_img_1.png"
     import quest_img_2 from "$lib/assets/quest_img_2.png"
     import quest_img_3 from "$lib/assets/quest_img_3.png"
@@ -140,7 +142,7 @@
                                 <div class="" class:var={slideCnt!=1} class:var1={slideCnt==1}>
                                     <div class="">
                                         {#if quest.url}
-                                            <img src="{ quest.url }" alt="">
+                                            <img src="{ quest.url }" alt="" data-src="{ quest.url }" use:lazyImage={{ threshold: 0.5 }}>
                                         {/if}
                                         <div class="var_quests" class:var_quests_mr16={slideCnt==1}>
                                             <input type="radio" name="{slide.id}" id={quest.id} value="{quest.answ}" bind:group={slide.value} required>

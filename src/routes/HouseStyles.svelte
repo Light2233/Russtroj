@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
+
+
     import eng_style from "$lib/assets/housestyles/eng_style.png"
     import hightech_style from "$lib/assets/housestyles/hightech_style.png"
     import itl_style from "$lib/assets/housestyles/itl_style.png"
@@ -152,7 +155,7 @@
 <div class="styles_grid">
     {#each styles as style, index}
         <button class="style { style.style }" on:click={()=>{showModal = true;styleSelected=style.name}}>
-            <img src="{ style.url }" alt="">
+            <img src="{ style.url }" alt="" data-src="{ style.url }" use:lazyImage={{ threshold: 0.5 }}>
             <p class="header2">{ style.name }</p>
             <button class="main_white_btn main_sm_14">Подробнее</button>
         </button>
@@ -169,6 +172,8 @@
         width: 100%;
         height: 100%;
         filter: brightness(80%);
+        object-position: 50% 50%;
+        pointer-events: none
     }
     .styles_grid{
         display: flex;

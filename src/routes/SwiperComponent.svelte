@@ -1,6 +1,7 @@
 <script>
     import { Navigation, Pagination, Scrollbar, A11y, FreeMode,Mousewheel } from 'swiper';
     import { Swiper, SwiperSlide } from 'swiper/svelte';
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import 'swiper/css';
     import 'swiper/css/pagination';
 
@@ -138,11 +139,11 @@
     
     >
        
-        {#each slides as slide (slide.id)}
+        {#each slides as slide, id(slide.id)}
             <SwiperSlide>
                 <button class="slider_content" on:click={()=>{showModal=true,houseName = slide.name}}>
                     <p class="header2">{ slide.name }</p>
-                    <img class="slide_bg" src="{ slide.url }" alt="">
+                    <img class="slide_bg" src="{ slide.url }" alt="" data-src="{ slide.url }" use:lazyImage={{ threshold: 0.5 }}>
                     <button class="main_white_btn main_sm_14">Подробнее</button>
                 </button>
             </SwiperSlide>
@@ -173,6 +174,7 @@
         width: 100%;
         filter: brightness(60%);
         transform: translateZ(0);
+        pointer-events: none;
     }
     .swiper_btn{
         height: 44px;
@@ -192,6 +194,7 @@
     .swiper_btn img{
         height: 20px;
         width: 20px;
+        pointer-events: none
     }
     .prev{
         margin-left: 12px;

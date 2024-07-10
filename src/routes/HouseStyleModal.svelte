@@ -1,8 +1,10 @@
 <script lang="ts">
     export let style_name;
     export let showModal;
+    export let styles
 	let dialog; 
     
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';s
     import { onMount, afterUpdate } from "svelte"
     import {fade} from "svelte/transition"
 
@@ -12,7 +14,7 @@
 	$: if (dialog && showModal) dialog.showModal();
     
 
-    export let styles
+    
     let styleSelected
     afterUpdate(()=>{
         styleSelected = styles.find((element)=> element.name == style_name)
@@ -51,7 +53,7 @@ on:click|self={() => dialog.close()}
         </div>
         {#key styleSelected}
         <div class="style_img" in:fade>
-            <img src="{ styleSelected?.url }" alt="">
+            <img src="{ styleSelected?.url }" alt="" data-src="{ styleSelected?.url }" use:lazyImage={{ threshold: 0.5 }}>
         </div>
         {/key}
     </div>

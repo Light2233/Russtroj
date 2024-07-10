@@ -7,6 +7,7 @@
     import ws from '$lib/assets/watsap.svg'
     import kewate_logo from '$lib/assets/kewate_logo.svg'
 
+    import DropdownMenu from './DropdownMenu.svelte'
     
 
 </script>
@@ -19,7 +20,7 @@
             <img src="{ logo }" alt="">
         </div>
         <div class="nav_menu">
-            <a href="" class="nav_link main_sm_14">Услуги</a>
+            <DropdownMenu/>
             <a href="" class="nav_link main_sm_14">О компании</a>
             <a href="" class="nav_link main_sm_14">Отзывы</a>
         </div>
@@ -34,7 +35,7 @@
 </header>
 <slot/>
 <footer style="background:url({footer_bg});background-repeat: no-repeat;
-        background-size: cover;">
+        background-size: cover;background-position:50% 50%">
     <div class="footer_application">
         <form class=""  on:submit>
             <p class="header1 white">Выезд инженера на объект за счёт компании</p>
