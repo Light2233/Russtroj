@@ -26,7 +26,7 @@
             </div>
             <div class="tagline">
                 <p class="tagline_title">ПОСТРОИМ ДОМ В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
-                <button class="main_black_btn">Рассчитать стоимость</button>
+                <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
             </div>
             <div class="line border1"></div>
             <div class="line border2"></div>
@@ -46,7 +46,7 @@
             <p class="main_sm_18">Опыта в строительстве недвижимости</p>
         </div>
     </section>
-    <section class="cost_calculation_block pd_section">
+    <section id="cost_calculation_block" class="cost_calculation_block pd_section">
         <p class="header2">Рассчитайте стоимость строительства вашего дома самостоятельно, ответив на 6 вопросов</p>
         <CalulatedCost/>
     </section>
@@ -123,6 +123,8 @@
         height: 672px;
         position: relative;
         margin-top: 20px;
+        max-width: unset;
+        overflow: hidden;
     }
     .welcome_page img{
         position: absolute;
@@ -156,7 +158,8 @@
     .line{
         content: "";
         background: var(--Neutral_300);
-        width: 680px;
+        width: 100%;
+        height: 100%;
         height: 1px;
         position: absolute;
     }
@@ -164,8 +167,7 @@
         rotate: 90deg;
         top: 50%;
         bottom: 0;
-        left: 47%;
-        max-width: 672px;
+        left: 50%;
         z-index: -2;
     }
     .border2{
@@ -174,12 +176,12 @@
         z-index: -2;
     }
     .border3{
-        bottom: 12%;
         rotate: 151deg;
-        right: 5%;
-        transform: translateX(-12%);
-        max-width: 414px;
+        bottom: 15%;
+        right: 2%;
         z-index: -2;
+        width: 400px;
+        margin-right: -20px;
     }
     .tagline_title{
         font-family: "BebasNeue" !important;

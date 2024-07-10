@@ -8,7 +8,7 @@
     import kewate_logo from '$lib/assets/kewate_logo.svg'
 
     import DropdownMenu from './DropdownMenu.svelte'
-    
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
 
 </script>
 
@@ -17,12 +17,12 @@
 <header>
     <div class="header_content">
         <div class="logo">
-            <img src="{ logo }" alt="">
+            <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage>
         </div>
         <div class="nav_menu">
             <DropdownMenu/>
             <a href="" class="nav_link main_sm_14">О компании</a>
-            <a href="" class="nav_link main_sm_14">Отзывы</a>
+            <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
         </div>
         <div class="main_header_info">
             <div class="">
@@ -70,7 +70,7 @@
 
 <style>
     .header_content{
-        max-width: 1200px;
+        
         height: 48px;  
         display: flex;
         align-items: center;

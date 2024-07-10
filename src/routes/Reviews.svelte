@@ -56,7 +56,7 @@
     ]
     let slidesLenght2 = slides.length
 </script>
-<div class="slider reviews">
+<div id="reviews" class="slider reviews">
 
 
     <button class="prev1 swiper_btn" class:disable={count<=1} on:click={()=>{ count > 1 ? count-- : count }}><img src="{ swiper_arrow }" alt=""></button>

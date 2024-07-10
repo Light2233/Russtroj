@@ -4,7 +4,7 @@
     export let styles
 	let dialog; 
     
-    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';s
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import { onMount, afterUpdate } from "svelte"
     import {fade} from "svelte/transition"
 
