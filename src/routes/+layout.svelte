@@ -10,7 +10,7 @@
     import DropdownMenu from './DropdownMenu.svelte'
     import CheckOutOrderModal from './CheckOutOrderModal.svelte'
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
-    let showModal
+    let showModal;
 </script>
 
 <CheckOutOrderModal bind:showModal />
@@ -19,9 +19,9 @@
 
 <header>
     <div class="header_content">
-        <div class="logo">
+        <a href="/pages/main" class="logo">
             <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage>
-        </div>
+        </a>
         <div class="nav_menu">
             <DropdownMenu/>
             <a href="" class="nav_link main_sm_14">О компании</a>

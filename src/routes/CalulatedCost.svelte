@@ -3,112 +3,12 @@
 
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
 
-    import quest_img_1 from "$lib/assets/quest_img_1.png"
-    import quest_img_2 from "$lib/assets/quest_img_2.png"
-    import quest_img_3 from "$lib/assets/quest_img_3.png"
-
+    
     import { fly } from "svelte/transition";
 
     let slideCnt = 1
 
-    let slides = [
-        {
-            id:1,
-            name:"ВЫБЕРИТЕ МАТЕРИАЛ СТРОИТЕЛЬСТВА",
-            value:null,
-            questions:[
-                {
-                    id:1,
-                    answ:"БРЕВНО И БРУС",
-                    url:quest_img_1,
-                },
-                {
-                    id:2,
-                    answ:"ГАЗОБЕТОН",
-                    url:quest_img_2,
-                },
-                {
-                    id:3,
-                    answ:"ТЕПЛАЯ КЕРАМИКА",
-                    url:quest_img_3,
-                }
-            ]
-        },
-        {
-            id:2,
-            name:"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕГО ДОМА",
-            value:12,
-            questions:[],
-        },
-        {
-            id:3,
-            name:"НАЛИЧИЕ УЧАСТКА ПОД СТРОИТЕЛЬСТВО",
-            value:null,
-            questions:[
-                {
-                    id:1,
-                    answ:"ECТЬ",
-                },
-                {
-                    id:2,
-                    answ:"НЕТ",
-                },
-                {
-                    id:3,
-                    answ:"НА СТАДИИ ОФОРМЛЕНИЯ",
-                }
-            ]
-        },
-        {
-            id:4,
-            name:"КОГДА ПЛАНИРУЕТСЯ НАЧАЛО СТРОИТЕЛЬСТВА?",
-            value:null,
-            questions:[
-                {
-                    id:1,
-                    answ:"В БЛИЖАЙШИЕ 2-3 МЕСЯЦА",
-                },
-                {
-                    id:2,
-                    answ:"В ТЕЧЕНИЕ ГОДА",
-                },
-                {
-                    id:3,
-                    answ:"В ТЕЧЕНИЕ НЕСКОЛЬКИХ ЛЕТ",
-                }
-            ]
-        },
-        {
-            id:5,
-            name:"БЮДЖЕТ НА СТРОИТЕЛЬСТВО",
-            value:null,
-            questions:[
-                {
-                    id:1,
-                    answ:"15–35 ТЫС. €",
-                },
-                {
-                    id:2,
-                    answ:"35–65 ТЫС. €",
-                },
-                {
-                    id:3,
-                    answ:"65–150 ТЫС. €",
-                },
-                {
-                    id:4,
-                    answ:"БОЛЕЕ 150 ТЫС. €",
-                }
-            ]
-        },
-        {
-            id:6,
-            name:"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
-            desc:"Наши специалисты уже приступили к расчёту",
-            value:null,
-        },
-        
-    ]
+    export let slides;
     
     let allSlides = 6
 

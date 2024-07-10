@@ -49,16 +49,18 @@
             <p class="main_sm_18">Опыта в строительстве недвижимости</p>
         </div>
     </section>
-    {#if data.content.page == 'main' || data.content.page == 'pools'  || data.content.page == 'baths' }
+    {#if data.content.page == 'main' }
     <section id="cost_calculation_block" class="cost_calculation_block pd_section">
         <p class="header2">Рассчитайте стоимость строительства вашего дома самостоятельно, ответив на 6 вопросов</p>
-        <CalulatedCost/>
+        <CalulatedCost slides={data.content?.questions}/>
     </section>
     {/if}
+    {#if data.content.page == 'main'}
     <section class="swiper_section">
         <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ ДОМ ВАШЕЙ МЕЧТЫ</p>
         <SwiperComponent/>
     </section>
+    {/if}
     <section class="house_styles">
         <HouseStyles/>
     </section>
