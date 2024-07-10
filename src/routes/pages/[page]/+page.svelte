@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     export let data;
     console.log(data)
 
@@ -51,19 +51,21 @@
     </section>
     {#if data.content.page == 'main' }
     <section id="cost_calculation_block" class="cost_calculation_block pd_section">
-        <p class="header2">Рассчитайте стоимость строительства вашего дома самостоятельно, ответив на 6 вопросов</p>
+        <p class="header2">Рассчитайте стоимость строительства {data.content.title[1]} самостоятельно, ответив на 6 вопросов</p>
         <CalulatedCost slides={data.content?.questions}/>
     </section>
     {/if}
-    {#if data.content.page == 'main'}
+    {#if data.content.page == 'main' || data.content.page == "baths"}
     <section class="swiper_section">
-        <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ ДОМ ВАШЕЙ МЕЧТЫ</p>
-        <SwiperComponent/>
+        <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</p>
+        <SwiperComponent slides={data.content.slides} page={data.content.page}/>
     </section>
     {/if}
-    <section class="house_styles">
-        <HouseStyles/>
-    </section>
+    {#if data.content.page == 'main' || data.content.page == "recreationAreas" || data.content.page == "gazebo"}
+        <section class="house_styles">
+            <HouseStyles stylesmodal={data.content.stylesmodal} page={data.content.page}/>
+        </section>
+    {/if}
     <section class="general_director pd_section">
         <div class="general_director_img_div">
             <div class="general_director_img">
