@@ -8,9 +8,12 @@
     import kewate_logo from '$lib/assets/kewate_logo.svg'
 
     import DropdownMenu from './DropdownMenu.svelte'
+    import CheckOutOrderModal from './CheckOutOrderModal.svelte'
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
-
+    let showModal
 </script>
+
+<CheckOutOrderModal bind:showModal />
 
 
 
@@ -28,7 +31,7 @@
             <div class="">
                 <p class="main_sm_14">+7 (900) 000-00-00</p>
             </div>
-            <button class="main_black_btn main_sm_14">Заказать выезд</button>
+            <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
             <button class="switch_lang main_sm_14">EN</button>
         </div>
     </div>
