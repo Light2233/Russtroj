@@ -29,7 +29,7 @@
                 <p class="main_sm_14">Компания «РУССТРОЙ» с 2009 года строит дома премиум и бизнес класса. Мы строим дома «под ключ» по различным материалам и технологиям.</p>
             </div>
             <div class="tagline">
-                <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
+                <h1 class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</h1>
                 <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
             </div>
             <div class="line border1"></div>
@@ -52,13 +52,13 @@
     </section>
     {#if data.content.page == 'main' }
     <section id="cost_calculation_block" class="cost_calculation_block pd_section">
-        <p class="header2">Рассчитайте стоимость строительства {data.content.title[1]} самостоятельно, ответив на 6 вопросов</p>
+        <h2 class="header2">Рассчитайте стоимость строительства {data.content.title[1]} самостоятельно, ответив на 6 вопросов</h2>
         <CalulatedCost slides={data.content?.questions}/>
     </section>
     {/if}
     {#if data.content.page == 'main' || data.content.page == "baths"}
     <section class="swiper_section">
-        <p class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</p>
+        <h2 class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</h2>
         <SwiperComponent slides={data.content.slides} page={data.content.page}/>
     </section>
     {/if}
