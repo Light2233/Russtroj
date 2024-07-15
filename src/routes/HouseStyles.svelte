@@ -51,23 +51,36 @@
         column-gap: 2px;
         row-gap: 2px;
         margin-top: 80px;
+        justify-content: space-between;
     }
     .style{
         height: 400px;
         flex-grow: 0;
         width: 100%;
-        max-width: 33.2%;
+        max-width: 33.1%;
+        @media (max-width:680px) {
+            height: 200px;
+        }
     }
     .first{
         flex-grow: 1;
         width: 100%;
         max-width: 49.91%;
+        @media (max-width:1093px) {
+            max-width: 100%;
+            flex-grow: 2;
+        }
+        @media (max-width:680px) {
+            height: 400px;
+        }
+        
     }
     .style p {
         position: absolute;
         color: white;
         padding: 20px;
         top: 0;
+        text-align: start;
     }
     .style .main_white_btn{
         position: absolute;

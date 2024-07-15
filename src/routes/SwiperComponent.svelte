@@ -1,4 +1,4 @@
-<script>
+<script >
     import { Navigation, Pagination, Scrollbar, A11y, FreeMode,Mousewheel } from 'swiper';
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
@@ -9,9 +9,24 @@
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
 
     import HouseStyleModal from './HouseStyleModal.svelte';
-
+    let innerWidth
     let countSlide = 1 ;
-
+    let slideper
+    let spaceBetween
+    $:{
+        if(innerWidth > 1180){
+            slideper = 3;
+            spaceBetween = -20
+        }
+        if(innerWidth <= 1080 ){
+            slideper = 3;
+            spaceBetween=20;
+        }
+        else{
+            slideper = 2;
+            spaceBetween = 20
+        }
+    }
     
     export let page;
     export let slides;
@@ -21,8 +36,11 @@
     let pagLength = Math.round(slidesLenght/3);
 
     let name = ""
+
+   
 </script>
 
+<svelte:window bind:innerWidth={innerWidth}/>
 <HouseStyleModal bind:showModal style_name={houseName} stylesmodal={slides}/>
 
 <div class="slider">
@@ -30,8 +48,8 @@
     <button class="prev swiper_btn" class:disable={countSlide<=1} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
-    spaceBetween={ -20 }
-    slidesPerView={ 3 }
+    spaceBetween={ spaceBetween }
+    slidesPerView={  slideper }
     navigation = {
         {nextEl: '.next',
         prevEl: ".prev",}
@@ -62,11 +80,19 @@
     <button class="next swiper_btn" on:click={()=>{ countSlide < slidesLenght ? countSlide++ : countSlide }} class:disable={countSlide > (slidesLenght-3)}><img src="{ swiper_arrow }" alt=""></button>
 </div>
 
-<style>
+<style lang="less">
     .slider_content{
         width: 356px;
         height: 600px;
         cursor: pointer;
+        @media (max-width:1080px) {
+            max-width: 280px;
+            max-height: 500px;
+            width: 100%;
+        }
+        @media (max-width:800px) {
+            max-width: 100%;
+        }
         
     }
     .slider{
@@ -96,6 +122,7 @@
         justify-content: center;
         cursor: pointer;
         transition: all .2s ease-out;
+        border: 1px solid var(--Neutral_300);
         
     }
     .swiper_btn img{
@@ -112,12 +139,11 @@
     .next{
         right: 0;
         margin-right: 58px;
+        @media (max-width:1080px) {
+            margin-right: 12px;
+        }
     }
-    .disable{
-        opacity: 0;
-        z-index: -1;
-        transition: all .2s ease-out;
-    }
+    
     .pag_line{
         display: flex;
         align-items: center;
@@ -151,9 +177,13 @@
         z-index: 2;
         color: var(--Neutral_100);
         padding: 20px;
+        text-align: start;
     }
     :global(.swiper){
         overflow: visible;
+        @media (max-width:800px) {
+            overflow: hidden;
+        }
     }
     :global(.swiper-pagination){
         position: absolute;
@@ -169,5 +199,10 @@
     }
     :global(.swiper-pagination-bullet-active){
         background: var(--Neutral_900);
+    }
+    :global(.swiper-button-disabled){
+        background: var(--Neutral_300) !important;
+        pointer-events: none !important;
+        transition: all .2s ease-out !important;
     }
 </style>

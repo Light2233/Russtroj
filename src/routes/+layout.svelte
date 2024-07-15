@@ -11,6 +11,7 @@
     import CheckOutOrderModal from './CheckOutOrderModal.svelte'
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     let showModal;
+    let innerWidth
 </script>
 
 <CheckOutOrderModal bind:showModal />
@@ -22,11 +23,13 @@
         <a href="/pages/main" class="logo">
             <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage>
         </a>
+        {#if innerWidth>800}
         <div class="nav_menu">
             <DropdownMenu/>
             <a href="" class="nav_link main_sm_14">О компании</a>
             <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
         </div>
+        {/if}
         <div class="main_header_info">
             <div class="">
                 <p class="main_sm_14">+7 (900) 000-00-00</p>
@@ -68,10 +71,10 @@
     </div>
 </footer>
 
+<svelte:window bind:innerWidth={innerWidth}/>
 
 
-
-<style>
+<style lang="less">
     .header_content{
         
         height: 48px;  
@@ -80,6 +83,9 @@
         column-gap: 40px;
         padding: 0 46px;
         margin: 0 auto;
+        @media (max-width:800px) {
+            justify-content: space-between;
+        }
     }
     .nav_menu{
         display: flex;
@@ -98,6 +104,11 @@
         column-gap: 12px;
         height: 100%;
         align-items: center;
+    }
+    .main_header_info div{
+        @media (max-width:920px) {
+            display: none;
+        }
     }
     .main_header_info *{
         height: 100%;

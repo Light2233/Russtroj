@@ -11,6 +11,8 @@
     import Reviews from '../../Reviews.svelte';
     import DirectorModal from '../../DirectorModal.svelte';
 
+
+    import why_bg from "$lib/assets/why_bg.png"
     import telegram_bg from "$lib/assets/tg_image.png"
     import director from "$lib/assets/director.jpg"
     let showModal;
@@ -66,6 +68,24 @@
             <HouseStyles stylesmodal={data.content.stylesmodal} page={data.content.page}/>
         </section>
     {/if}
+    {#if data.content.page == 'pools'}
+    <section class="pd_section">
+        <div class="why_content">
+            <div class="why_info">
+                <p class="header2">ПОЧЕМУ ВЫБИРАЮТ НАС</p>
+                <ul>
+                    <li class="main_sm_18">Строим бассейны по лучшей цене</li>
+                    <li class="main_sm_18">Наша компания работает только по договору</li>
+                    <li class="main_sm_18">Мы предлагаем гибкую систему скидок для наших клиентов</li>
+                    <li class="main_sm_18">Предоставляем гарантию 10 лет на все наши работы</li>
+                </ul>
+            </div>
+            <div class="why_img">
+                <img src="{ why_bg }" alt="">
+            </div>
+        </div>
+    </section>
+    {/if}
     <section class="general_director pd_section">
         <div class="general_director_img_div">
             <div class="general_director_img">
@@ -109,17 +129,33 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 46px;
+        @media (max-width:900px) {
+            padding: 0 20px;
+            
+        }
         
     }
     .swiper_section{
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 0 0 46px;
+        @media (max-width:1080px) {
+            padding: 0 46px;
+        }
+        @media (max-width:900px){
+            padding: 0 20px;
+        }
     }
     .reviews_section{
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 0 0 46px;
+        @media (max-width:1080px) {
+            padding: 0 46px;
+        }
+        @media (max-width:900px){
+            padding: 0 20px;
+        }
     }
     .house_styles{
         width: 100%;
@@ -134,6 +170,9 @@
         margin-top: 20px;
         max-width: unset;
         overflow: hidden;
+        @media (max-width:1080px) {
+            height: 500px;
+        }
     }
     .welcome_page img{
         position: absolute;
@@ -202,6 +241,10 @@
         font-size: 48px;
         font-weight: 700;
         line-height: 52.8px;
+        @media (max-width:900px) {
+            font-size: 42px;
+            line-height: 46px;
+        }
     }
 
     /* achievements */
@@ -233,7 +276,18 @@
         line-height: 158.4px;
         text-align: center;
         font-family: "BebasNeue" !important;
-
+        @media (max-width:1080px) {
+            font-size: 122px;
+            line-height: 132px;
+            text-align: center;
+            
+        }
+        
+    }
+    :global(.achievements .main_sm_18){
+        @media (max-width:1080px) {
+            text-align: center !important;
+        }
     }
     .cost_calculation_block{
         display: flex;
@@ -253,17 +307,39 @@
         display: flex;
         padding-top: 200px;
         padding-bottom: 200px;
+        @media (max-width:900px) {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+        @media (max-width:800px) {
+            flex-direction: column;
+            row-gap: 30px;
+        }
 
     }
     .general_director_img_div{
         padding-right: 57px;
         border-right: 1px solid var(--Neutral_300);
+        @media (max-width:1080px) {
+            padding-right: 30px;
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width:800px) {
+            border: none;
+            justify-content: center;
+        }
     }
     .general_director_img{
         width: 450px;
         height: 450px;
         border: 1px solid var(--Neutral_900);
         background: var(--Neutral_200);
+        @media (max-width:1080px) {
+            width: 350px;
+            height: 350px;
+        }
+        
     }
     .general_director_img img{
         width: 100%;
@@ -273,6 +349,13 @@
     .general_director_info{
         max-width: 601px;
         padding: 69px 0 40px 57px;
+        @media (max-width:1080px) {
+            padding: 0px 0 40px 30px;
+        }
+        @media (max-width:800px) {
+            padding: 0;
+        }
+        
        
     }
     .general_director_status{
@@ -291,6 +374,12 @@
         cursor: pointer;
         display: flex;
 
+    }
+    .general_director_info button:hover{
+        color: var(--Neutral_500);
+    }
+    .general_director_info button:active{
+        color: var(--Neutral_600);
     }
 
     /* telegram_content */
@@ -316,4 +405,36 @@
     .swiper_section{
         overflow: hidden;
     }
+
+    /* Pools block */ 
+
+    .why_content{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 40px;
+    }
+    .why_img{
+        width: 638px;
+        max-height: 398px;
+    }
+    .why_img img{
+        width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    .why_info{
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+    }
+    .why_info ul{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+        list-style: outside;
+        margin-left: 25px;
+    }
+    
 </style>

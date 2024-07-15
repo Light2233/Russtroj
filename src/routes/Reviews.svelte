@@ -55,15 +55,31 @@
         }
     ]
     let slidesLenght2 = slides.length
+    let innerWidth
+
+    let slideper
+    let spaceBetween
+    $:{
+        if(innerWidth > 1180){
+            slideper = 2;
+            spaceBetween = -220
+        }
+        else{
+            slideper = 2;
+            spaceBetween=20;
+        }
+    }
 </script>
+
+<svelte:window bind:innerWidth={innerWidth}/>
 <div id="reviews" class="slider reviews">
 
 
     <button class="prev1 swiper_btn" class:disable={count<=1} on:click={()=>{ count > 1 ? count-- : count }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
-    spaceBetween={ -220 }
-    slidesPerView={ 2 }
+    spaceBetween={ spaceBetween }
+    slidesPerView={ slideper }
     navigation = {
         {nextEl: '.next1',
         prevEl: ".prev1",}
@@ -103,7 +119,7 @@
     <button class="next1 swiper_btn" on:click={()=>{ count < slidesLenght2 ? count++ : count }} class:disable={count > (slidesLenght2-2)}><img src="{ swiper_arrow }" alt=""></button>
 </div>
 
-<style>
+<style lang="less">
     .slider_content{
         width: 450px;
         height: 402px;
@@ -113,6 +129,10 @@
         flex-direction: column;
         justify-content: space-between;
         border: 1px solid var(--Neutral_300);
+        @media (max-width:1080px) {
+            width: 100%;
+        }
+        
     }
     .header3{
         margin-bottom: 12px;
@@ -135,6 +155,7 @@
         justify-content: center;
         cursor: pointer;
         transition: all .2s ease-out;
+        border: 1px solid var(--Neutral_300);
         
     }
     .swiper_btn img{
@@ -150,11 +171,9 @@
     .next1{
         right: 0;
         margin-right: 58px;
-    }
-    .disable{
-        opacity: 0;
-        z-index: -1;
-        transition: all .2s ease-out;
+        @media (max-width:1080px) {
+            margin-right: 12px;
+        }
     }
     .user{
         display: flex;
@@ -190,5 +209,10 @@
     }
     .slider{
         overflow: hidden;
+    }
+    :global(.swiper-button-disabled){
+        background: var(--Neutral_300) !important;
+        pointer-events: none !important;
+        transition: all .2s ease-out !important;
     }
 </style>

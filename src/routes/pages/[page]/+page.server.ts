@@ -14,9 +14,9 @@ import quest_img_2 from "$lib/assets/quest_img_2.png"
 import quest_img_3 from "$lib/assets/quest_img_3.png"
 
 // Main slide images
-import slidebg1 from "$lib/assets/slides/slide1.png"
-import slidebg2 from "$lib/assets/slides/slide2.png"
-import slidebg3 from "$lib/assets/slides/slide3.png"
+import slidebg1 from "$lib/assets/slides/slide1.webp"
+import slidebg2 from "$lib/assets/slides/slide2.webp"
+import slidebg3 from "$lib/assets/slides/slide3.webp"
 
 
 // Slide bath 
@@ -25,14 +25,14 @@ import block_bath_slide from "$lib/assets/block_bath_slide.png"
 import karkas_bath_slide from "$lib/assets/karkas_bath_slide.png"
 
 // House styles images
-import eng_style from "$lib/assets/housestyles/eng_style.png"
-import hightech_style from "$lib/assets/housestyles/hightech_style.png"
-import itl_style from "$lib/assets/housestyles/itl_style.png"
-import min_style from "$lib/assets/housestyles/min_style.png"
-import modern_style from "$lib/assets/housestyles/modern_style.png"
-import ru_style from "$lib/assets/housestyles/ru_style.png"
-import shale_style from "$lib/assets/housestyles/shale_style.png"
-import viking_style from "$lib/assets/housestyles/viking_style.png"
+import eng_style from "$lib/assets/housestyles/eng_style.webp"
+import hightech_style from "$lib/assets/housestyles/hightech_style.webp"
+import itl_style from "$lib/assets/housestyles/itl_style.webp"
+import min_style from "$lib/assets/housestyles/min_style.webp"
+import modern_style from "$lib/assets/housestyles/modern_style.webp"
+import ru_style from "$lib/assets/housestyles/ru_style.webp"
+import shale_style from "$lib/assets/housestyles/shale_style.webp"
+import viking_style from "$lib/assets/housestyles/viking_style.webp"
 
 
 import eng_style_modal from "$lib/assets/housestyles_modal/eng_style.png"

@@ -69,7 +69,7 @@
                 <p class="header2  general_director_name">ВЛАДИСЛАВ РЯБУХА</p>
                 <p class="main_sm_18">Строительством я занимаюсь уже более 15 лет. За это время мне удалось сформировать сплоченный коллектив в России и Сербии, работающий по отобранным мною технологиям строительства. Я слежу за тем, чтобы каждый сотрудник совершенствовал свои навыки, за счет этого мы можем гарантировать долговечность и качество выполненных нами проектов. </p>
             </div>
-            <button class="header3" on:click={()=>{showModal=true}}>Показать больше…</button>
+            <button class="general_btn" on:click={()=>{showModal=true}}>Показать больше…</button>
         </div>
     </section>
     <section class="pd_section">
@@ -261,6 +261,12 @@
         max-width: 601px;
         padding: 69px 0 40px 57px;
        
+    }
+    .general_btn{
+        color: aliceblue;
+    }
+    .general_btn:hover{
+        color: var(--Neutral_500) !important;
     }
     .general_director_status{
         padding-bottom: 20px;
