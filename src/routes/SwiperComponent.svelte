@@ -2,6 +2,7 @@
     import { Navigation, Pagination, Scrollbar, A11y, FreeMode,Mousewheel } from 'swiper';
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
+    import { onMount } from 'svelte';
     import 'swiper/css';
     import 'swiper/css/pagination';
 
@@ -13,16 +14,20 @@
     let countSlide = 1 ;
     let slideper
     let spaceBetween
+    let swiper 
+    onMount(()=>[
+        swiper = true
+    ])
     $:{
         if(innerWidth > 1180){
             slideper = 3;
             spaceBetween = -20
         }
-        if(innerWidth <= 1080 ){
+        else if(innerWidth <= 1080 && innerWidth>800){
             slideper = 3;
             spaceBetween=20;
         }
-        else{
+        else if(innerWidth <= 800){
             slideper = 2;
             spaceBetween = 20
         }
@@ -43,6 +48,7 @@
 <svelte:window bind:innerWidth={innerWidth}/>
 <HouseStyleModal bind:showModal style_name={houseName} stylesmodal={slides}/>
 
+{#if swiper}
 <div class="slider">
 
     <button class="prev swiper_btn" class:disable={countSlide<=1} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
@@ -79,6 +85,7 @@
     </Swiper>
     <button class="next swiper_btn" on:click={()=>{ countSlide < slidesLenght ? countSlide++ : countSlide }} class:disable={countSlide > (slidesLenght-3)}><img src="{ swiper_arrow }" alt=""></button>
 </div>
+{/if}
 
 <style lang="less">
     .slider_content{
@@ -92,6 +99,9 @@
         }
         @media (max-width:800px) {
             max-width: 100%;
+        }
+        @media (max-width:600px) {
+          max-height: 400px;
         }
         
     }
@@ -123,12 +133,20 @@
         cursor: pointer;
         transition: all .2s ease-out;
         border: 1px solid var(--Neutral_300);
+        @media (max-width:600px) {
+            width: 30px;
+            height: 30px;
+        }
         
     }
     .swiper_btn img{
         height: 20px;
         width: 20px;
-        pointer-events: none
+        pointer-events: none;
+        @media (max-width:600px) {
+           width: 12px;
+           height: 12px;
+        }
     }
     .prev{
         margin-left: 12px;

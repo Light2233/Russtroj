@@ -3,6 +3,8 @@
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import 'swiper/css';
 
+    import { onMount } from 'svelte';
+
     import slidebg1 from "$lib/assets/slides/slide1.png"
     import star from "$lib/assets/star.svg"
 
@@ -57,21 +59,34 @@
     let slidesLenght2 = slides.length
     let innerWidth
 
+
+
+    let swiper
     let slideper
     let spaceBetween
+
+
+    onMount(()=>{
+        swiper = true
+    })
     $:{
         if(innerWidth > 1180){
             slideper = 2;
             spaceBetween = -220
         }
-        else{
+        else if (innerWidth <= 1180 && innerWidth >800){
             slideper = 2;
             spaceBetween=20;
+        }
+        else if(innerWidth < 800){
+            slideper = 1
+            spaceBetween = 10
         }
     }
 </script>
 
 <svelte:window bind:innerWidth={innerWidth}/>
+{#if swiper}
 <div id="reviews" class="slider reviews">
 
 
@@ -118,6 +133,7 @@
     </Swiper>
     <button class="next1 swiper_btn" on:click={()=>{ count < slidesLenght2 ? count++ : count }} class:disable={count > (slidesLenght2-2)}><img src="{ swiper_arrow }" alt=""></button>
 </div>
+{/if}
 
 <style lang="less">
     .slider_content{
@@ -130,6 +146,10 @@
         justify-content: space-between;
         border: 1px solid var(--Neutral_300);
         @media (max-width:1080px) {
+            width: 100%;
+        }
+        @media (max-width:800px) {
+            height: 300px;
             width: 100%;
         }
         
@@ -156,6 +176,9 @@
         cursor: pointer;
         transition: all .2s ease-out;
         border: 1px solid var(--Neutral_300);
+        @media (max-width:800px) {
+            display:none;
+        }
         
     }
     .swiper_btn img{

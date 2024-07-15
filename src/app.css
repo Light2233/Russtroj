@@ -88,6 +88,11 @@ button,input{
         font-size: 42px !important;
         line-height: 46px !important;
     }
+    .header2{
+        font-size: 24px;
+        line-height: 26px;
+        font-weight: 400;
+    }
 }
 /* root */
 

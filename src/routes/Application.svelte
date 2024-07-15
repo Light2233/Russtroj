@@ -36,7 +36,7 @@
     </form>
 </div>
 
-<style>
+<style lang="less">
     .application{
         padding: 40px;
         background: var(--Neutral_150);
@@ -44,6 +44,17 @@
         display: flex;
         column-gap: 40px;
         margin-bottom: 200px;
+        @media (max-width:800px) {
+            flex-direction: column;
+            row-gap: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width:400px) {
+            border: none;
+            background: none;
+            padding: 0;
+        }
     }
     form{
         max-width: 50%;
@@ -51,6 +62,9 @@
         display: flex;
         flex-direction: column;
         row-gap: 40px;
+        @media (max-width:800px) {
+            max-width: 100%;
+        }
     }
     form  input{
         border: 1px solid var(--Neutral_600);
@@ -72,6 +86,9 @@
         column-gap: 20px;
         width: 100%;
         max-width: 47%;
+        @media (max-width:800px) {
+            max-width: 100%;
+        }
     }
     .image-part{
         height: 556px;
@@ -80,11 +97,18 @@
         overflow: hidden;
         position: relative;
         object-fit: cover;
+        @media (max-width:800px) {
+            height: 322px;
+        }
         
     }
     .image-part img{
         width: 584px;
         height: 656px;
+        @media (max-width:500px) {
+            width: 400px;
+            height: 500px;
+        }
     }
     .application_img_right{
         margin-top: 80px;
@@ -92,11 +116,20 @@
     .application_img_left img{
         position: absolute;
         left: -20%;
+        @media (max-width:800px) {
+            left: 0;
+
+        }
     }
     .application_img_right img{
         position: absolute;
         left: -130%;
         top: -16%;
+        @media (max-width:800px) {
+            left: -110%;
+            top: -25%;
+        }
+        
 
     }
     form input{

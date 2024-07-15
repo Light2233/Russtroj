@@ -72,7 +72,7 @@
     </div>
 </form>
 
-<style>
+<style lang="less">
     .calc_content{
         display: flex;
         flex-direction: column;

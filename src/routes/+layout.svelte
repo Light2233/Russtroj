@@ -50,18 +50,22 @@
                 <button type="submit" class="main_white_btn">Вызвать инженера</button>
             </div>
             <div class="contacts">
-                <a href="#" class="link main_sm_14">
-                    mail@mail.ru
-                </a>
-                <a href="#" class="link main_sm_14">
-                    +7 (900) 000-00-00
-                </a>
-                <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle">
-                    <img src="{ ws }" alt="">
-                </a>
-                <a href="#" class="link main_sm_14 curcle">
-                    <img src="{ tg }" alt="">
-                </a>
+                <div class="row_div">
+                    <a href="#" class="link main_sm_14">
+                        mail@mail.ru
+                    </a>
+                    <a href="#" class="link main_sm_14">
+                        +7 (900) 000-00-00
+                    </a>
+                </div>
+                <div class="curcle_div">
+                    <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle">
+                        <img src="{ ws }" alt="">
+                    </a>
+                    <a href="#" class="link main_sm_14 curcle">
+                        <img src="{ tg }" alt="">
+                    </a>
+                </div>
             </div>
         </form>
     </div>
@@ -85,6 +89,7 @@
         margin: 0 auto;
         @media (max-width:800px) {
             justify-content: space-between;
+            padding: 0 20px;
         }
     }
     .nav_menu{
@@ -122,7 +127,11 @@
     }
 
 
-
+    .footer_application{
+        @media (max-width:600px) {
+            padding: 0 20px;
+        }
+    }
     footer{
         max-height: 658px;
         height: 100%;
@@ -131,6 +140,9 @@
         padding-top: 184px;
         background-repeat: no-repeat;
         background-size:auto;
+        @media (max-width:600px) {
+            padding-top: 77px;
+        }
     }
     .link{
         display: inline;
@@ -148,15 +160,34 @@
         justify-content: space-between;
         width: 100%;
         column-gap: 8px;
+        @media (max-width:500px) {
+            flex-direction: column;
+            row-gap: 12px;
+        }
+
+    }
+    .row_div{
+        display: flex;
+        column-gap: 8px;
+        width: 100%;
+    }
+    .curcle_div{
+        display: flex;
+        column-gap: 8px;
     }
     .curcle{
         padding: 11px;
     }
     .link:not(.curcle){
-        width: 100%;
         display: flex;
         justify-content: center;
         padding: 12px 0px;
+    }
+    
+    .row_div a:last-child{
+        @media (max-width:500px) {
+            flex-grow: 2;
+        }
     }
     .input_place {
         display: flex;
@@ -164,9 +195,16 @@
         justify-content: space-between;
         width: 100%;
         column-gap: 20px;
+        @media (max-width:600px) {
+            flex-direction: column;
+            row-gap: 24px;
+        }
     }
     .input_place button{
         width: 100%;
+        @media (max-width:600px) {
+            max-width: 100%;
+        }
     }
     form  input{
         border: 1px solid var(--Neutral_300);
@@ -195,6 +233,14 @@
         margin: 0 auto;
         row-gap: 28px;
         margin-bottom: 144px;
+        @media (max-width:600px) {
+            align-items: start;
+        }
+    }
+    form .header1{
+        font-size: 32px !important;
+        line-height: 35px !important;
+        text-align: start;
     }
     .footer{
         display: flex;
@@ -203,6 +249,9 @@
         padding: 20px 0;
         margin: 0 46px;
         border-top: 1px solid var(--Neutral_400);
+        @media (max-width:600px) {
+           margin: 0 20px;
+        }
     }
     .footer p{
         font-size: 14px;
@@ -219,5 +268,17 @@
     .footer a{
         color: var(--Neutral_100);
         text-decoration: underline;
+    }
+    :global(.footer .header1){
+        @media (max-width:600px) {
+            font-size: 32px !important;
+            line-height: 35px !important;
+        }
+    }
+    .row_div a:first-child{
+        @media (max-width:500px) {
+            flex-grow: 1;
+            width: unset !important;
+        }
     }
 </style>

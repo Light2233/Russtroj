@@ -78,7 +78,7 @@
     .style p {
         position: absolute;
         color: white;
-        padding: 20px;
+        padding: 20px 0px 0px 20px;
         top: 0;
         text-align: start;
     }
@@ -88,10 +88,13 @@
         margin: 20px;
         opacity: 0;
         left: 0;
+        @media (max-width:600px) {
+            padding: 10px !important;
+            font-size: 12px !important;
+        }
     }
     .style:hover .main_white_btn{
         opacity: 1;
-
     }
 
 </style>

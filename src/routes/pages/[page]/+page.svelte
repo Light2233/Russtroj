@@ -163,6 +163,9 @@
     }
     .swiper_section p{
         width: 40%;
+        @media (max-width:800px) {
+            width: 100%;
+        }
     }
     .welcome_page{
         height: 672px;
@@ -245,6 +248,10 @@
             font-size: 42px;
             line-height: 46px;
         }
+        @media (max-width:800px) {
+            font-size: 32px !important;
+            line-height: 35px !important;
+        }
     }
 
     /* achievements */
@@ -253,12 +260,22 @@
         display: flex;
         align-items: center;
         padding: 200px 0px;
+        @media (max-width:800px) {
+            flex-direction: column;
+            padding: 100px 20px;
+            row-gap: 32px;
+        }
     }
     .achievements_border{
         width: 1px;
         height: 149px;
         background-color: var(--Neutral_300);
         display: flex;
+        @media (max-width:800px) {
+            width: 100%;
+            height: 1px;
+            margin: 32px 0px 0px 0px;
+        }
     }
     .completed_projects,.construction_experience{
         display: flex;
@@ -294,6 +311,9 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        @media (max-width:700px) {
+            display: none;
+        }
     }
     .cost_calculation_block .header2{
         text-align: center;
@@ -317,6 +337,11 @@
         }
 
     }
+    .general_director_name{
+        font-weight: 600 !important;
+        font-size: 42px;
+        margin-bottom: 8px;
+    }
     .general_director_img_div{
         padding-right: 57px;
         border-right: 1px solid var(--Neutral_300);
@@ -328,6 +353,7 @@
         @media (max-width:800px) {
             border: none;
             justify-content: center;
+            padding-right: 0;
         }
     }
     .general_director_img{
@@ -338,6 +364,10 @@
         @media (max-width:1080px) {
             width: 350px;
             height: 350px;
+        }
+        @media (max-width:600px) {
+            width: 280px;
+            height: 280px;
         }
         
     }
@@ -391,6 +421,18 @@
         column-gap: 20px;
         margin-top: 200px;
         margin-bottom: 200px;
+        @media (max-width:800px) {
+            flex-direction: column;
+            row-gap: 40px;
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+    }
+    .telegram_img{
+        @media (max-width:600px) {
+            width: 280px;
+            height: 280px;
+        }
     }
     .telegram_content .info{
         max-width: 465px;
