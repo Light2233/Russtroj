@@ -1,8 +1,5 @@
 <script lang="ts">
     export let data;
-    console.log(data)
-
-   
 
     import CalulatedCost from "../../CalulatedCost.svelte"
     import SwiperComponent from '../../SwiperComponent.svelte';
@@ -17,6 +14,10 @@
 </script>
 
 <DirectorModal bind:showModal/>
+
+<svelte:head>
+    <title>РУССТРОЙ - СТРОИТЕЛЬСТВО {data.content.title?.[1]}</title>
+</svelte:head>
 
 <div class="main_content">
     <section class="welcome_page pd_section">

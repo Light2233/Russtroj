@@ -396,7 +396,7 @@ let pageContents: {[key: string]: PageContent} = {
         ]
     },
     "recreationAreas":{
-        title:["ЗОНУ ОТДЫХА",''],
+        title:["ЗОНУ ОТДЫХА",'ЗОНЫ ОТДЫХА'],
         page:'recreationAreas',
         images:[
             welcome_page_recreationAreas_bg
