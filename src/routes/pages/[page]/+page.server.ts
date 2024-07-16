@@ -462,7 +462,7 @@ let pageContents: {[key: string]: PageContent} = {
 
 
 export const load: PageLoad = ({ params }) => {
-	const slug = params.page;
+    const slug = params.page;
 
     let content = pageContents?.[slug];
     if (!content) {
