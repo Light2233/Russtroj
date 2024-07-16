@@ -27,10 +27,15 @@
             slideper = 3;
             spaceBetween=20;
         }
-        else if(innerWidth <= 800){
+        else if(innerWidth <= 800 && innerWidth>400){
             slideper = 2;
             spaceBetween = 20
         }
+        else if(innerWidth <= 400){
+            slideper = 1
+            spaceBetween = 20
+        }
+
     }
     
     export let page;
@@ -72,7 +77,7 @@
             <SwiperSlide>
                 <button class="slider_content" on:click={()=>{if(page=='main'){ houseName = slide.name ; showModal=true;}}}>
                     <p class="header2">{ slide.name }</p>
-                    <img class="slide_bg" src="{ slide.urlModal }" alt="" data-src="{ slide.urlModal }" use:lazyImage={{ threshold: 0.5 }}>
+                    <img class="slide_bg" src="{ slide.urlModal }" alt="" data-src="{ slide.urlModal }" use:lazyImage={{ threshold: 0.5 }} decoding="async"  fetchpriority="low">
                     {#if page == 'main'}
                         <button class="main_white_btn main_sm_14">Подробнее</button>
                     {/if}

@@ -6,38 +6,58 @@
     import tg from '$lib/assets/tg.svg'
     import ws from '$lib/assets/watsap.svg'
     import kewate_logo from '$lib/assets/kewate_logo.svg'
+    import arrow_down from "$lib/assets/arrow_down.svg"
 
     import DropdownMenu from './DropdownMenu.svelte'
     import CheckOutOrderModal from './CheckOutOrderModal.svelte'
+    import HamburgerMenu from './BurgerMenu.svelte';
+
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
+    import { page } from '$app/stores';
+    import BurgerMenu from './BurgerMenu.svelte';
+    import { onMount } from 'svelte';
+
     let showModal;
     let innerWidth
+    let dropMenu = false;
+    let importbl = false;
+    onMount(()=>{
+        importbl = true
+    })
+   
 </script>
 
 <CheckOutOrderModal bind:showModal />
 
 
-
 <header>
     <div class="header_content">
         <a href="/pages/main" class="logo">
-            <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage>
+            <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage >
         </a>
         {#if innerWidth>800}
-        <div class="nav_menu">
-            <DropdownMenu/>
-            <a href="" class="nav_link main_sm_14">О компании</a>
-            <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
-        </div>
+            <div class="nav_menu">
+                <div class="" on:click={(event)=>{event.stopPropagation()}}>
+                    <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
+                </div>
+                <a href="" class="nav_link main_sm_14">О компании</a>
+                <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
+            </div>
+        
         {/if}
+
         <div class="main_header_info">
             <div class="">
                 <p class="main_sm_14">+7 (900) 000-00-00</p>
             </div>
             <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
+            {#if innerWidth<=800 && importbl}
+                <HamburgerMenu/>
+            {/if}
             <button class="switch_lang main_sm_14">EN</button>
         </div>
     </div>
+    <DropdownMenu dropMenu={dropMenu} page={$page.params.page}/>
 </header>
 <slot/>
 <footer style="background:url({footer_bg});background-repeat: no-repeat;
@@ -75,10 +95,17 @@
     </div>
 </footer>
 
-<svelte:window bind:innerWidth={innerWidth}/>
+<svelte:window bind:innerWidth={innerWidth} on:click={()=>{dropMenu=false}}/>
 
 
 <style lang="less">
+
+
+
+
+    header{
+        position: relative;
+    }
     .header_content{
         
         height: 48px;  
@@ -89,8 +116,14 @@
         margin: 0 auto;
         @media (max-width:800px) {
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 0px 0px 20px;
         }
+        @media (max-width:500px) {
+            column-gap: 20px;
+        }
+    }
+    .rotate{
+        rotate: 180deg;
     }
     .nav_menu{
         display: flex;
@@ -103,6 +136,7 @@
         align-items: center;
         justify-content: center;
         padding: 16px;
+        cursor: pointer;
     }
     .main_header_info{
         display: flex;
@@ -110,7 +144,7 @@
         height: 100%;
         align-items: center;
     }
-    .main_header_info div{
+    .main_header_info div:not(.barbar){
         @media (max-width:920px) {
             display: none;
         }
@@ -124,6 +158,14 @@
         background-color: var(--Neutral_200);
         color: var( --Neutral_900);
         padding: 16px;
+        @media (max-width:800px) {
+            display: none;
+        }
+    }
+    .logo{
+        @media (max-width:500px) {
+            width: 100px;
+        }
     }
 
 
@@ -143,6 +185,13 @@
         @media (max-width:600px) {
             padding-top: 77px;
         }
+        @media (max-width:400px) {
+            max-height: fit-content;
+        }
+    }
+    footer a:first-child{
+        text-align: center;
+        text-decoration: none;
     }
     .link{
         display: inline;
@@ -153,6 +202,9 @@
     .link img{
         width: 24px;
         height: 24px;
+    }
+    .main_header_info .main_black_btn{
+        font-size: 12px ;
     }
     .contacts{
         display: flex;
@@ -236,6 +288,9 @@
         @media (max-width:600px) {
             align-items: start;
         }
+        @media (max-width:400px) {
+            margin-bottom: 70px;
+        }
     }
     form .header1{
         font-size: 32px !important;
@@ -251,6 +306,10 @@
         border-top: 1px solid var(--Neutral_400);
         @media (max-width:600px) {
            margin: 0 20px;
+        }
+        @media (max-width:400px) {
+            flex-direction: column;
+            row-gap: 24px;
         }
     }
     .footer p{

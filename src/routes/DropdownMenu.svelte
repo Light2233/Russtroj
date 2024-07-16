@@ -1,8 +1,11 @@
 
 <script lang="ts">
-    import arrow_down from "$lib/assets/arrow_down.svg"
+    import link_bg from "$lib/assets/slides/slide2.webp"
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image'
+    import { slide,fly } from "svelte/transition";
+    import { onMount,afterUpdate,beforeUpdate } from "svelte";
 
-    import { slide } from "svelte/transition";
+    export let page;
 
     let options = [
         {
@@ -21,61 +24,117 @@
             name:"Строительство зон отдыха",
             path:"/pages/recreationAreas"
         },
+        {
+            name:"Строительство зон барбекю",
+            path:"/pages/gazebo"
+        },
         
     ]
 
-    let dropMenu = false
+    let i;
+    let temp;
+    let slided = false
+    export let dropMenu = false;
+
+    beforeUpdate(()=>{
+        for(i=0;i<options.length;i++){
+            if(options[i].path === `/pages/${page}`){
+                
+                temp = options[i];
+                options[i]=options[0];
+                options[0]=temp;
+                break;
+            }
+        }
+    })
+    
+        
+    
+
+    
 </script>
 
-<svelte:window on:click={()=>{dropMenu=false}}/>
-<div class="drop_down_menu"
-on:click={(event)=>{event.stopPropagation()}}
->
-    <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
-    {#if dropMenu}
-        <div class="drop_menu" transition:slide>
-            {#each options as option}
-                <a class="drop_menu_link main_sm_14" href={option.path}>{option.name}</a>
-            {/each}
-            
-        </div>
-    {/if}
-</div>
 
-<style>
-    .drop_down_menu{
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
+{#if dropMenu}
+
+    <div class="drop_menu" transition:slide>
+        <p class="main_sm_14 gray">Услуги</p>
+        
+        <div class="link_grid">
+            {#each options as option,index}
+                    <a class="drop_menu_link header3" href={option.path} class:first={index===0} on:click={(event)=>{dropMenu=false;event.stopPropagation()}}>
+                        {option.name}
+                        <img src="{ link_bg }" alt="" data-src="{ link_bg }" decoding="async"  fetchpriority="high" >
+                    </a>
+            {/each}
+        </div>
+    </div>
+{/if}
+
+<style lang="less">
+    .hidden{
+        display: none;
+    }
+    .gray{
+        color:var(--Neutral_400);
     }
     .drop_menu{
+        width: 100%;
+        padding: 20px 46px;
         position: absolute;
-        display: flex;
-        padding: 12px 20px 20px 20px ;
         background: var(--Neutral_100);
-        border-radius: 0 0 24px 24px;
-        top: 30px;
-        left: 0;
+        z-index: 9999;
+        display: flex;
         flex-direction: column;
         row-gap: 12px;
-        z-index: 66;
+        @media (max-width:800px) {
+            padding: 20px 20px;
+        }
     }
-    .nav_link img{
-        width: 16px;
-        height: 16px;
-    }
-    .nav_link{
+    .link_grid{
         display: flex;
-        align-items: center;
-        justify-content: center;
-        column-gap: 2px;
-        cursor: pointer; 
+        column-gap: 20px;
+        justify-content: space-between;
+        @media (max-width:1080px) {
+            column-gap: 10px;
+        }
+        @media (max-width:900px) {
+            flex-wrap: wrap;
+            column-gap: 0px;
+        }
     }
     .drop_menu_link{
-        color: var(--Neutral_900);
+        color: var(--Neutral_100);
+        position: relative;
+        height: 235px;
+        padding: 12px;
+        flex-grow: 0;
+        width: 20%;
+        @media (max-width:900px) {
+            width: 50%;
+        }
     }
-    .rotate{
-        rotate: 180deg;
+    .drop_menu_link img{
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        filter: brightness(60%);
+        right: 0;
     }
+    .first{
+        width: 100%;
+        flex-shrink: 0;
+        max-width: 33%;
+        @media (max-width:1080px) {
+           max-width: 25%;
+        }
+        @media (max-width:900px) {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    
 </style>

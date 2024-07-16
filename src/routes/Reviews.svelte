@@ -152,6 +152,9 @@
             height: 300px;
             width: 100%;
         }
+        @media (max-width:430px) {
+            height: fit-content;
+        }
         
     }
     .header3{
@@ -205,6 +208,9 @@
         width: 100%;
         padding-top: 12px;
         justify-content: space-between;
+        @media (max-width:800px) {
+            margin-top: 20px;
+        }
     }
     .avatar{
         display: flex;

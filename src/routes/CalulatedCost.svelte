@@ -42,7 +42,7 @@
                                 <div class="" class:var={slideCnt!=1} class:var1={slideCnt==1}>
                                     <div class="">
                                         {#if quest.url}
-                                            <img src="{ quest.url }" alt="" data-src="{ quest.url }" use:lazyImage={{ threshold: 0.5 }}>
+                                            <img src="{ quest.url }" alt="" data-src="{ quest.url }" use:lazyImage={{ threshold: 0.5 }} decoding="async">
                                         {/if}
                                         <div class="var_quests" class:var_quests_mr16={slideCnt==1}>
                                             <input type="radio" name="{slide.id}" id={quest.id} value="{quest.answ}" bind:group={slide.value} required>

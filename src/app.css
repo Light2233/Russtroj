@@ -83,17 +83,7 @@ button,input{
     line-height: 15.4px;
 }
 
-@media (max-width:900px) {
-    .header1{
-        font-size: 42px !important;
-        line-height: 46px !important;
-    }
-    .header2{
-        font-size: 24px;
-        line-height: 26px;
-        font-weight: 400;
-    }
-}
+
 /* root */
 
 :root{
@@ -146,3 +136,18 @@ button,input{
 }
 
 
+@media (max-width:900px) {
+    .header1{
+        font-size: 42px !important;
+        line-height: 46px !important;
+    }
+    .header2{
+        font-size: 24px;
+        line-height: 26px;
+        font-weight: 400;
+    }
+}
+
+dialog[open] body{
+    overflow: hidden;
+}

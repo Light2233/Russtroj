@@ -1,9 +1,10 @@
 <script lang="ts">
     export let showModal;
+    import close from "$lib/assets/close.svg"
 	let dialog2; 
     $: if (dialog2 && showModal) dialog2.showModal();
     import { fade } from "svelte/transition";
-
+    export let url 
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -15,6 +16,7 @@ on:click|self={() => dialog2.close()}
 >
 
     <div class="dialog_content">
+        <div class="close" on:click={()=>{dialog2.close()}}><img src="{close}" alt=""></div>
         <div class="style_info">
             <div class="title">
                 <p class="header3">Генеральный директор</p>
@@ -27,11 +29,12 @@ on:click|self={() => dialog2.close()}
         </div>
         <div class="line vertical"></div>
         <div class="style_img" in:fade>
+            <img src="{url}" alt="">
         </div>
     </div>
 </dialog>
 
-<style>
+<style lang="less">
     dialog {
 		max-width: 32em;
 		border-radius: 0.2em;
@@ -92,6 +95,24 @@ on:click|self={() => dialog2.close()}
         flex-direction: row-reverse;
         column-gap: 40px;
         padding: 20px;
+        overflow-y: auto;
+        @media (max-width:1280px) {
+            align-items: center;
+            max-width: 100vw;
+            width: 100vw;
+            max-height: 100vh;
+            height: fit-content;
+        }
+        @media (max-width:900px) {
+            flex-direction: column;
+            row-gap: 40px;
+            height: 100vh;
+
+        }
+        @media (max-width:500px) {
+            padding: 16px;
+
+        }
 
     }
     *{
@@ -104,18 +125,28 @@ on:click|self={() => dialog2.close()}
     .style_info{
         width: 100%;
         max-width: 53%;
+        @media (max-width:900px) {
+            max-width: 100%;
+            
+        }
     }
     .style_img{
-        max-width: 450px;
-        max-height: 450px;
+        width: 450px;
+        height: 450px;
         background: #F2F2F2;
         border: 1px var(--Neutral_900) solid;
         width: 100%;
+        @media (max-width:900px) {
+            width: 300px;
+            height: 300px !important;
+            max-height: 300px;
+        }
     }
     .style_img img{
         width: 100%;
         height: 100%;
         object-fit: cover;
+        
     }
     .line{
         content: "";
@@ -124,6 +155,9 @@ on:click|self={() => dialog2.close()}
         background: #E0E0E0;
         z-index: 99;
         margin: 20px 0;
+        @media (max-width:900px) {
+            display: none;
+        }
     }
     .director_info{
         display: flex;
@@ -135,5 +169,14 @@ on:click|self={() => dialog2.close()}
         width: 1px;
         position: relative;
         top: -20px;
+    }
+    .close{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .close img{
+        height: 34px;
+        width: 34px;
     }
 </style>

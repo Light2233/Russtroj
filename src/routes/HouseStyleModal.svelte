@@ -54,24 +54,23 @@ on:click|self={() => dialog.close()}
         </div>
         {#key styleSelected}
         <div class="style_img" in:fade>
-            <img src="{ styleSelected?.urlModal }" alt="" data-src="{ styleSelected?.urlModal }" use:lazyImage={{ threshold: 0.5 }}>
+            <img src="{ styleSelected?.urlModal }" alt="" data-src="{ styleSelected?.urlModal }" use:lazyImage={{ threshold: 0.5 }} decoding="async">
         </div>
         {/key}
     </div>
 </dialog>
 
 
-<style>
+<style lang="less">
 	dialog {
-		max-width: 32em;
 		border-radius: 0.2em;
 		border: none;
 		padding: 0 !important;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         margin: 0 !important;
         max-width: 100%;
-        max-height: 100%;
+        max-height: 100vh;
         background: none;
         display: flex;
         align-items: center;
@@ -117,13 +116,30 @@ on:click|self={() => dialog.close()}
         max-height: 490px;
         height: 100%;
         width: 100%;
-        
+        overflow-y: auto;
         background: white;
         display: flex;
         justify-content: space-between;
         column-gap: 40px;
         padding: 20px;
+        
+        @media (max-width:1280px) {
+            align-items: center;
+            max-width: 100vw;
+            width: 100vw;
+            max-height: 100vh;
+            height: fit-content;
+        }
+        @media (max-width:900px) {
+            flex-direction: column;
+            row-gap: 40px;
+            height: 100vh;
 
+        }
+        @media (max-width:500px) {
+            padding: 16px;
+
+        }
     }
     *{
         word-wrap: break-word;
@@ -134,15 +150,30 @@ on:click|self={() => dialog.close()}
     .style_info{
         width: 100%;
         max-width: 53%;
+        @media (max-width:900px) {
+            max-width: 100%;
+            
+        }
     }
     .style_img{
         max-width: 450px;
         max-height: 450px;
+        @media (max-width:900px) {
+            max-width: 100%;
+            width: 100%;
+            max-height: 300px;
+
+        }
     }
     .style_img img{
         width: 100%;
         height: 100%;
         object-fit: cover;
+        @media (max-width:900px) {
+            max-width: 100%;
+            max-height: 300px;
+
+        }
     }
     .title{
         display: flex;
@@ -168,8 +199,13 @@ on:click|self={() => dialog.close()}
         border-radius: 10px;
         margin-top: .55rem;
         margin-right: 8px;
+        flex-shrink: 0;
     }
     .close_btn{
         cursor: pointer;
+    }
+    .style_info .main_sm_18{
+        font-size: 12px;
+        line-height: 20px;
     }
 </style>

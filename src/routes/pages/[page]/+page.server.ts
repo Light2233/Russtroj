@@ -2,11 +2,11 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
 // Welcome page images
-import welcome_page_main_bg from "$lib/assets/welcome_page_main_bg.png"
-import welcome_page_pools_bg from "$lib/assets/welcome_page_pools_bg.png"
-import welcome_page_baths_bg from "$lib/assets/welcome_page_baths_bg.png"
-import welcome_page_recreationAreas_bg from "$lib/assets/welcome_page_recreationAreas_bg.png"
-import welcome_page_mangal_bg from "$lib/assets/welcome_page_mangal_bg.png"
+import welcome_page_main_bg from "$lib/assets/welcome_page_main_bg.webp"
+import welcome_page_pools_bg from "$lib/assets/welcome_page_pools_bg.webp"
+import welcome_page_baths_bg from "$lib/assets/welcome_page_baths_bg.webp"
+import welcome_page_recreationAreas_bg from "$lib/assets/welcome_page_recreationAreas_bg.webp"
+import welcome_page_mangal_bg from "$lib/assets/welcome_page_mangal_bg.webp"
 
 // Calculated images
 import quest_img_1 from "$lib/assets/quest_img_1.png"
@@ -20,9 +20,9 @@ import slidebg3 from "$lib/assets/slides/slide3.webp"
 
 
 // Slide bath 
-import brus_bath_slide from "$lib/assets/brus_bath_slide.png"
-import block_bath_slide from "$lib/assets/block_bath_slide.png"
-import karkas_bath_slide from "$lib/assets/karkas_bath_slide.png"
+import brus_bath_slide from "$lib/assets/brus_bath_slide.webp"
+import block_bath_slide from "$lib/assets/block_bath_slide.webp"
+import karkas_bath_slide from "$lib/assets/karkas_bath_slide.webp"
 
 // House styles images
 import eng_style from "$lib/assets/housestyles/eng_style.webp"
@@ -35,14 +35,14 @@ import shale_style from "$lib/assets/housestyles/shale_style.webp"
 import viking_style from "$lib/assets/housestyles/viking_style.webp"
 
 
-import eng_style_modal from "$lib/assets/housestyles_modal/eng_style.png"
-import hightech_style_modal from "$lib/assets/housestyles_modal/hightech_style.png"
-import it_style_modal from "$lib/assets/housestyles_modal/it_style.png"
-import min_style_modal from "$lib/assets/housestyles_modal/min_style.png"
-import modern_style_modal from "$lib/assets/housestyles_modal/modern_style.png"
-import rus_style_modal from "$lib/assets/housestyles_modal/rus_style.png"
-import shale_style_modal from "$lib/assets/housestyles_modal/shale_style.png"
-import viking_style_modal from "$lib/assets/housestyles_modal/viking_style.png"
+import eng_style_modal from "$lib/assets/housestyles_modal/eng_style.webp"
+import hightech_style_modal from "$lib/assets/housestyles_modal/hightech_style.webp"
+import it_style_modal from "$lib/assets/housestyles_modal/it_style.webp"
+import min_style_modal from "$lib/assets/housestyles_modal/min_style.webp"
+import modern_style_modal from "$lib/assets/housestyles_modal/modern_style.webp"
+import rus_style_modal from "$lib/assets/housestyles_modal/rus_style.webp"
+import shale_style_modal from "$lib/assets/housestyles_modal/shale_style.webp"
+import viking_style_modal from "$lib/assets/housestyles_modal/viking_style.webp"
 import { stylesmodal } from '../../HouseStyles.svelte';
 import { page } from '$app/stores';
 

@@ -22,7 +22,7 @@
 <div class="styles_grid">
     {#each stylesmodal as style, index}
         <button class="style { style.style }" on:click={()=>{if(page=='main'){styleSelected=style.name;showModal = true;}}} class:first={index<2 && page!=='gazebo'}>
-            <img src="{ style.url }" alt="" data-src="{ style.url }" use:lazyImage={{ threshold: 0.5 }}>
+            <img src="{ style.url }" alt="" data-src="{ style.url }" decoding="async"  fetchpriority="high">
             <p class="header2">{ style.name }</p>
             {#if page=='main'}
                 <button class="main_white_btn main_sm_14">Подробнее</button>
@@ -61,6 +61,10 @@
         @media (max-width:680px) {
             height: 200px;
         }
+        @media (max-width:568px) {
+            width: 100%;
+            max-width: 49.5%;
+        }
     }
     .first{
         flex-grow: 1;
@@ -81,6 +85,9 @@
         padding: 20px 0px 0px 20px;
         top: 0;
         text-align: start;
+        @media (max-width:400px) {
+            font-size: 14px !important;
+        }
     }
     .style .main_white_btn{
         position: absolute;

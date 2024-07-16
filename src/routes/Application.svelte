@@ -1,15 +1,15 @@
 <script>
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
-    import application_bg from "$lib/assets/application_bg.png"
+    import application_bg from "$lib/assets/application_bg.webp"
     import application_unload from "$lib/assets/application_unload.svg"
 </script>
 <div class="application">
     <div class="application_img">
         <div class="application_img_left image-part">
-            <img src="{ application_bg }" alt="" data-src="{ application_bg }" use:lazyImage={{ threshold: 0.5 }}>
+            <img src="{ application_bg }" alt="" data-src="{ application_bg }" use:lazyImage={{ threshold: 0.5 }} decoding="async">
         </div>
         <div class="application_img_right image-part" >
-            <img src="{ application_bg }" alt="" data-src="{ application_bg }" use:lazyImage={{ threshold: 0.5 }}>
+            <img src="{ application_bg }" alt="" data-src="{ application_bg }" use:lazyImage={{ threshold: 0.5 }} decoding="async">
         </div>
     </div>
     <form action="">
@@ -21,7 +21,7 @@
         <div class="">
             <div class="project">
                 <div class="">
-                    <img src="{ application_unload }" alt="" data-src="{ application_unload }" use:lazyImage={{ threshold: 0.5 }}>
+                    <img src="{ application_unload }" alt="" data-src="{ application_unload }" decoding="async" fetchpriority="high">
                     <p class="main_sm_14">Загрузите проект</p>
                 </div>
                 
@@ -54,6 +54,7 @@
             border: none;
             background: none;
             padding: 0;
+            margin-bottom: 100px;
         }
     }
     form{

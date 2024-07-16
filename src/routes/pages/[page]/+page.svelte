@@ -1,6 +1,6 @@
 <script lang="ts">
     export let data;
-    console.log(data)
+    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
 
    
 
@@ -15,15 +15,16 @@
     import why_bg from "$lib/assets/why_bg.png"
     import telegram_bg from "$lib/assets/tg_image.png"
     import director from "$lib/assets/director.jpg"
+    import { Lazy } from "swiper";
     let showModal;
 </script>
 
-<DirectorModal bind:showModal/>
+<DirectorModal bind:showModal url={director}/>
 
 <div class="main_content">
     <section class="welcome_page pd_section">
         <div class="image_block">
-            <img src="{ data.content.images[0] }" alt="" class:max_width={data.content.page!='main'}>
+            <img src="{ data.content.images[0] }" alt="" class:max_width={data.content.page!='main'} decoding="async" fetchpriority="high">
         </div>  
         <div class="info_block">
             <div class="company_info">
@@ -81,7 +82,7 @@
                 </ul>
             </div>
             <div class="why_img">
-                <img src="{ why_bg }" alt="">
+                <img src="{ why_bg }" alt="" fetchpriority="high" decoding="async" use:lazyImage>
             </div>
         </div>
     </section>
@@ -89,7 +90,7 @@
     <section class="general_director pd_section">
         <div class="general_director_img_div">
             <div class="general_director_img">
-                <img src="{ director }" alt="">
+                <img src="{ director }" alt="" decoding="async" use:lazyImage fetchpriority="low">
             </div>
         </div>
         <div class="general_director_info">
@@ -116,7 +117,7 @@
                 <a href="https://t.me/russtroj" class="main_black_btn">Перейти</a>
             </div>
             <div class="telegram_img">
-                <img src="{ telegram_bg }" alt="">
+                <img src="{ telegram_bg }" alt="" decoding="async" use:lazyImage  fetchpriority="low">
             </div>
         </div>
     </section>
@@ -176,6 +177,15 @@
         @media (max-width:1080px) {
             height: 500px;
         }
+        @media (max-width:660px) {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            padding-right: 0px;
+            row-gap: 12px;
+            padding-left: 0px;
+           
+        }
     }
     .welcome_page img{
         position: absolute;
@@ -185,9 +195,27 @@
         z-index: -1;
         max-width: 700px;
         object-fit: cover;
+
+        @media (max-width:660px) {
+            position:relative;
+            width: 100%;
+            max-width: 100% !important;
+            max-height: 320px;
+        }
+    }
+    .image_block{
+        @media (max-width:660px) {
+            padding-left: 20px;
+        }
     }
     .max_width{
         max-width: 450px !important;
+        @media (max-width:1080px) {
+            width: 35% !important;
+        }
+        @media (max-width:660px) {
+            width: 100% !important;
+        }
     }
     .info_block{
         width: 100%;
@@ -198,18 +226,36 @@
         justify-content: center;
         position: relative;
         padding-bottom: 125px;
+        @media (max-width:660px) {
+            max-width: 100%;
+            padding-top: 12px;
+            border-top: 1px solid var(--Neutral_400);
+            column-gap: 20px;
+            row-gap: 40px;
+            margin-right: 20px;
+            padding-bottom: 20px;
+            margin-left: 20px;
+            width: unset;
+        }
     }
     .company_info{
         width: 100%;
         max-width: 356px;
         position: absolute;
         top: 0;
+        @media (max-width:660px) {
+            position: unset;
+            order: 4;
+        }
     }
     .tagline{
         display: flex;
         flex-direction: column;
         row-gap: 20px;
         height: 106px;
+        @media (max-width:660px) {
+            height: unset;
+        }
     }
     .line{
         content: "";
@@ -218,6 +264,9 @@
         height: 100%;
         height: 1px;
         position: absolute;
+        @media (max-width:660px) {
+            display: none;
+        }
     }
     .border1{
         rotate: 90deg;
@@ -285,6 +334,9 @@
         width: 50%;
         max-height: 149px;
         height: 100%;
+        @media (max-width:500px) {
+            width: 100%;
+        }
 
     }
     .achievements_cnt{
@@ -455,20 +507,40 @@
         align-items: center;
         justify-content: space-between;
         column-gap: 40px;
+        @media (max-width:800px) {
+            flex-direction: column-reverse;
+            row-gap: 40px;
+        }
     }
     .why_img{
         width: 638px;
         max-height: 398px;
+        height: 100%;
+        @media (max-width:800px) {
+            width: 100%;
+            max-height: 400px;
+        }
     }
     .why_img img{
         width: 100%;
         max-height: 100%;
         object-fit: cover;
+        height: 100%;
+        @media (max-width:800px) {
+            width: 100%;
+            max-height: 400px;
+        }
+        @media (max-width:400px) {
+           height: 300px;
+        }
     }
     .why_info{
         display: flex;
         flex-direction: column;
         row-gap: 24px;
+        @media (max-width:800px) {
+            width: 100%;
+        }
     }
     .why_info ul{
         width: 80%;
@@ -477,6 +549,13 @@
         row-gap: 16px;
         list-style: outside;
         margin-left: 25px;
+        @media (max-width:800px) {
+            width: 90%;
+            margin-left: 20px;
+        }
+    }
+    .why_info ul li{
+        font-size: 12px !important;
     }
     
 </style>
