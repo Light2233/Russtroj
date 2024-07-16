@@ -5,7 +5,7 @@
 
     import { onMount } from 'svelte';
 
-    import slidebg1 from "$lib/assets/slides/slide1.png"
+    import slidebg1 from "$lib/assets/slides/slide1.webp"
     import star from "$lib/assets/star.svg"
 
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
