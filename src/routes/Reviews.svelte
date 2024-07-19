@@ -5,7 +5,7 @@
 
     import { onMount } from 'svelte';
 
-    import slidebg1 from "$lib/assets/slides/slide1.png"
+    import slidebg1 from "$lib/assets/slides/slide1.webp"
     import star from "$lib/assets/star.svg"
 
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
@@ -39,22 +39,6 @@
             stars:5,
             username:"Игорь"
         },
-        {
-            id:4,
-            name:"ВЕЖЛИВО, СОХРАНЯЮТ ПОРЯДОК",
-            desc:"Компания очень хорошая, аккуратно работают, вежливы, сохраняют порядок, работящие, знают свое дело! Советую всем обращаться!",
-            url:slidebg1,
-            stars:5,
-            username:"Юрий"
-        },
-        {
-            id:5,
-            name:"БЫСТРО И КАЧЕСТВЕННО",
-            desc:"О чем договорился, сделали на пятерку! Молодцы. Могут дать хороший совет, не пожалеете. Рекомендую!",
-            url:slidebg1,
-            stars:5,
-            username:"Ольга"
-        }
     ]
     let slidesLenght2 = slides.length
     let innerWidth

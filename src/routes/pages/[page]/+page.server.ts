@@ -17,6 +17,7 @@ import quest_img_3 from "$lib/assets/quest_img_3.png"
 import slidebg1 from "$lib/assets/slides/slide1.webp"
 import slidebg2 from "$lib/assets/slides/slide2.webp"
 import slidebg3 from "$lib/assets/slides/slide3.webp"
+import slidebg4 from "$lib/assets/slides/slide4.webp"
 
 
 // Slide bath 
@@ -34,6 +35,7 @@ import ru_style from "$lib/assets/housestyles/ru_style.webp"
 import shale_style from "$lib/assets/housestyles/shale_style.webp"
 import viking_style from "$lib/assets/housestyles/viking_style.webp"
 
+import application_bg from "$lib/assets/application_bg.webp"
 
 import eng_style_modal from "$lib/assets/housestyles_modal/eng_style.webp"
 import hightech_style_modal from "$lib/assets/housestyles_modal/hightech_style.webp"
@@ -339,9 +341,33 @@ let pageContents: {[key: string]: PageContent} = {
             },
             {
 
-                name:"ГАЗО И ПЕНО-БЕТОННЫЕ ДОМА",
-                urlModal:slidebg3,
-                ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ГАЗО И ПЕНО-БЕТОННОГО ДОМА",
+                name: "ТЕРМОДОМА",
+                urlModal:slidebg4,
+                ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ТЕРМОДОМА",
+                ul:[
+                    {
+                        li:"Прочность и долговечность: Высокая устойчивость к внешним воздействиям и длительный срок службы."
+                    },
+                    {
+                        li:"Теплоизоляция: Отличные теплоизоляционные свойства помогают поддерживать комфортную температуру внутри дома, снижая затраты на отопление."
+                    },
+                    {
+                        li:"Пожаробезопасность: Газо- и панельнобетон не горят, что обеспечивает высокую степень безопасности."
+                    },
+                    {
+                        li:"Звукоизоляция: Эффективно снижают уровень шума, создавая тихую и комфортную обстановку в доме."
+                    },
+                    {
+                        li:"Экономичность и скорость строительства: Легкость материала и модульная конструкция позволяют значительно ускорить процесс строительства и снизить затраты."
+                    }
+                ]
+                
+            },
+            {
+
+                name: "КИРПИЧНЫЕ ДОМА",
+                urlModal:application_bg,
+                ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА КИРПИЧНОГО ДОМА",
                 ul:[
                     {
                         li:"Прочность и долговечность: Высокая устойчивость к внешним воздействиям и длительный срок службы."

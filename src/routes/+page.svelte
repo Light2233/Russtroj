@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 
 
     import CalulatedCost from "./CalulatedCost.svelte"
@@ -309,4 +309,4 @@
     .swiper_section{
         overflow: hidden;
     }
-</style>
+</style> -->

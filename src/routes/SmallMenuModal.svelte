@@ -9,7 +9,6 @@
     import DropdownMenu from "./DropdownMenu.svelte";
 
     import { page } from '$app/stores';
-	$:console.log(dropMenu)
 </script>
 
 <svelte:window on:click={()=>{dialog.close()}}/>

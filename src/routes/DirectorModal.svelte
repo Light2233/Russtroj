@@ -107,6 +107,7 @@ on:click|self={() => dialog2.close()}
             flex-direction: column;
             row-gap: 40px;
             height: 100vh;
+            justify-content: unset;
 
         }
         @media (max-width:500px) {
@@ -171,9 +172,13 @@ on:click|self={() => dialog2.close()}
         top: -20px;
     }
     .close{
-        width: 100%;
-        display: flex;
-        justify-content: end;
+        display: none;
+        @media (max-width:900px) {
+            width: 100%;
+            display: flex;
+            justify-content: end; 
+        }
+        
     }
     .close img{
         height: 34px;

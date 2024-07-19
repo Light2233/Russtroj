@@ -12,7 +12,7 @@
     import DirectorModal from '../../DirectorModal.svelte';
 
 
-    import why_bg from "$lib/assets/why_bg.png"
+    import why_bg from "$lib/assets/why_bg.webp"
     import telegram_bg from "$lib/assets/tg_image.png"
     import director from "$lib/assets/director.jpg"
     import { Lazy } from "swiper";
@@ -32,7 +32,9 @@
             </div>
             <div class="tagline">
                 <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
-                <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
+                {#if data.content.page =='main' }
+                    <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
+                {/if}
             </div>
             <div class="line border1"></div>
             <div class="line border2"></div>
@@ -87,7 +89,7 @@
         </div>
     </section>
     {/if}
-    <section class="general_director pd_section">
+    <section class="general_director pd_section" id="general_director">
         <div class="general_director_img_div">
             <div class="general_director_img">
                 <img src="{ director }" alt="" decoding="async" use:lazyImage fetchpriority="low">
@@ -114,7 +116,7 @@
             <div class="info">
                 <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
                 <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
-                <a href="https://t.me/russtroj" class="main_black_btn">Перейти</a>
+                <a href="https://t.me/russtroj" class="main_black_btn" target="_blank">Перейти</a>
             </div>
             <div class="telegram_img">
                 <img src="{ telegram_bg }" alt="" decoding="async" use:lazyImage  fetchpriority="low">
@@ -253,8 +255,15 @@
         flex-direction: column;
         row-gap: 20px;
         height: 106px;
+        margin-bottom: 40px;
         @media (max-width:660px) {
             height: unset;
+            margin-bottom: 0;
+        }
+    }
+    .tagline a{
+        @media (max-width:700px) {
+            display: none;
         }
     }
     .line{
@@ -334,7 +343,7 @@
         width: 50%;
         max-height: 149px;
         height: 100%;
-        @media (max-width:500px) {
+        @media (max-width:580px) {
             width: 100%;
         }
 
@@ -350,6 +359,9 @@
             line-height: 132px;
             text-align: center;
             
+        }
+        @media (max-width:290px) {
+            font-size: 100px;
         }
         
     }
@@ -393,6 +405,9 @@
         font-weight: 600 !important;
         font-size: 42px;
         margin-bottom: 8px;
+        @media (max-width:340px) {
+            line-height: 40px;
+        }
     }
     .general_director_img_div{
         padding-right: 57px;
@@ -555,7 +570,13 @@
         }
     }
     .why_info ul li{
-        font-size: 12px !important;
+        @media (max-width:400px) {
+            font-size: 14px !important;
+        }
+       
+    }
+    .why_info .header2{
+        font-weight: 600;
     }
     
 </style>

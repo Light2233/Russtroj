@@ -18,7 +18,6 @@
     let styleSelected
     beforeUpdate(()=>{
         styleSelected = stylesmodal.find((element)=> element.name == style_name)
-        console.log(styleSelected)
     })    
     
 </script>

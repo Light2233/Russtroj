@@ -86,7 +86,7 @@
         top: 0;
         text-align: start;
         @media (max-width:400px) {
-            font-size: 14px !important;
+            font-size: 24px !important;
         }
     }
     .style .main_white_btn{

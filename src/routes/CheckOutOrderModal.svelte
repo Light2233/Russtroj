@@ -15,7 +15,7 @@ on:click|self={() => dialog.close()}
 
 
 <div class="dialog_content">
-    <p class="header1">ВЫЕЗД ИНЖЕНЕРА А ОБЪЕКТ ЗА СЧЕТ КОМПАНИИ</p>
+    <p class="header1">ВЫЕЗД ИНЖЕНЕРА НА ОБЪЕКТ ЗА СЧЕТ КОМПАНИИ</p>
     <form action="">
         <div class="">
             <p class="header3">номер телефона</p>

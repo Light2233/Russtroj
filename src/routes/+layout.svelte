@@ -2,7 +2,7 @@
     import '../app.css'
 
     import logo from '$lib/assets/logo.svg'
-    import footer_bg from "$lib/assets/footer_bg.png"
+    import footer_bg from "$lib/assets/footer_bg.jpg"
     import tg from '$lib/assets/tg.svg'
     import ws from '$lib/assets/watsap.svg'
     import kewate_logo from '$lib/assets/kewate_logo.svg'
@@ -40,7 +40,7 @@
                 <div class="" on:click={(event)=>{event.stopPropagation()}}>
                     <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
                 </div>
-                <a href="" class="nav_link main_sm_14">О компании</a>
+                <a href="#general_director" class="nav_link main_sm_14">О компании</a>
                 <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
             </div>
         
@@ -48,7 +48,7 @@
 
         <div class="main_header_info">
             <div class="">
-                <p class="main_sm_14">+7 (900) 000-00-00</p>
+                <p class="main_sm_14">+7 (916) 932-71-30</p>
             </div>
             <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
             {#if innerWidth<=800 && importbl}
@@ -75,7 +75,7 @@
                         mail@mail.ru
                     </a>
                     <a href="#" class="link main_sm_14">
-                        +7 (900) 000-00-00
+                        +7 (916) 932-71-30
                     </a>
                 </div>
                 <div class="curcle_div">
@@ -143,6 +143,9 @@
         column-gap: 12px;
         height: 100%;
         align-items: center;
+        @media (max-width:380px) {
+            column-gap: 4px;
+        }
     }
     .main_header_info div:not(.barbar){
         @media (max-width:920px) {
@@ -153,6 +156,11 @@
         height: 100%;
         display: flex;
         align-items: center;
+    }
+    .main_header_info button{
+        @media (max-width:380px) {
+            padding: 0 10px;
+        }
     }
     .switch_lang{
         background-color: var(--Neutral_200);
@@ -165,6 +173,12 @@
     .logo{
         @media (max-width:500px) {
             width: 100px;
+        }
+        @media (max-width:310px) {
+            width: 90px;
+        }
+        @media (max-width:300px) {
+            width: 80px;
         }
     }
 
@@ -190,15 +204,13 @@
         }
     }
     footer a:first-child{
-        text-align: center;
-        text-decoration: none;
+        @media (max-width:400px) {
+            text-align: center;
+            text-decoration: none; 
+        }
+        
     }
-    .link{
-        display: inline;
-        border: 1px solid var(--Neutral_100);
-        border-radius: 24px;
-        color: white;
-    }
+    
     .link img{
         width: 24px;
         height: 24px;
@@ -293,9 +305,12 @@
         }
     }
     form .header1{
-        font-size: 32px !important;
-        line-height: 35px !important;
-        text-align: start;
+        @media (max-width:600px) {
+            font-size: 32px !important;
+            line-height: 35px !important;
+            text-align: start; 
+        }
+       
     }
     .footer{
         display: flex;
@@ -337,6 +352,16 @@
     .row_div a:first-child{
         @media (max-width:500px) {
             flex-grow: 1;
+            width: unset !important;
+        }
+    }
+    .link{
+        display: inline;
+        border: 1px solid var(--Neutral_100);
+        border-radius: 24px;
+        color: white;
+        width: 100%;
+        @media (max-width:660px) {
             width: unset !important;
         }
     }

@@ -47,6 +47,7 @@
 
     let name = ""
 
+
    
 </script>
 
@@ -56,7 +57,7 @@
 {#if swiper}
 <div class="slider">
 
-    <button class="prev swiper_btn" class:disable={countSlide<=1} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="prev swiper_btn" class:disable={page==='baths'} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
     spaceBetween={ spaceBetween }
@@ -88,7 +89,7 @@
         
         
     </Swiper>
-    <button class="next swiper_btn" on:click={()=>{ countSlide < slidesLenght ? countSlide++ : countSlide }} class:disable={countSlide > (slidesLenght-3)}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="next swiper_btn" on:click={()=>{ countSlide < slidesLenght ? countSlide++ : countSlide }} class:disable={page=='baths'}><img src="{ swiper_arrow }" alt=""></button>
 </div>
 {/if}
 
@@ -166,7 +167,9 @@
             margin-right: 12px;
         }
     }
-    
+    .disable{
+        display: none;
+    }
     .pag_line{
         display: flex;
         align-items: center;
