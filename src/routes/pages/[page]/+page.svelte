@@ -33,15 +33,11 @@
                 <p class="main_sm_14">Компания «РУССТРОЙ» с 2009 года строит дома премиум и бизнес класса. Мы строим дома «под ключ» по различным материалам и технологиям.</p>
             </div>
             <div class="tagline">
-<<<<<<< HEAD
                 <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
                 {#if data.content.page =='main' }
                     <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
                 {/if}
-=======
-                <h1 class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</h1>
-                <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
->>>>>>> 376e13ff8d39445497ee4a9ccf808234c8e71763
+
             </div>
             <div class="line border1"></div>
             <div class="line border2"></div>
@@ -506,6 +502,9 @@
         @media (max-width:600px) {
             width: 280px;
             height: 280px;
+        }
+        @media (max-width:300px) {
+            width: 100%;
         }
     }
     .telegram_content .info{

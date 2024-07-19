@@ -87,6 +87,10 @@
         text-align: start;
         @media (max-width:400px) {
             font-size: 24px !important;
+            padding: 12px 0 0 12px;
+        }
+        @media (max-width:290px) {
+           font-size: 18px !important;
         }
     }
     .style .main_white_btn{
@@ -98,6 +102,9 @@
         @media (max-width:600px) {
             padding: 10px !important;
             font-size: 12px !important;
+        }
+        @media (max-width:320px) {
+            margin: 12px;
         }
     }
     .style:hover .main_white_btn{

@@ -24,6 +24,15 @@
     onMount(()=>{
         importbl = true
     })
+
+    import { imask } from '@imask/svelte';
+
+    const options = {
+        mask: '{+7} (000) 000-00-00',
+        lazy: true
+    };
+
+    let value = '';
    
 </script>
 
@@ -66,7 +75,8 @@
         <form class=""  on:submit>
             <p class="header1 white">Выезд инженера на объект за счёт компании</p>
             <div class="input_place">
-                <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00">
+                <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
+                use:imask={options}>
                 <button type="submit" class="main_white_btn">Вызвать инженера</button>
             </div>
             <div class="contacts">
@@ -281,6 +291,7 @@
         border: 1px solid var(--Neutral_100);
         border-radius: 0;
         outline: none;
+        color: white;
     }
     .white{
         color: var(--Neutral_100);

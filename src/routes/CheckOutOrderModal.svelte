@@ -2,7 +2,16 @@
     export let showModal = false;
     let dialog; 
     $: if (dialog && showModal) dialog.showModal();
-    import { fade } from "svelte/transition";
+
+
+    import { imask } from '@imask/svelte';
+
+    const options = {
+        mask: '{+7} (000) 000-00-00',
+        lazy: true
+    };
+
+    let value = '';
 </script>
 
 
@@ -19,7 +28,8 @@ on:click|self={() => dialog.close()}
     <form action="">
         <div class="">
             <p class="header3">номер телефона</p>
-            <input type="text" placeholder="+7 (900) 000-00-00">
+            <input type="text"  placeholder="+7 (900) 000-00-00" bind:value={value}
+            use:imask={options}>
         </div>
         <button type="submit" class="main_black_btn">Вызвать инженера</button>
     </form>

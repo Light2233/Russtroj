@@ -2,6 +2,15 @@
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import application_bg from "$lib/assets/application_bg.webp"
     import application_unload from "$lib/assets/application_unload.svg"
+
+    import { imask } from '@imask/svelte';
+
+    const options = {
+        mask: '{+7} (000) 000-00-00',
+        lazy: true
+    };
+
+    let value = '';
 </script>
 <div class="application">
     <div class="application_img">
@@ -16,7 +25,8 @@
         <p class="header1">РАСЧИТАЕМ СТОИМОСТЬ ПО ВАШЕМУ ПРОЕКТУ ЗА 2 МИНУТЫ</p>
         <div class="">
             <p class="header3">НОМЕР ТЕЛЕФОНА</p>
-            <input type="tel" name="" id="" required class="main_sm_14" placeholder="+7 (900) 000-00-00">
+            <input type="tel" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
+            use:imask={options}>
         </div>
         <div class="">
             <div class="project">
