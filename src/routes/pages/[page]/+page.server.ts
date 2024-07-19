@@ -422,7 +422,7 @@ let pageContents: {[key: string]: PageContent} = {
         ]
     },
     "recreationAreas":{
-        title:["ЗОНУ ОТДЫХА",''],
+        title:["ЗОНУ ОТДЫХА",'ЗОНЫ ОТДЫХА'],
         page:'recreationAreas',
         images:[
             welcome_page_recreationAreas_bg
@@ -488,7 +488,7 @@ let pageContents: {[key: string]: PageContent} = {
 
 
 export const load: PageLoad = ({ params }) => {
-	const slug = params.page;
+    const slug = params.page;
 
     let content = pageContents?.[slug];
     if (!content) {
