@@ -14,7 +14,17 @@
     import telegram_bg from "$lib/assets/tg_image.png"
     import director from "$lib/assets/director.jpg"
     import { Lazy } from "swiper";
+
+    import { inview } from 'svelte-inview';
+    import { fly } from 'svelte/transition';
+
+
     let showModal;
+    let isInView1 = false;
+    let isInView2 = false;
+    let isInView3 = false;
+    let isInView4 = false;
+
 </script>
 
 <DirectorModal bind:showModal url={director}/>
@@ -24,21 +34,30 @@
 </svelte:head>
 
 <div class="main_content">
-    <section class="welcome_page pd_section">
-        <div class="image_block">
-            <img src="{ data.content.images[0] }" alt="" class:max_width={data.content.page!='main'} decoding="async" fetchpriority="high">
-        </div>  
-        <div class="info_block">
+    <section class="welcome_page pd_section"
+    use:inview={{ unobserveOnEnter: true, rootMargin: '20%' }}
+    on:change={({ detail }) => {
+        isInView1 = detail.inView;
+    }} 
+    >
+        {#key isInView1}
+            <div class="image_block" >
+                <img src="{ data.content.images[0] }" alt="" class:max_width={data.content.page!='main'} decoding="async" fetchpriority="high" class:hidden={!isInView1} in:fly={{y:400,duration:1000}}>
+            </div>
+        {/key}
+        <div class="info_block" >
             <div class="company_info">
                 <p class="main_sm_14">Компания «РУССТРОЙ» с 2009 года строит дома премиум и бизнес класса. Мы строим дома «под ключ» по различным материалам и технологиям.</p>
             </div>
-            <div class="tagline">
-                <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
-                {#if data.content.page =='main' }
-                    <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
-                {/if}
+            {#key isInView1}
+                <div class="tagline" class:hidden={!isInView1} in:fly={{y:70,duration:1000}}>
+                    <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
+                    {#if data.content.page =='main' }
+                        <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
+                    {/if}
 
-            </div>
+                </div>
+            {/key}
             <div class="line border1"></div>
             <div class="line border2"></div>
             
@@ -64,8 +83,15 @@
     </section>
     {/if}
     {#if data.content.page == 'main' || data.content.page == "baths"}
-    <section class="swiper_section">
-        <h2 class="header2">ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</h2>
+    <section class="swiper_section"
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-30%' }}
+    on:change={({ detail }) => {
+        isInView2 = detail.inView;
+    }}
+    >   
+        {#key isInView2}
+            <h2 class="header2" class:hidden={!isInView2} in:fly={{y:50,duration:1000}}>ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</h2>
+        {/key}
         <SwiperComponent slides={data.content.slides} page={data.content.page}/>
     </section>
     {/if}
@@ -92,11 +118,18 @@
         </div>
     </section>
     {/if}
-    <section class="general_director pd_section" id="general_director">
+    <section class="general_director pd_section" id="general_director"
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => {
+        isInView3 = detail.inView;
+    }}
+    >
         <div class="general_director_img_div">
-            <div class="general_director_img">
+            {#key isInView3}
+            <div class="general_director_img" class:hidden={!isInView3} in:fly={{x:-80,duration:1000}}>
                 <img src="{ director }" alt="" decoding="async" use:lazyImage fetchpriority="low">
             </div>
+            {/key}
         </div>
         <div class="general_director_info">
             <p class="header3 general_director_status">Генеральный директор</p>
@@ -114,16 +147,23 @@
         <p class="header2">ОТЗЫВЫ О НАШЕЙ РАБОТЕ</p>
         <Reviews/>
     </section>
-    <section class="pd_section">
+    <section class="pd_section"
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => {
+        isInView4 = detail.inView;
+    }} 
+    >
         <div class="telegram_content">
-            <div class="info">
-                <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
-                <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
-                <a href="https://t.me/russtroj" class="main_black_btn" target="_blank">Перейти</a>
-            </div>
-            <div class="telegram_img">
-                <img src="{ telegram_bg }" alt="" decoding="async" use:lazyImage  fetchpriority="low">
-            </div>
+            {#key isInView4}
+                <div class="info" class:hidden={!isInView4} in:fly={{y:100,duration:800}}>
+                    <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
+                    <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
+                    <a href="https://t.me/russtroj" class="main_black_btn" target="_blank">Перейти</a>
+                </div>
+                <div class="telegram_img" class:hidden={!isInView4} in:fly={{y:200,duration:1000}}>
+                    <img src="{ telegram_bg }" alt="" decoding="async" use:lazyImage  fetchpriority="low">
+                </div>
+            {/key}
         </div>
     </section>
 </div>
@@ -131,6 +171,9 @@
 <style lang="less">
     /* welcome_page */
 
+    .hidden{
+        opacity: 0;
+    }
     .pd_section{
         max-width: 1200px;
         margin: 0 auto;

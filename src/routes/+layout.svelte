@@ -16,16 +16,22 @@
     import { page } from '$app/stores';
     import BurgerMenu from './BurgerMenu.svelte';
     import { onMount } from 'svelte';
+    import { fly } from 'svelte/transition';
+    import { inview } from 'svelte-inview';
 
     let showModal;
-    let innerWidth
+    let innerWidth;
     let dropMenu = false;
     let importbl = false;
+    let isInView = false;
+    let headerAnim = false;
     onMount(()=>{
-        importbl = true
+        importbl = true;
+        headerAnim = true;
     })
 
     import { imask } from '@imask/svelte';
+    import { slide } from 'svelte/transition';
 
     const options = {
         mask: '{+7} (000) 000-00-00',
@@ -38,66 +44,79 @@
 
 <CheckOutOrderModal bind:showModal />
 
-
-<header>
-    <div class="header_content">
-        <a href="/pages/main" class="logo">
-            <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage >
-        </a>
-        {#if innerWidth>800}
-            <div class="nav_menu">
-                <div class="" on:click={(event)=>{event.stopPropagation()}}>
-                    <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
-                </div>
-                <a href="#general_director" class="nav_link main_sm_14">О компании</a>
-                <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
-            </div>
+{#key headerAnim}
+    <header >
         
-        {/if}
-
-        <div class="main_header_info">
-            <div class="">
-                <p class="main_sm_14">+7 (916) 932-71-30</p>
-            </div>
-            <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
-            {#if innerWidth<=800 && importbl}
-                <HamburgerMenu/>
+        <div class="header_content" in:slide={{axis:'y',duration:800}} class:hidden={!headerAnim }>
+            <a href="/pages/main" class="logo">
+                <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage >
+            </a>
+            {#if innerWidth>800}
+                <div class="nav_menu">
+                    <div class="" on:click={(event)=>{event.stopPropagation()}}>
+                        <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
+                    </div>
+                    <a href="#general_director" class="nav_link main_sm_14">О компании</a>
+                    <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
+                </div>
+            
             {/if}
-            <button class="switch_lang main_sm_14">EN</button>
+
+            <div class="main_header_info">
+                <div class="">
+                    <p class="main_sm_14">+7 (916) 932-71-30</p>
+                </div>
+                <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
+                {#if innerWidth<=800 && importbl}
+                    <HamburgerMenu/>
+                {/if}
+                <button class="switch_lang main_sm_14">EN</button>
+            </div>
         </div>
-    </div>
-    <DropdownMenu dropMenu={dropMenu} page={$page.params.page}/>
-</header>
+        <DropdownMenu dropMenu={dropMenu} page={$page.params.page}/>
+    
+    </header>
+{/key}
 <slot/>
-<footer style="background:url({footer_bg});background-repeat: no-repeat;
-        background-size: cover;background-position:50% 50%">
+<footer style="
+background:url({footer_bg});
+background-repeat: no-repeat;
+background-size: cover;
+background-position:50% 50%"
+use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+on:change={({ detail }) => {
+    isInView = detail.inView;
+}}        
+>
     <div class="footer_application">
-        <form class=""  on:submit>
-            <p class="header1 white">Выезд инженера на объект за счёт компании</p>
-            <div class="input_place">
-                <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
-                use:imask={options}>
-                <button type="submit" class="main_white_btn">Вызвать инженера</button>
-            </div>
-            <div class="contacts">
-                <div class="row_div">
-                    <a href="#" class="link main_sm_14">
-                        mail@mail.ru
-                    </a>
-                    <a href="#" class="link main_sm_14">
-                        +7 (916) 932-71-30
-                    </a>
+        {#key isInView}
+            <form class=""  on:submit class:hidden={!isInView} in:fly={{y:200,duration:1000}}>
+                <p class="header1 white">Выезд инженера на объект за счёт компании</p>
+                <div class="input_place">
+                    <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
+                    use:imask={options}>
+                    <button type="submit" class="main_white_btn">Вызвать инженера</button>
                 </div>
-                <div class="curcle_div">
-                    <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle">
-                        <img src="{ ws }" alt="">
-                    </a>
-                    <a href="#" class="link main_sm_14 curcle">
-                        <img src="{ tg }" alt="">
-                    </a>
+                <div class="contacts" class:hidden={!isInView} in:fly={{y:20,delay:200,duration:1000}}>
+                    <div class="row_div">
+                        <a href="#" class="link main_sm_14">
+                            mail@mail.ru
+                        </a>
+                        <a href="#" class="link main_sm_14">
+                            +7 (916) 932-71-30
+                        </a>
+                    </div>
+                    <div class="curcle_div">
+                        <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle">
+                            <img src="{ ws }" alt="">
+                        </a>
+                        <a href="#" class="link main_sm_14 curcle">
+                            <img src="{ tg }" alt="">
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        {/key}
     </div>
     <div class="footer">
         <a href="" class="main_sm_14">Политика<br>конфиденциальности</a>
@@ -112,9 +131,12 @@
 
 
 
-
+    .hidden{
+        opacity: 0;
+    }
     header{
         position: relative;
+        height: 48px;
     }
     .header_content{
         
