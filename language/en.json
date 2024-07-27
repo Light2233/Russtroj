@@ -1,0 +1,29 @@
+{
+    "nav.link":{
+        "services" : "Services",
+        "about" : "About us",
+        "reviews" : "Reviews"
+    },
+    "order":"Order a check-out",
+    "welcome.title": "We will build a {{name}} in Serbia based on a ready-made or custom project",
+    "title.names":{
+        "main":["House","House"],
+        "baths":["Bathhouse","your bathhouse "],
+        "pools":["pool","your pool"],
+        "recreationAreas":["a recreation area",""],
+        "gazebo":["a gazebo or barbecue area",""],
+
+    },
+    "welcome.cost":"Calculate the cost",
+    "company.tagline": "RUSSTROY has been building premium and business-class houses since 2009. We construct turnkey houses using a variety of materials and technologies",
+    "achievements":[
+        {
+            "objects": "270+",
+            "desc":"Completed objects in Russia and Serbia"
+        },
+        {
+            "objects": "15 years",
+            "desc":"Experience in real estate development"
+        },
+    ]
+}

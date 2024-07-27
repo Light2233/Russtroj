@@ -7,7 +7,7 @@
     import { inview } from 'svelte-inview';
     import 'swiper/css';
     import 'swiper/css/pagination';
-
+    import { t, locale, locales } from "$lib/client/i18n";
     
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
 
@@ -84,10 +84,10 @@
             <SwiperSlide>
                 {#key isInView}
                     <button class="slider_content" on:click={()=>{if(page=='main'){ houseName = slide.name ; showModal=true;}}} class:hidden={!isInView} in:fly={{duration:800,delay:600-50*index,y:100}}>
-                        <p class="header2">{ slide.name }</p>
+                        <p class="header2">{$t("houseslide")[slide.name]["name"]}</p>
                         <img class="slide_bg" src="{ slide.urlModal }" alt="" data-src="{ slide.urlModal }" use:lazyImage={{ threshold: 0.5 }} decoding="async"  fetchpriority="low">
                         {#if page == 'main'}
-                            <button class="main_white_btn main_sm_14">Подробнее</button>
+                            <button class="main_white_btn main_sm_14">{$t("more")["btn"]}</button>
                         {/if}
                     </button>
                 {/key}

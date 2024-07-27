@@ -9,6 +9,8 @@
     import Reviews from '../../Reviews.svelte';
     import DirectorModal from '../../DirectorModal.svelte';
 
+    import { t, locale, locales } from "$lib/client/i18n";
+    import { get } from 'svelte/store';
 
     import why_bg from "$lib/assets/why_bg.webp"
     import telegram_bg from "$lib/assets/tg_image.png"
@@ -17,6 +19,7 @@
 
     import { inview } from 'svelte-inview';
     import { fly } from 'svelte/transition';
+    import { page } from '$app/stores';
 
 
     let showModal;
@@ -24,7 +27,7 @@
     let isInView2 = false;
     let isInView3 = false;
     let isInView4 = false;
-
+    let currentpage = data.content.page 
 </script>
 
 <DirectorModal bind:showModal url={director}/>
@@ -47,13 +50,15 @@
         {/key}
         <div class="info_block" >
             <div class="company_info">
-                <p class="main_sm_14">Компания «РУССТРОЙ» с 2009 года строит дома премиум и бизнес класса. Мы строим дома «под ключ» по различным материалам и технологиям.</p>
+                <p class="main_sm_14">{$t('company.tagline')}</p>
+                
             </div>
             {#key isInView1}
                 <div class="tagline" class:hidden={!isInView1} in:fly={{y:70,duration:1000}}>
-                    <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p>
+                    <!-- <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p> -->
+                    <p class="tagline_title">{@html $t("welcome.title", { name: `${ get(t)("title.names")[currentpage][0]}` })}!</p>
                     {#if data.content.page =='main' }
-                        <a href="#cost_calculation_block" class="main_black_btn">Рассчитать стоимость</a>
+                        <a href="#cost_calculation_block" class="main_black_btn">{$t("welcome.cost")}</a>
                     {/if}
 
                 </div>
@@ -67,18 +72,18 @@
     </section>
     <section class="achievements pd_section">
         <div class="completed_projects">
-            <p class="achievements_cnt">270+</p>
-            <p class="main_sm_18">Выполненных объектов в России и Сербии</p>
+            <p class="achievements_cnt">{$t("achievements")[0].objects}</p>
+            <p class="main_sm_18">{$t("achievements")[0].desc}</p>
         </div>
         <div class="achievements_border"></div>
         <div class="construction_experience">
-            <p class="achievements_cnt">15 ЛЕТ</p>
-            <p class="main_sm_18">Опыта в строительстве недвижимости</p>
+            <p class="achievements_cnt">{$t("achievements")[1].objects}</p>
+            <p class="main_sm_18">{$t("achievements")[1].desc}</p>
         </div>
     </section>
     {#if data.content.page == 'main' }
     <section id="cost_calculation_block" class="cost_calculation_block pd_section">
-        <h2 class="header2">Рассчитайте стоимость строительства {data.content.title[1]} самостоятельно, ответив на 6 вопросов</h2>
+        <h2 class="header2">{$t("calculatedtitle",{name: `${ get(t)("title.names")[currentpage][1]}` })} </h2>
         <CalulatedCost slides={data.content?.questions}/>
     </section>
     {/if}
@@ -90,26 +95,26 @@
     }}
     >   
         {#key isInView2}
-            <h2 class="header2" class:hidden={!isInView2} in:fly={{y:50,duration:1000}}>ПОСМОТРИТЕ КАТАЛОГ И ВЫБЕРИТЕ {data.content.title[0]} ВАШЕЙ МЕЧТЫ</h2>
+            <h2 class="header2" class:hidden={!isInView2} in:fly={{y:50,duration:1000}}>{$t("housetitle",{name: `${ get(t)("title.names")[currentpage][0]}`})}</h2>
         {/key}
         <SwiperComponent slides={data.content.slides} page={data.content.page}/>
     </section>
     {/if}
     {#if data.content.page == 'main' || data.content.page == "recreationAreas" || data.content.page == "gazebo"}
         <section class="house_styles">
-            <HouseStyles stylesmodal={data.content.stylesmodal} page={data.content.page}/>
+            <HouseStyles stylesmodal={data.content.stylesmodal} page={currentpage}/>
         </section>
     {/if}
     {#if data.content.page == 'pools'}
     <section class="pd_section">
         <div class="why_content">
             <div class="why_info">
-                <p class="header2">ПОЧЕМУ ВЫБИРАЮТ НАС</p>
+                <p class="header2">{$t("poolsblock")["title"]}</p>
                 <ul>
-                    <li class="main_sm_18">Строим бассейны по лучшей цене</li>
-                    <li class="main_sm_18">Наша компания работает только по договору</li>
-                    <li class="main_sm_18">Мы предлагаем гибкую систему скидок для наших клиентов</li>
-                    <li class="main_sm_18">Предоставляем гарантию 10 лет на все наши работы</li>
+                    {#each $t("poolsblock")["ul"] as item}
+                        <li class="main_sm_18">{item["li"]}</li>
+                    {/each}
+                    
                 </ul>
             </div>
             <div class="why_img">
@@ -132,19 +137,19 @@
             {/key}
         </div>
         <div class="general_director_info">
-            <p class="header3 general_director_status">Генеральный директор</p>
+            <p class="header3 general_director_status">{$t("generaldirector")["rank"]}</p>
             <div class="">
-                <p class="header2  general_director_name">ВЛАДИСЛАВ РЯБУХА</p>
-                <p class="main_sm_18">Строительством я занимаюсь уже более 15 лет. За это время мне удалось сформировать сплоченный коллектив в России и Сербии, работающий по отобранным мною технологиям строительства. Я слежу за тем, чтобы каждый сотрудник совершенствовал свои навыки, за счет этого мы можем гарантировать долговечность и качество выполненных нами проектов. </p>
+                <p class="header2  general_director_name">{$t("generaldirector")["name"]}</p>
+                <p class="main_sm_18">{$t("generaldirector")["shortdesc"]} </p>
             </div>
-            <button class="header3" on:click={()=>{showModal=true}}>Показать больше…</button>
+            <button class="header3" on:click={()=>{showModal=true}}>{$t("more")["showmore"]}</button>
         </div>
     </section>
     <section class="pd_section">
         <Application/>
     </section>
     <section class="reviews_section">
-        <p class="header2">ОТЗЫВЫ О НАШЕЙ РАБОТЕ</p>
+        <p class="header2">{$t("reviews")["title"]}</p>
         <Reviews/>
     </section>
     <section class="pd_section"
@@ -156,9 +161,9 @@
         <div class="telegram_content">
             {#key isInView4}
                 <div class="info" class:hidden={!isInView4} in:fly={{y:100,duration:800}}>
-                    <p class="header1">ПОДПИСЫВАЙТЕСЬ НА НАШ ТЕЛЕГРАМ КАНАЛ</p>
-                    <p class="main_sm_18" style="color: #B2B2B2;">Чтобы наблюдать за нашими работами в режиме реального времени</p>
-                    <a href="https://t.me/russtroj" class="main_black_btn" target="_blank">Перейти</a>
+                    <p class="header1">{$t("telegram")["title"]}</p>
+                    <p class="main_sm_18" style="color: #B2B2B2;">{$t("telegram")["desc"]}</p>
+                    <a href="https://t.me/russtroj" class="main_black_btn" target="_blank">{$t("telegram")["btn"]}</a>
                 </div>
                 <div class="telegram_img" class:hidden={!isInView4} in:fly={{y:200,duration:1000}}>
                     <img src="{ telegram_bg }" alt="" decoding="async" use:lazyImage  fetchpriority="low">
@@ -252,6 +257,7 @@
         }
     }
     .image_block{
+        overflow: hidden;
         @media (max-width:660px) {
             padding-left: 20px;
         }
@@ -369,6 +375,9 @@
             padding: 100px 20px;
             row-gap: 32px;
         }
+        @media (max-width:390px) {
+            margin-bottom: 40px;
+        }
     }
     .achievements_border{
         width: 1px;
@@ -406,8 +415,13 @@
             text-align: center;
             
         }
+        @media (max-width:390px) {
+            line-height: 100px;
+            font-size: 100px;
+        }
         @media (max-width:290px) {
             font-size: 100px;
+           
         }
         
     }

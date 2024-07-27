@@ -2,7 +2,7 @@
     let ans = [];
 
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
-
+    import { t, locale, locales } from "$lib/client/i18n";
     
     import { fly } from "svelte/transition";
 
@@ -29,26 +29,26 @@
             {#if slideCnt==6}
                 <div class="quest" transition:fly>
                     <div class="quest_info">
-                        <p class="header2"><span>{slide.id}. </span>{slide.name}</p>
-                        <p class="main_sm_18">{slide.desc}</p>
+                        <p class="header2"><span>{slide.id}. </span>{$t("calculated").questions[5]["name"]}</p>
+                        <p class="main_sm_18">{$t("calculated").questions[slide.id-1]["desc"]}</p>
                         <div class="contact">
-                            <p class="header3">Номер телефона</p>
+                            <p class="header3">{$t("calculated")["questions"][5].tel}</p>
                             <input type="tel" name="" id="" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
                             use:imask={options}>
                         </div>
                     </div>
                     <div class="slide_swap">
-                        <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>Назад</button>
-                        <button class="main_black_btn" type="submit">Отправить</button>
+                        <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
+                        <button class="main_black_btn" type="submit">{$t("calculated")["buttons"]["submit"]}</button>
                     </div>
                 </div>
                 
             {:else}
                 <div class="quest">
                     <div class="quest_info">
-                        <p class="header2"><span>{slide.id}. </span>{slide.name}</p>
+                        <p class="header2"><span>{slide.id}. </span>{$t("calculated").questions[slide.id-1]["name"]}</p>
                         <div class="" class:var_info={slideCnt==1}>
-                            {#each slide.questions as quest}
+                            {#each slide.questions as quest, index}
                                 <div class="" class:var={slideCnt!=1} class:var1={slideCnt==1}>
                                     <div class="">
                                         {#if quest.url}
@@ -56,7 +56,7 @@
                                         {/if}
                                         <div class="var_quests" class:var_quests_mr16={slideCnt==1}>
                                             <input type="radio" name="{slide.id}" id={quest.id} value="{quest.answ}" bind:group={slide.value} required>
-                                            <label for="{quest.id}" class="header3" >{quest.answ}</label>
+                                            <label for="{quest.id}" class="header3" >{$t("calculated").questions[slide.id-1].questions[index]["answ"]}</label>
                                         </div>  
                                     </div>
                                 </div>
@@ -65,9 +65,9 @@
                     </div>
                     <div class="slide_swap">
                         {#if slideCnt >1}
-                            <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>Назад</button>
+                            <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
                         {/if}
-                        <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value}>Далее</button>
+                        <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value}>{$t("calculated")["buttons"]["next"]}</button>
                     </div>
                     
                 </div>

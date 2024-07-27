@@ -4,6 +4,7 @@
     import close_application from "$lib/assets/close_application.svg"
 
     import { imask } from '@imask/svelte';
+    import { t, locale, locales } from "$lib/client/i18n";
     import { inview } from 'svelte-inview';
     import { fly } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
@@ -35,9 +36,9 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
     </div>
     {#key isInView}
         <form action="" class:hidden={!isInView} in:fly={{y:70,duration:1000}}>
-            <p class="header1">РАСЧИТАЕМ СТОИМОСТЬ ПО ВАШЕМУ ПРОЕКТУ ЗА 2 МИНУТЫ</p>
+            <p class="header1">{$t("application")["title"]}</p>
             <div class="">
-                <p class="header3">НОМЕР ТЕЛЕФОНА</p>
+                <p class="header3">{$t("calculated")["questions"][5].tel}</p>
                 <input type="tel" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
                 use:imask={options}>
             </div>
@@ -53,7 +54,7 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
                         </svg>
                         {#if !files}
                             
-                            <p class="main_sm_14" class:white={files} > "Загрузите проект"</p>
+                            <p class="main_sm_14" class:white={files} >{$t("application")["project"]}</p>
                         {/if}
                         {#if files}
                             <p class="main_sm_14" class:white={files}>{files[0].name}</p>
@@ -63,11 +64,11 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
                     
                     
                 </div>
-                <p class="main_sm_14 gray">Если у вас уже есть смета на строительство в 95% случаев мы предлагаем меньшую стоимость и без потери качества</p>
+                <p class="main_sm_14 gray">{$t("application")["uploaddesc"]}</p>
             </div>
             <div class="">
-                <button class="main_black_btn">Оставить заявку</button>
-                <p class="main_sm_14 gray">Мы свяжемся с вами в ближайшее время</p>
+                <button class="main_black_btn">{$t("application")["send"]}</button>
+                <p class="main_sm_14 gray">{$t("application")["senddesc"]}</p>
             </div>
         </form>
     {/key}

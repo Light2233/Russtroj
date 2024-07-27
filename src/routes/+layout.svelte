@@ -11,13 +11,14 @@
     import DropdownMenu from './DropdownMenu.svelte'
     import CheckOutOrderModal from './CheckOutOrderModal.svelte'
     import HamburgerMenu from './BurgerMenu.svelte';
-
+    import { t, locale, locales } from "$lib/client/i18n";
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import { page } from '$app/stores';
     import BurgerMenu from './BurgerMenu.svelte';
     import { onMount } from 'svelte';
     import { fly } from 'svelte/transition';
     import { inview } from 'svelte-inview';
+    import langStore from '$lib/client/localstore'
 
     let showModal;
     let innerWidth;
@@ -25,6 +26,7 @@
     let importbl = false;
     let isInView = false;
     let headerAnim = false;
+    let langSwitch = false;
     onMount(()=>{
         importbl = true;
         headerAnim = true;
@@ -39,9 +41,17 @@
     };
 
     let value = '';
-   
-</script>
+    let lang;
+    langStore.subscribe(value => {
+        lang = value;
+        locale.set(lang);
+    });
 
+    const switchLanguage = () => {
+        const newLang = lang === 'ru' ? 'en' : 'ru';
+        langStore.set(newLang);
+    };
+</script>
 <CheckOutOrderModal bind:showModal />
 
 {#key headerAnim}
@@ -52,13 +62,13 @@
                 <img src="{ logo }" alt="" data-src="{ logo }" use:lazyImage >
             </a>
             {#if innerWidth>800}
-                <div class="nav_menu">
+                <nav class="nav_menu">
                     <div class="" on:click={(event)=>{event.stopPropagation()}}>
-                        <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
+                        <button class="nav_link main_sm_14" on:click={()=>{dropMenu=!dropMenu}}>{$t("nav.link")["services"]}<img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
                     </div>
-                    <a href="#general_director" class="nav_link main_sm_14">О компании</a>
-                    <a href="#reviews" class="nav_link main_sm_14">Отзывы</a>
-                </div>
+                    <a href="#general_director" class="nav_link main_sm_14">{$t("nav.link")["about"]}</a>
+                    <a href="#reviews" class="nav_link main_sm_14">{$t("nav.link")["reviews"]}</a>
+                </nav>
             
             {/if}
 
@@ -66,11 +76,11 @@
                 <div class="">
                     <p class="main_sm_14">+7 (916) 932-71-30</p>
                 </div>
-                <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>Заказать выезд</button>
+                <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>{$t("order")}</button>
                 {#if innerWidth<=800 && importbl}
                     <HamburgerMenu/>
                 {/if}
-                <button class="switch_lang main_sm_14">EN</button>
+                <button on:click={switchLanguage} class="switch_lang main_sm_14" >{lang == "ru" ? "EN" : "RU"}</button>
             </div>
         </div>
         <DropdownMenu dropMenu={dropMenu} page={$page.params.page}/>
@@ -91,11 +101,11 @@ on:change={({ detail }) => {
     <div class="footer_application">
         {#key isInView}
             <form class=""  on:submit class:hidden={!isInView} in:fly={{y:200,duration:1000}}>
-                <p class="header1 white">Выезд инженера на объект за счёт компании</p>
+                <p class="header1 white">{$t("footer")["title"]}</p>
                 <div class="input_place">
                     <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
                     use:imask={options}>
-                    <button type="submit" class="main_white_btn">Вызвать инженера</button>
+                    <button type="submit" class="main_white_btn">{$t("footer")["call"]}</button>
                 </div>
                 <div class="contacts" class:hidden={!isInView} in:fly={{y:20,delay:200,duration:1000}}>
                     <div class="row_div">
@@ -119,8 +129,14 @@ on:change={({ detail }) => {
         {/key}
     </div>
     <div class="footer">
-        <a href="" class="main_sm_14">Политика<br>конфиденциальности</a>
-        <p class="main_sm_14">Сделано в<span><img src="{ kewate_logo }" alt=""></span></p>
+        <a href="" class="main_sm_14">
+            {#if lang=='ru'}
+                {@html $t("footer")["privacy policy"]}
+            {:else}
+                { $t("footer")["privacy policy"]}
+            {/if}
+        </a>
+        <p class="main_sm_14" >{ $t("footer")["studio"]}<span><img src="{ kewate_logo }" alt=""></span></p>
     </div>
 </footer>
 
@@ -128,9 +144,6 @@ on:change={({ detail }) => {
 
 
 <style lang="less">
-
-
-
     .hidden{
         opacity: 0;
     }
@@ -196,6 +209,7 @@ on:change={({ detail }) => {
     }
     .switch_lang{
         background-color: var(--Neutral_200);
+        cursor: pointer;
         color: var( --Neutral_900);
         padding: 16px;
         @media (max-width:800px) {
@@ -221,7 +235,6 @@ on:change={({ detail }) => {
         }
     }
     footer{
-        max-height: 658px;
         height: 100%;
         width: 100%;
         margin: 0 auto;

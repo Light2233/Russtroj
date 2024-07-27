@@ -5,27 +5,29 @@
     import { slide,fly } from "svelte/transition";
     import { onMount,afterUpdate,beforeUpdate } from "svelte";
 
+    import { t, locale, locales } from "$lib/client/i18n";
+
     export let page;
 
     let options = [
         {
-            name:"Строительство домов",
+            name:"house",
             path:"/pages/main"
         },
         {
-            name:"Строительство бань",
+            name:"baths",
             path:"/pages/baths"
         },
         {
-            name:"Строительство бассейнов",
+            name:"pools",
             path:"/pages/pools"
         },
         {
-            name:"Строительство зон отдыха",
+            name:"recreationAreas",
             path:"/pages/recreationAreas"
         },
         {
-            name:"Строительство зон барбекю",
+            name:"gazebo",
             path:"/pages/gazebo"
         },
         
@@ -58,13 +60,13 @@
 {#if dropMenu}
 
     <div class="drop_menu" transition:slide>
-        <p class="main_sm_14 gray">Услуги</p>
+        <p class="main_sm_14 gray">{$t("nav.link")["services"]}</p>
         
         <div class="link_grid">
             {#each options as option,index}
                     <a class="drop_menu_link header3" href={option.path} class:first={index===0} on:click={(event)=>{dropMenu=false;event.stopPropagation()}}>
-                        {option.name}
-                        <img src="{ link_bg }" alt="" data-src="{ link_bg }" decoding="async"  fetchpriority="high" >
+                        {$t("navmenu")[`${option.name}`]}
+                        <img src="{ link_bg }" alt="" data-src="{ link_bg }" decoding="async" fetchpriority="high" >
                     </a>
             {/each}
         </div>
@@ -87,6 +89,7 @@
         display: flex;
         flex-direction: column;
         row-gap: 12px;
+        top: 65px;
         @media (max-width:800px) {
             padding: 20px 20px;
         }

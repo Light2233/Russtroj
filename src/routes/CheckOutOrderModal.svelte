@@ -3,7 +3,7 @@
     let dialog; 
     $: if (dialog && showModal) dialog.showModal();
 
-
+    import { t, locale, locales } from "$lib/client/i18n";
     import { imask } from '@imask/svelte';
 
     const options = {
@@ -24,14 +24,14 @@ on:click|self={() => dialog.close()}
 
 
 <div class="dialog_content">
-    <p class="header1">ВЫЕЗД ИНЖЕНЕРА НА ОБЪЕКТ ЗА СЧЕТ КОМПАНИИ</p>
+    <h1 class="header1">{$t("checkout")["title"]}</h1>
     <form action="">
         <div class="">
-            <p class="header3">номер телефона</p>
+            <p class="header3">{$t("calculated")["questions"][5].tel}</p>
             <input type="text"  placeholder="+7 (900) 000-00-00" bind:value={value}
             use:imask={options}>
         </div>
-        <button type="submit" class="main_black_btn">Вызвать инженера</button>
+        <button type="submit" class="main_black_btn">{$t("footer")["call"]}</button>
     </form>
 </div>
 </dialog>

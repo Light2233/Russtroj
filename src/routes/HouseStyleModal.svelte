@@ -3,6 +3,7 @@
     export let showModal;
     export let stylesmodal
 	let dialog; 
+    import { t, locale, locales } from "$lib/client/i18n";
     
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import { onMount, afterUpdate, beforeUpdate } from "svelte"
@@ -18,8 +19,7 @@
     let styleSelected
     beforeUpdate(()=>{
         styleSelected = stylesmodal.find((element)=> element.name == style_name)
-    })    
-    
+    })
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -33,18 +33,23 @@ on:click|self={() => dialog.close()}
         <div class="style_info">
             <div class="title">
                 <button on:click={()=>{showModal=false;dialog.close()}} class="close_btn"><img src="{ close }" alt=""></button>
-                <p class="header1">{styleSelected?.name}</p>
+                {#if styleSelected?.name}
+                    <p class="header1">{$t("houseslide")[style_name]["name"]}</p>
+                {/if}
             </div>
-            <p class="main_sm_18">{styleSelected?.desc ? styleSelected?.desc : ''}</p>
+            {#if styleSelected?.desc}
+                <p class="main_sm_18">{$t("houseslide")[style_name]["desc"]}</p>
+            {/if}
+            
             {#if styleSelected?.ul}
                 <div class="ul">
                     {#if styleSelected.ulTitle}
-                        <p class="main_sm_18">{styleSelected.ulTitle}</p>
+                        <p class="main_sm_18">{$t("houseslide")[style_name]["ulTitle"]}</p>
                     {/if}
-                    {#each styleSelected.ul as li}
+                    {#each $t("houseslide")[style_name]?.ul as li}
                         <div class="li">
                             <div class="curcle"></div>
-                            <p class="main_sm_18">{li.li}</p>
+                            <p class="main_sm_18">{li["li"]}</p>
                         </div>
                         
                     {/each}

@@ -35,6 +35,9 @@ import ru_style from "$lib/assets/housestyles/ru_style.webp"
 import shale_style from "$lib/assets/housestyles/shale_style.webp"
 import viking_style from "$lib/assets/housestyles/viking_style.webp"
 
+import { t, locale, locales } from "$lib/client/i18n";
+import { get } from 'svelte/store';
+
 import application_bg from "$lib/assets/application_bg.webp"
 
 import eng_style_modal from "$lib/assets/housestyles_modal/eng_style.webp"
@@ -47,7 +50,6 @@ import shale_style_modal from "$lib/assets/housestyles_modal/shale_style.webp"
 import viking_style_modal from "$lib/assets/housestyles_modal/viking_style.webp"
 import { stylesmodal } from '../../HouseStyles.svelte';
 import { page } from '$app/stores';
-
  
 interface PageContent {
     title: Partial<Array<string>>,
@@ -58,9 +60,11 @@ interface PageContent {
     slides:Partial<Array<Object>>,
 }
 
+locale.set(`${locale}`);
+
 let pageContents: {[key: string]: PageContent} = {
     "main": {
-        title: ["ДОМ","ВАШЕГО ДОМА"],
+        title: ["Дом","Вашего дома"],
         page:'main',
         images: [
             welcome_page_main_bg
@@ -164,7 +168,7 @@ let pageContents: {[key: string]: PageContent} = {
         ],
         stylesmodal:[
             {
-                name:"АНГЛИЙСКИЙ СТИЛЬ",
+                name:"en",
                 desc:"Английский стиль в архитектуре характеризуется сочетанием элегантности и уюта, что делает его популярным среди частных застройщиков. Этот стиль имеет глубокие исторические корни и делится на три основных периода: Тюдоровский, Георгианский и Викторианский. Английский стиль в архитектуре сочетает в себе элементы истории и современности, делая его универсальным выбором для тех, кто ценит традиции и комфорт.",
                 urlModal: eng_style_modal,
                 url: eng_style,
@@ -172,28 +176,28 @@ let pageContents: {[key: string]: PageContent} = {
                 
             },
             {
-                name:"МОДЕРН",
+                name:"modern",
                 desc:"Стиль модерн в архитектуре характеризуется отказом от классических принципов симметрии и ордера, а также от античного декора фасадов. Вместо этого, здания в стиле модерн обладают необычными формами и визуальной легкостью, часто с асимметричными композиционно-объемными решениями. Фасады могут иметь округлые, иногда фантастически выгнутые контуры проемов, а очертания зданий могут быть расплывчатыми, образуя спиралевидные планы или превращаясь в структурную бесформенность.",
                 urlModal: modern_style_modal,
                 url:modern_style,
                 style: "modern_style",
             },
             {
-                name:"МИНИМАЛИЗМ",
+                name:"min",
                 desc:"Минимализм в архитектуре стремится к предельной простоте и функциональности, отказываясь от излишнего декора и деталей. Этот стиль характеризуется чистыми линиями, простыми геометрическими формами, монохромной цветовой гаммой и большим количеством естественного света.Здания в стиле минимализма обычно имеют плоские крыши, большие окна и стеклянные фасады, которые позволяют максимально использовать естественное освещение. Интерьеры отличаются простотой и лаконичностью, с использованием натуральных материалов, таких как дерево, камень, металл и стекло.",
                 urlModal: min_style_modal,
                 url:min_style,
                 style: "min_style",
             },
             {
-                name:"РУССКИЙ СТИЛЬ",
+                name:"ru",
                 desc:"Русский стиль в архитектуре представляет собой направление, которое развивалось в середине 19 века и достигло своего пика в конце 19 начале 20 веков. Он возник как реакция на европеизацию архитектуры, начатую Петром I, и стремился возродить национальные традиции в строительстве.Руский стиль характеризуется использованием элементов древнерусского зодчества, таких как шатровые крыши, луковичные купола, резные украшения и орнаменты. Здания в этом стиле часто имеют асимметричную композицию, что придает им особую выразительность.",
                 urlModal: rus_style_modal,
                 url:ru_style,
                 style: "ru_style",
             },
             {
-                name:"ХАЙ-ТЕК",
+                name:"hightech",
                 desc:"Хай-тек в архитектуре – это стиль, зародившийся в 1970-х годах и нашедший широкое применение в 1980-х. Он характеризуется использованием высоких технологий в проектировании, строительстве и инженерии зданий, а также применением прямых линий и форм, стекла, пластика, металла и бетона.",
                 urlModal: hightech_style_modal,
                 url: hightech_style,
@@ -219,7 +223,7 @@ let pageContents: {[key: string]: PageContent} = {
                 ]
             },
             {
-                name:"ШАЛЕ",
+                name:"shale",
                 desc:"Стиль шале в архитектуре возник в Швейцарии и альпийских регионах Центральной Европы, вдохновленный сельскими домами шале. Он сочетает традиционные строительные конструкции с характерными крышами и украшенными резьбой и балконами фасадами. Стиль шале характеризуется следующими чертами:",
                 urlModal: shale_style_modal,
                 url:shale_style,
@@ -237,7 +241,7 @@ let pageContents: {[key: string]: PageContent} = {
                 ]
             },
             {
-                name:"ИТАЛЬЯНСКИЙ СТИЛЬ",
+                name:"it",
                 desc:"Итальянский стиль в архитектуре характеризуется рядом особенностей, которые делают его узнаваемым и привлекательным. Вот основные черты этого стиля:",
                 urlModal: it_style_modal,
                 url: itl_style,
@@ -253,7 +257,7 @@ let pageContents: {[key: string]: PageContent} = {
                 
             },   
             {
-                name:"СКАНДИНАВСКИЙ СТИЛЬ",
+                name:"viking",
                 desc:"Скандинавский стиль в архитектуре характеризуется рядом особенностей, которые делают его узнаваемым и популярным. Основные черты этого стиля:",
                 urlModal: viking_style_modal,
                 url:viking_style,
@@ -273,7 +277,7 @@ let pageContents: {[key: string]: PageContent} = {
         ],
         slides: [
             {
-                name: "ДЕРЕВЯННЫЕ ДОМА",
+                name: "wood",
                 urlModal:slidebg1,
                 ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ДЕРЕВЯННОГО ДОМА",
                 ul:[
@@ -295,7 +299,7 @@ let pageContents: {[key: string]: PageContent} = {
                 ]
             },
             {
-                name:"ПАНЕЛЬНО-КАРКАСНЫЕ ДОМА",
+                name:"panel",
                 urlModal:slidebg2,
                 ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ПАНЕЛЬНО-КАРКАСНОГО ДОМА",
                 ul:[
@@ -317,7 +321,7 @@ let pageContents: {[key: string]: PageContent} = {
                 ]
             },
             {
-                name:"ГАЗО И ПЕНО-БЕТОННЫЕ ДОМА",
+                name:"gaz",
                 urlModal:slidebg3,
                 ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ГАЗО И ПЕНО-БЕТОННОГО ДОМА",
                 ul:[
@@ -341,7 +345,7 @@ let pageContents: {[key: string]: PageContent} = {
             },
             {
 
-                name: "ТЕРМОДОМА",
+                name: "termo",
                 urlModal:slidebg4,
                 ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА ТЕРМОДОМА",
                 ul:[
@@ -365,7 +369,7 @@ let pageContents: {[key: string]: PageContent} = {
             },
             {
 
-                name: "КИРПИЧНЫЕ ДОМА",
+                name: "brick",
                 urlModal:application_bg,
                 ulTitle:"ОСНОВНЫЕ ПРЕИМУЩЕСТВА КИРПИЧНОГО ДОМА",
                 ul:[
@@ -400,15 +404,15 @@ let pageContents: {[key: string]: PageContent} = {
         stylesmodal:[],
         slides:[
             {
-                name:"БАНЯ ИЗ БРУСА",
+                name:"BATH FROM WOOD",
                 urlModal: brus_bath_slide
             },
             {
-                name:"БАНЯ ИЗ БЛОКОВ",
+                name:"BATH FROM BLOCKS",
                 urlModal: block_bath_slide
             },
             {
-                name: "КАРКАСНАЯ БАНЯ",
+                name: "FRAME BATH",
                 urlModal: karkas_bath_slide
             }
         ]
@@ -417,6 +421,8 @@ let pageContents: {[key: string]: PageContent} = {
     "pools":{
         title:["БАССЕЙН","ВАШЕГО БАССЕЙНА"],
         page:'pools',
+        slides:[],
+        stylesmodal:[],
         images:[
             welcome_page_pools_bg
         ]
@@ -427,26 +433,27 @@ let pageContents: {[key: string]: PageContent} = {
         images:[
             welcome_page_recreationAreas_bg
         ],
+        slides:[],
         stylesmodal:[
             {
-                name:'ОТКРЫТАЯ ТЕРАССА',
-                url:''
+                name:'terrace',
+                url:shale_style
             },
             {
-                name:'ПАТИО',
-                url:''
+                name:'patio',
+                url:shale_style
             },
             {
-                name:'БЕСЕДКА',
-                url:''
+                name:'alcove',
+                url:shale_style
             },
             {
-                name:'ЗОНА БАРБЕКЮ',
-                url:''
+                name:'BBQ area',
+                url:shale_style
             },
             {
-                name:'ЗОНА ОТДЫХА С НАВЕСОМ',
-                url:''
+                name:'recreation area',
+                url:shale_style
             }
             
         ]
@@ -457,30 +464,31 @@ let pageContents: {[key: string]: PageContent} = {
         images:[
             welcome_page_mangal_bg
         ],
+        slides:[],
         stylesmodal:[
             {
-                name:"ЛЕТНЯЯ ОТКРЫТАЯ БЕСЕДКА",
-                url: ''
+                name:"summer outdoor",
+                url: shale_style
             },
             {
-                name:"ПОЛУОТКРЫТАЯ БЕСЕДКА",
-                url: ''
+                name:"semi-open",
+                url: shale_style
             },
             {
-                name:"ЗАКРЫТАЯ БЕСЕДКА",
-                url: ''
+                name:"closed",
+                url: shale_style
             },
             {
-                name:"ОТКРЫТАЯ ЗОНА БАРБЕКЮ",
-                url: ''
+                name:"outdoor",
+                url: shale_style
             },
             {
-                name:"ПОЛУОТКРЫТАЯ ЗОНА БАРБЕКЮ",
-                url: ''
+                name:"semi-outdoor",
+                url: shale_style
             },
             {
-                name:"ЗАКРЫТАЯ ЗОНА БАРБЕКЮ",
-                url: ''
+                name:"indoor",
+                url: shale_style
             },
         ]
     }
