@@ -8,11 +8,6 @@ import welcome_page_baths_bg from "$lib/assets/welcome_page_baths_bg.webp"
 import welcome_page_recreationAreas_bg from "$lib/assets/welcome_page_recreationAreas_bg.webp"
 import welcome_page_mangal_bg from "$lib/assets/welcome_page_mangal_bg.webp"
 
-// Calculated images
-import quest_img_1 from "$lib/assets/quest_img_1.png"
-import quest_img_2 from "$lib/assets/quest_img_2.png"
-import quest_img_3 from "$lib/assets/quest_img_3.png"
-
 // Main slide images
 import slidebg1 from "$lib/assets/slides/slide1.webp"
 import slidebg2 from "$lib/assets/slides/slide2.webp"
@@ -78,24 +73,22 @@ let pageContents: {[key: string]: PageContent} = {
                     {
                         id:1,
                         answ:"БРЕВНО И БРУС",
-                        url:quest_img_1,
                     },
                     {
                         id:2,
                         answ:"ГАЗОБЕТОН",
-                        url:quest_img_2,
                     },
                     {
                         id:3,
                         answ:"ТЕПЛАЯ КЕРАМИКА",
-                        url:quest_img_3,
                     }
                 ]
             },
             {
                 id:2,
                 name:"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕГО ДОМА",
-                value:12,
+                
+                value:[],
                 questions:[],
             },
             {
@@ -400,7 +393,100 @@ let pageContents: {[key: string]: PageContent} = {
         images:[
             welcome_page_baths_bg
         ],
-        questions:[],
+        questions:[
+            {
+                id:1,
+                name:"ВЫБЕРИТЕ МАТЕРИАЛ СТРОИТЕЛЬСТВА",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"БРЕВНО И БРУС",
+                    },
+                    {
+                        id:2,
+                        answ:"ГАЗОБЕТОН",
+                    },
+                    {
+                        id:3,
+                        answ:"ТЕПЛАЯ КЕРАМИКА",
+                    }
+                ]
+            },
+            {
+                id:2,
+                name:"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕЙ БАНИ",
+                value:[],
+                questions:[],
+            },
+            {
+                id:3,
+                name:"НАЛИЧИЕ УЧАСТКА ПОД СТРОИТЕЛЬСТВО БАНИ",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"ECТЬ",
+                    },
+                    {
+                        id:2,
+                        answ:"НЕТ",
+                    },
+                    {
+                        id:3,
+                        answ:"НА СТАДИИ ОФОРМЛЕНИЯ",
+                    }
+                ]
+            },
+            {
+                id:4,
+                name:"КОГДА ПЛАНИРУЕТСЯ НАЧАЛО СТРОИТЕЛЬСТВА?",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"В БЛИЖАЙШИЕ 2-3 МЕСЯЦА",
+                    },
+                    {
+                        id:2,
+                        answ:"В ТЕЧЕНИЕ ГОДА",
+                    },
+                    {
+                        id:3,
+                        answ:"В ТЕЧЕНИЕ НЕСКОЛЬКИХ ЛЕТ",
+                    }
+                ]
+            },
+            {
+                id:5,
+                name:"БЮДЖЕТ НА СТРОИТЕЛЬСТВО",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"15–35 ТЫС. €",
+                    },
+                    {
+                        id:2,
+                        answ:"35–65 ТЫС. €",
+                    },
+                    {
+                        id:3,
+                        answ:"65–150 ТЫС. €",
+                    },
+                    {
+                        id:4,
+                        answ:"БОЛЕЕ 150 ТЫС. €",
+                    }
+                ]
+            },
+            {
+                id:6,
+                name:"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
+                desc:"Наши специалисты уже приступили к расчёту",
+                value:null,
+            },
+        ],
         stylesmodal:[],
         slides:[
             {
@@ -423,6 +509,142 @@ let pageContents: {[key: string]: PageContent} = {
         page:'pools',
         slides:[],
         stylesmodal:[],
+        questions:[
+            {
+                id:1,
+                name:"ВЫБЕРИТЕ ТИП БАССЕЙНА",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"БЕТОННЫЙ",
+                    },
+                    {
+                        id:2,
+                        answ:"КОМПОЗИТНЫЙ",
+                    },
+                    {
+                        id:3,
+                        answ:"НУЖНА КОНСУЛЬТАЦИЯ",
+                    }
+                ]
+            },
+            {
+                id:2,
+                name:"РАСПОЛОЖЕНИЕ БАССЕЙНА",
+                value: null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"НА УЛИЦЕ",
+                    },
+                    {
+                        id:2,
+                        answ:"В ПОМЕЩЕНИИ",
+                    },
+                ],
+            },
+            {
+                id:3,
+                name:"ВИД БАССЕЙНА",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"СКИММЕРНЫЙ",
+                    },
+                    {
+                        id:2,
+                        answ:"ПЕРЕЛИВНОЙ",
+                    },
+                    {
+                        id:3,
+                        answ:"НУЖНА КОНСУЛЬТАЦИЯ",
+                    }
+                ]
+            },
+            {
+                id:4,
+                name:"АТТРАКЦИОНЫ",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"ГИДРОМАССАЖ",
+                    },
+                    {
+                        id:2,
+                        answ:"АЭРОМАССАЖ",
+                    },
+                    {
+                        id:3,
+                        answ:"ПРОТИВОТОК",
+                    },
+                    {
+                        id:4,
+                        answ:"ВОДОПАД",
+                    },
+                    {
+                        id:5,
+                        answ:"БЕЗ АТТРАКЦИОНОВ",
+                    }
+                ]
+            },
+            {
+                id:5,
+                name:"ПОДОГРЕВ БАССЕЙНА",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"ДА",
+                    },
+                    {
+                        id:2,
+                        answ:"НЕТ",
+                    },
+                    {
+                        id:3,
+                        answ:"НЕ ЗНАЮ",
+                    },
+                ]
+            },
+            {
+                id:6,
+                name:"КОГДА ПЛАНИРУЕТСЯ НАЧАЛО СТРОИТЕЛЬСТВА?",
+                value:null,
+                questions:[
+                    {
+                        id:1,
+                        answ:"КАК МОЖНО СКОРЕЕ",
+                    },
+                    {
+                        id:2,
+                        answ:"В ТЕЧЕНИЕ ЭТОГО МЕСЯЦА",
+                    },
+                    {
+                        id:3,
+                        answ:"В ТЕЧЕНИЕ 3-6 МЕСЯЦЕВ",
+                    },
+                    {
+                        id:4,
+                        answ : "НЕ ЗНАЮ"
+                    }
+                ]
+            },
+            {
+                id:7,
+                name:"ПРИМЕРНАЯ ДЛИНА БАССЕЙНА В МЕТРАХ",
+                value:[],
+                questions:[],
+            },
+            {
+                id:8,
+                name:"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
+                desc:"Наши специалисты уже приступили к расчёту",
+                value:null,
+            },
+        ],
         images:[
             welcome_page_pools_bg
         ]

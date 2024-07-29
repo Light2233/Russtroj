@@ -20,8 +20,33 @@
     beforeUpdate(()=>{
         styleSelected = stylesmodal.find((element)=> element.name == style_name)
     })
-</script>
 
+    let scrollable = true;
+    $: {
+        if(showModal) scrollable = false
+        else scrollable = true
+    }
+
+    const wheel = (node, options) => {
+		let { scrollable } = options;
+		
+		const handler = e => {
+			if (!scrollable) e.preventDefault();
+		};
+		
+		node.addEventListener('wheel', handler, { passive: false });
+		
+		return {
+			update(options) {
+				scrollable = options.scrollable;
+			},
+			destroy() {
+				node.removeEventListener('wheel', handler, { passive: false });
+			}
+		};
+    };
+</script>
+<svelte:window use:wheel={{scrollable}} />
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 bind:this={dialog}

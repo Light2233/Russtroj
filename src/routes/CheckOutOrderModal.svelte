@@ -12,9 +12,34 @@
     };
 
     let value = '';
+
+    let scrollable = true;
+    $: {
+        if(showModal) scrollable = false
+        else scrollable = true
+    }
+
+    const wheel = (node, options) => {
+		let { scrollable } = options;
+		
+		const handler = e => {
+			if (!scrollable) e.preventDefault();
+		};
+		
+		node.addEventListener('wheel', handler, { passive: false });
+		
+		return {
+			update(options) {
+				scrollable = options.scrollable;
+			},
+			destroy() {
+				node.removeEventListener('wheel', handler, { passive: false });
+			}
+		};
+    };
 </script>
 
-
+<svelte:window use:wheel={{scrollable}} />
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 bind:this={dialog}
@@ -27,7 +52,7 @@ on:click|self={() => dialog.close()}
     <h1 class="header1">{$t("checkout")["title"]}</h1>
     <form action="">
         <div class="">
-            <p class="header3">{$t("calculated")["questions"][5].tel}</p>
+            <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
             <input type="text"  placeholder="+7 (900) 000-00-00" bind:value={value}
             use:imask={options}>
         </div>

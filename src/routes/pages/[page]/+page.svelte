@@ -81,10 +81,10 @@
             <p class="main_sm_18">{$t("achievements")[1].desc}</p>
         </div>
     </section>
-    {#if data.content.page == 'main' }
+    {#if data.content?.questions}
     <section id="cost_calculation_block" class="cost_calculation_block pd_section">
         <h2 class="header2">{$t("calculatedtitle",{name: `${ get(t)("title.names")[currentpage][1]}` })} </h2>
-        <CalulatedCost slides={data.content?.questions}/>
+        <CalulatedCost slides={data.content?.questions} bind:page={data.content.page}/>
     </section>
     {/if}
     {#if data.content.page == 'main' || data.content.page == "baths"}

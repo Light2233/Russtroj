@@ -39,8 +39,85 @@ export default {
             "gazebo" : "Строительство ЗОН БАРБЕКЮ"
         },
         "calculatedtitle":"Рассчитайте стоимость строительства {{name}} самостоятельно, ответив на 6 вопросов",
-        "calculated":{  
-            "questions":[
+        "calculated":{
+            "main" :{
+                "questions":[
+                    {
+                        "name":"ВЫБЕРИТЕ МАТЕРИАЛ СТРОИТЕЛЬСТВА",
+                        "questions":[
+                            {
+                                "answ":"БРЕВНО И БРУС",
+                            },
+                            {
+                                "answ":"ГАЗОБЕТОН",
+                            },
+                            {
+                                "answ":"ТЕПЛАЯ КЕРАМИКА",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕГО ДОМА",
+                        "from" : "От",
+                        "to" : "До",
+                        "desc" : "*Площадь необходимо указывать в квадратных метрах",
+                        "questions":[],
+                    },
+                    {
+                        "name":"НАЛИЧИЕ УЧАСТКА ПОД СТРОИТЕЛЬСТВО",
+                        "questions":[
+                            {
+                                "answ":"ECТЬ",
+                            },
+                            {
+                                "answ":"НЕТ",
+                            },
+                            {
+                                "answ":"НА СТАДИИ ОФОРМЛЕНИЯ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"КОГДА ПЛАНИРУЕТСЯ НАЧАЛО СТРОИТЕЛЬСТВА?",
+                        "questions":[
+                            {
+                                "answ":"В БЛИЖАЙШИЕ 2-3 МЕСЯЦА",
+                            },
+                            {
+                                "answ":"В ТЕЧЕНИЕ ГОДА",
+                            },
+                            {
+                                "answ":"В ТЕЧЕНИЕ НЕСКОЛЬКИХ ЛЕТ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"БЮДЖЕТ НА СТРОИТЕЛЬСТВО",
+                        "questions":[
+                            {
+                                "answ":"15–35 ТЫС. €",
+                            },
+                            {
+                                "answ":"35–65 ТЫС. €",
+                            },
+                            {
+                                "answ":"65–150 ТЫС. €",
+                            },
+                            {
+
+                                "answ":"БОЛЕЕ 150 ТЫС. €",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
+                        "desc":"Наши специалисты уже приступили к расчёту",
+                        "tel":"НОМЕР ТЕЛЕФОНА"
+                    },
+                ],
+            },
+            "baths":{
+                "questions":[
                 {
                     "name":"ВЫБЕРИТЕ МАТЕРИАЛ СТРОИТЕЛЬСТВА",
                     "questions":[
@@ -56,11 +133,14 @@ export default {
                     ]
                 },
                 {
-                    "name":"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕГО ДОМА",
+                    "name":"УКАЖИТЕ ПЛОЩАДЬ БУДУЩЕЙ БАНИ",
+                    "from" : "От",
+                    "to" : "До",
+                    "desc" : "*Площадь необходимо указывать в квадратных метрах",
                     "questions":[],
                 },
                 {
-                    "name":"НАЛИЧИЕ УЧАСТКА ПОД СТРОИТЕЛЬСТВО",
+                    "name":"НАЛИЧИЕ УЧАСТКА ПОД СТРОИТЕЛЬСТВО БАНИ",
                     "questions":[
                         {
                             "answ":"ECТЬ",
@@ -108,9 +188,119 @@ export default {
                 {
                     "name":"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
                     "desc":"Наши специалисты уже приступили к расчёту",
-                    "tel":"НОМЕР ТЕЛЕФОНА"
+                    "tel":"НОМЕР ТЕЛЕФОНА",
+                    "questions" : []
                 },
             ],
+            },
+            "pools":{
+                "questions":[
+                    {
+                        "name":"ВЫБЕРИТЕ ТИП БАССЕЙНА",
+                        "questions":[
+                            {
+                                "answ":"БЕТОННЫЙ",
+                            },
+                            {
+                                "answ":"КОМПОЗИТНЫЙ",
+                            },
+                            {
+                                "answ":"НУЖНА КОНСУЛЬТАЦИЯ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"РАСПОЛОЖЕНИЕ БАССЕЙНА",
+                        "questions":[
+                            {
+                                "answ":"НА УЛИЦЕ",
+                            },
+                            {
+                                "answ":"В ПОМЕЩЕНИИ",
+                            },
+                        ],
+                    },
+                    {
+                        "name":"ВИД БАССЕЙНА",
+                        "questions":[
+                            {
+                                "answ":"СКИММЕРНЫЙ",
+                            },
+                            {
+                                "answ":"ПЕРЕЛИВНОЙ",
+                            },
+                            {
+                                "answ":"НУЖНА КОНСУЛЬТАЦИЯ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"АТТРАКЦИОНЫ",
+                        "questions":[
+                            {
+                                "answ":"ГИДРОМАССАЖ",
+                            },
+                            {
+                                "answ":"АЭРОМАССАЖ",
+                            },
+                            {
+                                "answ":"ПРОТИВОТОК",
+                            },
+                            {
+                                "answ":"ВОДОПАД",
+                            },
+                            {
+                                "answ":"БЕЗ АТТРАКЦИОНОВ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"ПОДОГРЕВ БАССЕЙНА",
+                        "questions":[
+                            {
+                                "answ":"ДА",
+                            },
+                            {
+                                "answ":"НЕТ",
+                            },
+                            {
+                                "answ":"НЕ ЗНАЮ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"КОГДА ПЛАНИРУЕТСЯ НАЧАЛО СТРОИТЕЛЬСТВА?",
+                        "questions":[
+                            {
+                                "answ":"КАК МОЖНО СКОРЕЕ",
+                            },
+                            {
+                                "answ":"В ТЕЧЕНИЕ ЭТОГО МЕСЯЦА",
+                            },
+                            {
+                                "answ":"В ТЕЧЕНИЕ 3-6 МЕСЯЦЕВ",
+                            },
+                            {
+                                "answ":"НЕ ЗНАЮ",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"ПРИМЕРНАЯ ДЛИНА БАССЕЙНА В МЕТРАХ",
+                        "from" : "От",
+                        "to" : "До",
+                        "desc" : "*Длинну необходимо указывать в метрах",
+                        "questions":[]
+                    },
+                    {
+                        "name":"КАКИМ СПОСОБОМ УДОБНЕЕ ПОЛУЧИТЬ РЕЗУЛЬТАТ?",
+                        "desc":"Наши специалисты уже приступили к расчёту",
+                        "tel":"НОМЕР ТЕЛЕФОНА"
+                    },
+                ],
+            },
+            
+            
             "buttons":{
                 "back": "Назад",
                 "next": "Далее",
@@ -459,78 +649,268 @@ export default {
         },
         "calculatedtitle":"Calculate the cost of building your {{name}} by yourself by answering 6 questions",
         "calculated":{
-            "questions":[
-                {
-                    "name":"CHOOSE THE CONSTRUCTION MATERIAL",
-                    "questions":[
-                        {
-                            "answ":"a log and a beam",
-                        },
-                        {
-                            "answ":"AERATED CONCRETE",
-                        },
-                        {
-                            "answ":"WARM CERAMICS",
-                        }
-                    ]
-                },
-                {
-                    "name":"specify the area of the future house",
-                    "questions":[],
-                },
-                {
-                    "name":"availability of a plot for the construction of a house",
-                    "questions":[
-                        {
-                            "answ":"Yes",
-                        },
-                        {
-                            "answ":"no",
-                        },
-                        {
-                            "answ":"at the design stage",
-                        }
-                    ]
-                },
-                {
-                    "name":"When is the start of construction planned?",
-                    "questions":[
-                        {
-                            "answ":"in the next 2-3 months",
-                        },
-                        {
-                            "answ":"during the year",
-                        },
-                        {
-                            "answ":"for several years",
-                        }
-                    ]
-                },
-                {
-                    "name":"construction budget",
-                    "questions":[
-                        {
-                            "answ":"15–35 thousand €",
-                        },
-                        {
-                            "answ":"35–65 thousand €",
-                        },
-                        {
-                            "answ":"65–150 thousand €",
-                        },
-                        {
+            "main" : {
+                "questions":[
+                    {
+                        "name":"CHOOSE THE CONSTRUCTION MATERIAL",
+                        "questions":[
+                            {
+                                "answ":"a log and a beam",
+                            },
+                            {
+                                "answ":"AERATED CONCRETE",
+                            },
+                            {
+                                "answ":"WARM CERAMICS",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"specify the area of the future house",
+                        "from" : "From",
+                        "to" : "To",
+                        "desc" : "*Area must be indicated in square meters",
+                        "questions":[],
+                    },
+                    {
+                        "name":"availability of a plot for the construction of a house",
+                        "questions":[
+                            {
+                                "answ":"Yes",
+                            },
+                            {
+                                "answ":"no",
+                            },
+                            {
+                                "answ":"at the design stage",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"When is the start of construction planned?",
+                        "questions":[
+                            {
+                                "answ":"in the next 2-3 months",
+                            },
+                            {
+                                "answ":"during the year",
+                            },
+                            {
+                                "answ":"for several years",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"construction budget",
+                        "questions":[
+                            {
+                                "answ":"15–35 thousand €",
+                            },
+                            {
+                                "answ":"35–65 thousand €",
+                            },
+                            {
+                                "answ":"65–150 thousand €",
+                            },
+                            {
+    
+                                "answ":"more than 150 thousand €",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"What is the most convenient way to obtain the result?",
+                        "tel":"phone number",
+                        "desc":"Our specialists have already started calculating",
+    
+                    },
+                ],
+            },
+            "baths" :{
+                "questions":[
+                    {
+                        "name":"CHOOSE THE CONSTRUCTION MATERIAL",
+                        "questions":[
+                            {
+                                "answ":"a log and a beam",
+                            },
+                            {
+                                "answ":"AERATED CONCRETE",
+                            },
+                            {
+                                "answ":"WARM CERAMICS",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"specify the area of the future bath",
+                        "from" : "From",
+                        "to" : "To",
+                        "desc" : "*Area must be indicated in square meters",
+                        "questions":[],
+                    },
+                    {
+                        "name":"availability of a plot for the construction of a bath",
+                        "questions":[
+                            {
+                                "answ":"Yes",
+                            },
+                            {
+                                "answ":"no",
+                            },
+                            {
+                                "answ":"at the design stage",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"When is the start of construction planned?",
+                        "questions":[
+                            {
+                                "answ":"in the next 2-3 months",
+                            },
+                            {
+                                "answ":"during the year",
+                            },
+                            {
+                                "answ":"for several years",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"construction budget",
+                        "questions":[
+                            {
+                                "answ":"15–35 thousand €",
+                            },
+                            {
+                                "answ":"35–65 thousand €",
+                            },
+                            {
+                                "answ":"65–150 thousand €",
+                            },
+                            {
+    
+                                "answ":"more than 150 thousand €",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"What is the most convenient way to obtain the result?",
+                        "tel":"phone number",
+                        "desc":"Our specialists have already started calculating",
+    
+                    },
+                ],
+            },
+            "pools":{
+                "questions":[
+                    {
+                        "name":"SELECT POOL TYPE",
+                        "questions":[
+                            {
+                                "answ":"CONCRETE",
+                            },
+                            {
+                                "answ":"COMPOSITE",
+                            },
+                            {
+                                "answ":"NEED A CONSULTATION",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"POOL LOCATION",
+                        "questions":[
+                            {
+                                "answ":"ON THE STREET",
+                            },
+                            {
+                                "answ":"IN ROOM",
+                            },
+                        ],
+                    },
+                    {
+                        "name":"POOL VIEW",
+                        "questions":[
+                            {
+                                "answ":"SKIMMER",
+                            },
+                            {
+                                "answ":"OVERFLOW",
+                            },
+                            {
+                                "answ":"NEED A CONSULTATION",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"ATTRACTIONS",
+                        "questions":[
+                            {
+                                "answ":"HYDROMASSAGE",
+                            },
+                            {
+                                "answ":"AIR MASSAGE",
+                            },
+                            {
+                                "answ":"COUNTERFLOW",
+                            },
+                            {
+                                "answ":"WATERFALL",
+                            },
+                            {
+                                "answ":"NO ATTRACTIONS",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"POOL HEATING",
+                        "questions":[
+                            {
+                                "answ":"YES",
+                            },
+                            {
+                                "answ":"NO",
+                            },
+                            {
+                                "answ":"DON'T KNOW",
+                            }
+                        ]
+                    },
+                    {
+                        "name":"WHEN IS CONSTRUCTION PLANNED TO START?",
+                        "questions":[
+                            {
+                                "answ":"AS SOON AS POSSIBLE",
+                            },
+                            {
+                                "answ":"DURING THIS MONTH",
+                            },
+                            {
+                                "answ":"WITHIN 3-6 MONTHS",
+                            },
+                            {
+                                "answ":"DON'T KNOW",
+                            }
+                        ]
+                    },
 
-                            "answ":"more than 150 thousand €",
-                        }
-                    ]
-                },
-                {
-                    "name":"What is the most convenient way to obtain the result?",
-                    "tel":"phone number",
-                    "desc":"Our specialists have already started calculating",
-
-                },
-            ],
+                    {
+                        "name":"APPROXIMATE POOL LENGTH IN METERS",
+                        "from" : "From",
+                        "to" : "To",
+                        "desc" : "*Length must be indicated in meters",
+                        "questions":[]
+                    },
+                    {
+                        "name":"WHAT IS THE CONVENIENT WAY TO OBTAIN RESULTS?",
+                        "desc":"Our specialists have already started calculating",
+                        "tel":"PHONE NUMBER"
+                    },
+                ],
+            },
+           
             "buttons":{
                 "back": "Back",
                 "next": "Next",

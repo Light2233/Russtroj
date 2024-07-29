@@ -38,7 +38,7 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
         <form action="" class:hidden={!isInView} in:fly={{y:70,duration:1000}}>
             <p class="header1">{$t("application")["title"]}</p>
             <div class="">
-                <p class="header3">{$t("calculated")["questions"][5].tel}</p>
+                <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
                 <input type="tel" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
                 use:imask={options}>
             </div>
