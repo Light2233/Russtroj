@@ -1,6 +1,11 @@
 
 <script lang="ts">
-    import link_bg from "$lib/assets/slides/slide2.webp"
+    import house from "$lib/assets/slides/slide2.webp"
+    import baths from "$lib/assets/welcome_page_baths_bg.webp"
+    import pools from "$lib/assets/welcome_page_pools_bg.webp"
+    import recreationAreas from "$lib/assets/welcome_page_recreationAreas_bg.webp"
+    import gazebo from "$lib/assets/welcome_page_mangal_bg.webp"
+    
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image'
     import { slide,fly } from "svelte/transition";
     import { onMount,afterUpdate,beforeUpdate } from "svelte";
@@ -12,23 +17,28 @@
     let options = [
         {
             name:"house",
-            path:"/pages/main"
+            path:"/pages/main",
+            url: house
         },
         {
             name:"baths",
-            path:"/pages/baths"
+            path:"/pages/baths",
+            url: baths
         },
         {
             name:"pools",
-            path:"/pages/pools"
+            path:"/pages/pools",
+            url: pools 
         },
         {
             name:"recreationAreas",
-            path:"/pages/recreationAreas"
+            path:"/pages/recreationAreas",
+            url: recreationAreas
         },
         {
             name:"gazebo",
-            path:"/pages/gazebo"
+            path:"/pages/gazebo",
+            url: gazebo
         },
         
     ]
@@ -66,7 +76,7 @@
             {#each options as option,index}
                     <a class="drop_menu_link header3" href={option.path} class:first={index===0} on:click={(event)=>{dropMenu=false;event.stopPropagation()}}>
                         {$t("navmenu")[`${option.name}`]}
-                        <img src="{ link_bg }" alt="" data-src="{ link_bg }" decoding="async" fetchpriority="high" >
+                        <img src="{ option.url }" alt="" data-src="{ option.url }" decoding="async" fetchpriority="high">
                     </a>
             {/each}
         </div>

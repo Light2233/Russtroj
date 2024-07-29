@@ -7,6 +7,7 @@
     import ws from '$lib/assets/watsap.svg'
     import kewate_logo from '$lib/assets/kewate_logo.svg'
     import arrow_down from "$lib/assets/arrow_down.svg"
+    import favicon from "$lib/assets/russtroj.ico"
 
     import DropdownMenu from './DropdownMenu.svelte'
     import CheckOutOrderModal from './CheckOutOrderModal.svelte'
@@ -54,6 +55,10 @@
 </script>
 <CheckOutOrderModal bind:showModal />
 
+<svelte:head>
+    <link rel="icon" href="{favicon}">
+</svelte:head>
+
 {#key headerAnim}
     <header >
         
@@ -74,7 +79,7 @@
 
             <div class="main_header_info">
                 <div class="">
-                    <p class="main_sm_14">+7 (916) 932-71-30</p>
+                    <p class="main_sm_14">+3810645598062</p>
                 </div>
                 <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>{$t("order")}</button>
                 {#if innerWidth<=800 && importbl}
@@ -110,10 +115,10 @@ on:change={({ detail }) => {
                 <div class="contacts" class:hidden={!isInView} in:fly={{y:20,delay:200,duration:1000}}>
                     <div class="row_div">
                         <a href="#" class="link main_sm_14">
-                            mail@mail.ru
+                            russtroj.ns@gmail.com
                         </a>
                         <a href="#" class="link main_sm_14">
-                            +7 (916) 932-71-30
+                            +3810645598062
                         </a>
                     </div>
                     <div class="curcle_div">

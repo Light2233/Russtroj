@@ -45,6 +45,23 @@ import shale_style_modal from "$lib/assets/housestyles_modal/shale_style.webp"
 import viking_style_modal from "$lib/assets/housestyles_modal/viking_style.webp"
 import { stylesmodal } from '../../HouseStyles.svelte';
 import { page } from '$app/stores';
+
+
+// chill zone images 
+
+import outdoor from "$lib/assets/areasstyles/outdoor.webp"
+import patio from "$lib/assets/areasstyles/patio.webp"
+import alcove from "$lib/assets/areasstyles/alcove.png"
+import bbq_zone from "$lib/assets/areasstyles/bbq_zone.webp"
+
+// bbq zone images
+
+import open from "$lib/assets/gazebpstyles/open.png"
+import semi_open from "$lib/assets/gazebpstyles/semi_open.webp"
+import closed from "$lib/assets/gazebpstyles/closed.webp"
+import open_bbq from "$lib/assets/gazebpstyles/open_bbq.webp"
+import semi_open_bbq from "$lib/assets/gazebpstyles/semi_open_bbq.webp"
+import closed_bbq from "$lib/assets/gazebpstyles/closed_bbq.webp"
  
 interface PageContent {
     title: Partial<Array<string>>,
@@ -659,23 +676,23 @@ let pageContents: {[key: string]: PageContent} = {
         stylesmodal:[
             {
                 name:'terrace',
-                url:shale_style
+                url:outdoor
             },
             {
                 name:'patio',
-                url:shale_style
+                url:patio
             },
             {
                 name:'alcove',
-                url:shale_style
+                url:alcove
             },
             {
                 name:'BBQ area',
-                url:shale_style
+                url:bbq_zone
             },
             {
                 name:'recreation area',
-                url:shale_style
+                url:welcome_page_recreationAreas_bg
             }
             
         ]
@@ -690,27 +707,27 @@ let pageContents: {[key: string]: PageContent} = {
         stylesmodal:[
             {
                 name:"summer outdoor",
-                url: shale_style
+                url: open
             },
             {
                 name:"semi-open",
-                url: shale_style
+                url: semi_open
             },
             {
                 name:"closed",
-                url: shale_style
+                url:  closed
             },
             {
                 name:"outdoor",
-                url: shale_style
+                url: open_bbq
             },
             {
                 name:"semi-outdoor",
-                url: shale_style
+                url: semi_open_bbq
             },
             {
                 name:"indoor",
-                url: shale_style
+                url: closed_bbq
             },
         ]
     }
