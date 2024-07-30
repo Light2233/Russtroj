@@ -72,10 +72,10 @@
 <footer style="background:url({footer_bg});background-repeat: no-repeat;
         background-size: cover;background-position:50% 50%">
     <div class="footer_application">
-        <form class=""  on:submit>
+        <form class=""  method="post" action="?/sendApp" enctype="multipart/form-data" on:submit>
             <p class="header1 white">Выезд инженера на объект за счёт компании</p>
             <div class="input_place">
-                <input type="tel" name="" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
+                <input type="tel" name="phone" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
                 use:imask={options}>
                 <button type="submit" class="main_white_btn">Вызвать инженера</button>
             </div>

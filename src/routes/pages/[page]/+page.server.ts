@@ -1,5 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import type { Actions } from './$types';
+
+import { sendAppTg } from "$lib/server/bot"
 
 // Welcome page images
 import welcome_page_main_bg from "$lib/assets/welcome_page_main_bg.webp"
@@ -501,3 +504,16 @@ export const load: PageLoad = ({ params }) => {
         content,
 	};
 };
+
+
+export const actions = {
+	sendApp: async ({request}) => {
+        let data = await request.formData();
+        let roflData = Object.fromEntries(data);
+        
+        await sendAppTg({
+            phone: roflData.phone,
+            projectFile: data.get('projectFile')
+        })
+	},
+} satisfies Actions;

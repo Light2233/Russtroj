@@ -23,7 +23,7 @@
 
 </script>
 
-<form class="calc_content">
+<form class="calc_content" method="post" action="?/sendApp" enctype="multipart/form-data">
     {#each slides as slide}
         {#if slideCnt == slide.id}
             {#if slideCnt==6}
@@ -33,7 +33,7 @@
                         <p class="main_sm_18">{slide.desc}</p>
                         <div class="contact">
                             <p class="header3">Номер телефона</p>
-                            <input type="tel" name="" id="" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
+                            <input type="tel" name="phone" id="" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
                             use:imask={options}>
                         </div>
                     </div>

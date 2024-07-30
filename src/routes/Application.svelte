@@ -21,11 +21,11 @@
             <img src="{ application_bg }" alt="" data-src="{ application_bg }" use:lazyImage={{ threshold: 0.5 }} decoding="async">
         </div>
     </div>
-    <form action="">
+    <form method="post" action="?/sendApp" enctype="multipart/form-data">
         <p class="header1">РАСЧИТАЕМ СТОИМОСТЬ ПО ВАШЕМУ ПРОЕКТУ ЗА 2 МИНУТЫ</p>
         <div class="">
             <p class="header3">НОМЕР ТЕЛЕФОНА</p>
-            <input type="tel" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
+            <input type="tel" name="phone" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
             use:imask={options}>
         </div>
         <div class="">
@@ -35,7 +35,7 @@
                     <p class="main_sm_14">Загрузите проект</p>
                 </div>
                 
-                <input type="file" name="" id="project">
+                <input type="file" name="projectFile" id="project">
             </div>
             <p class="main_sm_14 gray">Если у вас уже есть смета на строительство в 95% случаев мы предлагаем меньшую стоимость и без потери качества</p>
         </div>
