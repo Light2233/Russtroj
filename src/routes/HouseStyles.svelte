@@ -1,40 +1,46 @@
 <script lang="ts">
-    import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
 
     export let page = ''
 
     import HouseStyleModal from "./HouseStyleModal.svelte"
-
+    import { t, locale, locales } from "$lib/client/i18n";
     export let stylesmodal
     let styleSelected = '';
     let showModal = false;
 
-    function openmodal(){
+    function openmodal(name){
         if(page=="main"){
             showModal = true;
+            styleSelected=name
         }
     }
     let showBtn = false;
 </script>
-
 <HouseStyleModal bind:showModal style_name={styleSelected} stylesmodal={stylesmodal}/>
-
 <div class="styles_grid">
-    {#each stylesmodal as style, index}
-        <button class="style { style.style }" on:click={()=>{if(page=='main'){styleSelected=style.name;showModal = true;}}} class:first={index<2 && page!=='gazebo'}>
+    {#each stylesmodal as style, index} 
+        <button class="style" on:click={openmodal(style.name)} class:first={index<2 && page !== "gazebo"}>
             <img src="{ style.url }" alt="" data-src="{ style.url }" decoding="async"  fetchpriority="high">
-            <p class="header2">{ style.name }</p>
+            {#if style.name }
+                <p class="header2">{$t("houseslide")[style.name]["name"]}</p>
+            {/if}
             {#if page=='main'}
-                <button class="main_white_btn main_sm_14">Подробнее</button>
+                <button class="main_white_btn main_sm_14">{$t("more")["btn"]}</button>
             {/if}
         </button>
     {/each}
 </div>
 
 <style lang="less">
+    .gazebo{
+        max-width: 33.1% !important;
+    }
     .style{
         position: relative;
         cursor: pointer;
+        display: flex;
+        align-items: start;
+        justify-content: start;
     }
     .style img{
         object-fit: cover;
@@ -42,7 +48,9 @@
         height: 100%;
         filter: brightness(80%);
         object-position: 50% 50%;
-        pointer-events: none
+        pointer-events: none;
+        position: absolute;
+        top: 0;
     }
     .styles_grid{
         display: flex;
@@ -80,10 +88,15 @@
         
     }
     .style p {
-        position: absolute;
+        z-index: 3;
         color: white;
         padding: 20px 0px 0px 20px;
         top: 0;
+        white-space: break-spaces;
+        word-wrap: break-word;
+        text-wrap: wrap;
+        word-break: break-all;
+
         text-align: start;
         @media (max-width:400px) {
             font-size: 24px !important;

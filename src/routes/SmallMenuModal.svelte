@@ -4,14 +4,56 @@
 	$: if (dialog && showModal) dialog.showModal();
     let dropMenu = false;
 
+	import { t, locale, locales } from "$lib/client/i18n";
 	import arrow_down from "$lib/assets/arrow_down.svg"
 	import close from "$lib/assets/close_gray.svg"
     import DropdownMenu from "./DropdownMenu.svelte";
-
+	import langStore from "$lib/client/localstore";
     import { page } from '$app/stores';
-</script>
 
-<svelte:window on:click={()=>{dialog.close()}}/>
+	let scrollable = true;
+    $: {
+        if(showModal) scrollable = false
+        else scrollable = true
+    }
+
+    const wheel = (node, options) => {
+		let { scrollable } = options;
+		
+		const handler = e => {
+			if (!scrollable) e.preventDefault();
+		};
+		
+		node.addEventListener('wheel', handler, { passive: false });
+		
+		return {
+			update(options) {
+				scrollable = options.scrollable;
+			},
+			destroy() {
+				node.removeEventListener('wheel', handler, { passive: false });
+			}
+		};
+    };
+	let menu = {
+		"ru" : "Меню",
+		"en" : "Menu"
+ 	}
+	let lang
+	langStore.subscribe(value => {
+        lang = value;
+    });
+    langStore.subscribe(value => {
+        lang = value;
+        locale.set(lang);
+    });
+
+    const switchLanguage = () => {
+        const newLang = lang === 'ru' ? 'en' : 'ru';
+        langStore.set(newLang);
+    };
+</script>
+<svelte:window on:click={()=>{dialog.close()}} use:wheel={{scrollable}}/>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
@@ -21,21 +63,33 @@
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="dialog_content" on:click|stopPropagation>
-        <div class="line"></div>
-		<div class="dialog_title">	
-            <p class="">Меню</p>
-            <button class="close" on:click={()=>{ dialog.close();dropMenu=false}}><img src="{close}"></button>
-        </div>
-        <div class="links">
-            <div class="" on:click={(event)=>{event.stopPropagation()}}>
-                <button class="nav_link main_sm_14" on:click={(event)=>{dropMenu=!dropMenu;}}>Услуги <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
-            </div>
-        </div>
+		<div class="up_block">
+			<div class="line"></div>
+			<div class="dialog_title">	
+				<p class="">{menu[lang]}</p>
+				<button class="close" on:click={()=>{ dialog.close();dropMenu=false}}><img src="{close}"></button>
+			</div>
+			<div class="links">
+				<div class="" on:click={(event)=>{event.stopPropagation()}}>
+					<button class="nav_link main_sm_14" on:click={(event)=>{dropMenu=!dropMenu;}}>{$t("nav.link")["services"]} <img src="{ arrow_down }" alt="" class:rotate={dropMenu}></button>
+				</div>
+			</div>
+		</div>
+		<div class="">
+			<button on:click={switchLanguage} class="switch_lang main_sm_14" >{lang == "ru" ? "EN" : "RU"}</button>
+		</div>
 	</div>
     <DropdownMenu dropMenu={dropMenu} page={$page.params.page}/>
 </dialog>
 
-<style>
+<style lang="less">
+	.up_block{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	dialog {
 		border-radius: 0.2em;
 		border: none;

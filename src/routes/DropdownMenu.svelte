@@ -1,32 +1,44 @@
 
 <script lang="ts">
-    import link_bg from "$lib/assets/slides/slide2.webp"
+    import house from "$lib/assets/slides/slide2.webp"
+    import baths from "$lib/assets/welcome_page_baths_bg.webp"
+    import pools from "$lib/assets/welcome_page_pools_bg.webp"
+    import recreationAreas from "$lib/assets/welcome_page_recreationAreas_bg.webp"
+    import gazebo from "$lib/assets/welcome_page_mangal_bg.webp"
+    
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image'
     import { slide,fly } from "svelte/transition";
     import { onMount,afterUpdate,beforeUpdate } from "svelte";
+
+    import { t, locale, locales } from "$lib/client/i18n";
 
     export let page;
 
     let options = [
         {
-            name:"Строительство домов",
-            path:"/pages/main"
+            name:"house",
+            path:"/pages/main",
+            url: house
         },
         {
-            name:"Строительство бань",
-            path:"/pages/baths"
+            name:"baths",
+            path:"/pages/baths",
+            url: baths
         },
         {
-            name:"Строительство бассейнов",
-            path:"/pages/pools"
+            name:"pools",
+            path:"/pages/pools",
+            url: pools 
         },
         {
-            name:"Строительство зон отдыха",
-            path:"/pages/recreationAreas"
+            name:"recreationAreas",
+            path:"/pages/recreationAreas",
+            url: recreationAreas
         },
         {
-            name:"Строительство зон барбекю",
-            path:"/pages/gazebo"
+            name:"gazebo",
+            path:"/pages/gazebo",
+            url: gazebo
         },
         
     ]
@@ -50,24 +62,48 @@
     
         
     
+    let scrollable = true;
+    $: {
+        if(dropMenu) scrollable = false
+        else scrollable = true
+    }
 
+    const wheel = (node, options) => {
+		let { scrollable } = options;
+		
+		const handler = e => {
+			if (!scrollable) e.preventDefault();
+		};
+		
+		node.addEventListener('wheel', handler, { passive: false });
+		
+		return {
+			update(options) {
+				scrollable = options.scrollable;
+			},
+			destroy() {
+				node.removeEventListener('wheel', handler, { passive: false });
+			}
+		};
+    };
     
 </script>
-
+<svelte:window use:wheel={{scrollable}} />
 
 {#if dropMenu}
 
     <div class="drop_menu" transition:slide>
-        <p class="main_sm_14 gray">Услуги</p>
+        <p class="main_sm_14 gray">{$t("nav.link")["services"]}</p>
         
         <div class="link_grid">
             {#each options as option,index}
                     <a class="drop_menu_link header3" href={option.path} class:first={index===0} on:click={(event)=>{dropMenu=false;event.stopPropagation()}}>
-                        {option.name}
-                        <img src="{ link_bg }" alt="" data-src="{ link_bg }" decoding="async"  fetchpriority="high" >
+                        {$t("navmenu")[`${option.name}`]}
+                        <img src="{ option.url }" alt="" data-src="{ option.url }" decoding="async" fetchpriority="high">
                     </a>
             {/each}
         </div>
+        
     </div>
 {/if}
 
@@ -87,6 +123,7 @@
         display: flex;
         flex-direction: column;
         row-gap: 12px;
+        top: 65px;
         @media (max-width:800px) {
             padding: 20px 20px;
         }

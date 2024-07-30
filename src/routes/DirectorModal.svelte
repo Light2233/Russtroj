@@ -4,9 +4,35 @@
 	let dialog2; 
     $: if (dialog2 && showModal) dialog2.showModal();
     import { fade } from "svelte/transition";
+    import { t, locale, locales } from "$lib/client/i18n";
     export let url 
-</script>
 
+    let scrollable = true;
+    $: {
+        if(showModal) scrollable = false
+        else scrollable = true
+    }
+
+    const wheel = (node, options) => {
+		let { scrollable } = options;
+		
+		const handler = e => {
+			if (!scrollable) e.preventDefault();
+		};
+		
+		node.addEventListener('wheel', handler, { passive: false });
+		
+		return {
+			update(options) {
+				scrollable = options.scrollable;
+			},
+			destroy() {
+				node.removeEventListener('wheel', handler, { passive: false });
+			}
+		};
+    };
+</script>
+<svelte:window use:wheel={{scrollable}} />
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 
 <dialog
@@ -19,12 +45,12 @@ on:click|self={() => dialog2.close()}
         <div class="close" on:click={()=>{dialog2.close()}}><img src="{close}" alt=""></div>
         <div class="style_info">
             <div class="title">
-                <p class="header3">Генеральный директор</p>
+                <p class="header3">{$t("generaldirector")["rank"]}</p>
             </div>
             <div class="line"></div>
             <div class="director_info">
-                <p class="header1">Владислав Рябуха</p>
-                <p class="main_sm_14">Строительством я занимаюсь уже более 15 лет. За это время мне удалось сформировать сплоченный коллектив в России и Сербии, работающий по отобранным мною технологиям строительства. Я слежу за тем, чтобы каждый сотрудник совершенствовал свои навыки, за счет этого мы можем гарантировать долговечность и качество выполненных нами проектов. <br><br>Наша компания специализируется на строительстве современных и комфортабельных домов в Сербии. Мы предлагаем доступные цены на наши услуги и готовы предложить индивидуальный подход к каждому клиенту. Мы также предоставляем полный комплекс услуг по строительству вашего будущего загородного дома, бани, зоны отдыха и бассейна под ключ, начиная от проектирования до финальных работ. Мы гарантируем высокое качество работ и использование только самых передовых технологий при строительстве. Кроме того, мы предлагаем широкий выбор материалов и отделочных решений, чтобы удовлетворить любые ваши потребности. Если вы хотите купить собственный загородный дом, наша компания поможет вам сделать правильный выбор и предложит оптимальное решение для вашего бюджета</p>
+                <p class="header1">{$t("generaldirector")["name"]}</p>
+                <p class="main_sm_14">{$t("generaldirector")["shortdesc"]} <br><br>{$t("generaldirector")["desc"]}</p>
             </div>
         </div>
         <div class="line vertical"></div>

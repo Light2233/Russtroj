@@ -3,9 +3,11 @@
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import { onMount } from 'svelte';
+    import { fly } from 'svelte/transition';
+    import { inview } from 'svelte-inview';
     import 'swiper/css';
     import 'swiper/css/pagination';
-
+    import { t, locale, locales } from "$lib/client/i18n";
     
     import swiper_arrow from "$lib/assets/swiper_arrow.svg"
 
@@ -44,9 +46,8 @@
     let showModal = false
     let houseName = ''
     let pagLength = Math.round(slidesLenght/3);
-
     let name = ""
-
+    let isInView = false;
 
    
 </script>
@@ -55,7 +56,12 @@
 <HouseStyleModal bind:showModal style_name={houseName} stylesmodal={slides}/>
 
 {#if swiper}
-<div class="slider">
+<div class="slider"
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => {
+        isInView = detail.inView;
+    }}
+>
 
     <button class="prev swiper_btn" class:disable={page==='baths'} on:click={()=>{ countSlide > 1 ? countSlide-- : countSlide }}><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
@@ -76,13 +82,15 @@
        
         {#each slides as slide, index}
             <SwiperSlide>
-                <button class="slider_content" on:click={()=>{if(page=='main'){ houseName = slide.name ; showModal=true;}}}>
-                    <p class="header2">{ slide.name }</p>
-                    <img class="slide_bg" src="{ slide.urlModal }" alt="" data-src="{ slide.urlModal }" use:lazyImage={{ threshold: 0.5 }} decoding="async"  fetchpriority="low">
-                    {#if page == 'main'}
-                        <button class="main_white_btn main_sm_14">Подробнее</button>
-                    {/if}
-                </button>
+                {#key isInView}
+                    <button class="slider_content" on:click={()=>{if(page=='main'){ houseName = slide.name ; showModal=true;}}} class:hidden={!isInView} in:fly={{duration:800,delay:600-50*index,y:100}}>
+                        <p class="header2">{$t("houseslide")[slide.name]["name"]}</p>
+                        <img class="slide_bg" src="{ slide.urlModal }" alt="" data-src="{ slide.urlModal }" use:lazyImage={{ threshold: 0.5 }} decoding="async"  fetchpriority="low">
+                        {#if page == 'main'}
+                            <button class="main_white_btn main_sm_14">{$t("more")["btn"]}</button>
+                        {/if}
+                    </button>
+                {/key}
             </SwiperSlide>
         {/each}
        
@@ -94,6 +102,9 @@
 {/if}
 
 <style lang="less">
+    .hidden{
+        opacity: 0;
+    }
     .slider_content{
         width: 356px;
         height: 600px;
@@ -230,5 +241,7 @@
         background: var(--Neutral_300) !important;
         pointer-events: none !important;
         transition: all .2s ease-out !important;
+        opacity: 0;
+        z-index: -1;
     }
 </style>

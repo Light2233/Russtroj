@@ -3,7 +3,11 @@
     import { Swiper, SwiperSlide } from 'swiper/svelte';
     import 'swiper/css';
 
-    import { onMount } from 'svelte';
+    import { onMount } from 'svelte'
+    import { fly } from 'svelte/transition';
+    import { inview } from 'svelte-inview';
+
+    import { t, locale, locales } from "$lib/client/i18n";
 
     import slidebg1 from "$lib/assets/slides/slide1.webp"
     import star from "$lib/assets/star.svg"
@@ -12,35 +16,7 @@
 
     let count = 1 ;
 
-    
 
-    let slides = [
-        {
-            id:1,
-            name:"БЫСТРО И КАЧЕСТВЕННО",
-            desc:"Ребята выполнили объем работ быстро и качественно! Вопросы решаются с этой командой без проблем. Сделали все так, как планировалось сделать! Молодцы!",
-            url:slidebg1,
-            stars:5,
-            username:"Юрий"
-        },
-        {
-            id:2,
-            name:"ВЕЖЛИВО, СОХРАНЯЮТ ПОРЯДОК",
-            desc:"Компания очень хорошая, аккуратно работают, вежливы, сохраняют порядок, работящие, знают свое дело! Советую всем обращаться!",
-            url:slidebg1,
-            stars:5,
-            username:"Ольга"
-        },
-        {
-            id:3,
-            name:"СДЕЛАЛИ НА ПЯТЁРКУ",
-            desc:"О чем договорился, сделали на пятерку! Молодцы. Могут дать хороший совет, не пожалеете. Рекомендую!",
-            url:slidebg1,
-            stars:5,
-            username:"Игорь"
-        },
-    ]
-    let slidesLenght2 = slides.length
     let innerWidth
 
 
@@ -49,6 +25,7 @@
     let slideper
     let spaceBetween
 
+    let isInView = false;
 
     onMount(()=>{
         swiper = true
@@ -71,10 +48,15 @@
 
 <svelte:window bind:innerWidth={innerWidth}/>
 {#if swiper}
-<div id="reviews" class="slider reviews">
+<div id="reviews" class="slider reviews"
+use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+on:change={({ detail }) => {
+    isInView = detail.inView;
+}}
+>
 
 
-    <button class="prev1 swiper_btn" class:disable={count<=1} on:click={()=>{ count > 1 ? count-- : count }}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="prev1 swiper_btn" ><img src="{ swiper_arrow }" alt=""></button>
     <Swiper
     modules={[Navigation, Pagination, Scrollbar,Mousewheel]}
     spaceBetween={ spaceBetween }
@@ -88,38 +70,43 @@
     
     >
        
-        {#each slides as slide (slide.id)}
+        {#each $t("reviews")["slides"] as slide , index}
             <SwiperSlide>
-                <div class="slider_content">
-                    <div class="">
-                        <p class="header3">{slide.name}</p>
-                        <p class="main_sm_18">{slide.desc}</p>
-                    </div>
-                    <div class="user">
-                        <div class="avatar">
-                            <div class="">
-                                <img src="" alt="">
+                {#key isInView}
+                    <div class="slider_content"  class:hidden={!isInView} in:fly={{duration:800,delay:600-50*index,y:50}}>
+                        <div class="">
+                            <p class="header3">{slide["name"]}</p>
+                            <p class="main_sm_18">{slide["desc"]}</p>
+                        </div>
+                        <div class="user">
+                            <div class="avatar">
+                                <div class="">
+                                    <img src="" alt="">
+                                </div>
+                                <p class="main_sm_14">{slide["username"]}</p>
+                            </div>  
+                            <div class="stars">
+                                {#each {length: 5} as _ , i}
+                                    <img src="{star}" class:gray_star={ slide["stars"]<=i }>
+                                {/each}
                             </div>
-                            <p class="main_sm_14">{slide.username}</p>
-                        </div>  
-                        <div class="stars">
-                            {#each {length: 5} as _ , i}
-                                <img src="{star}" class:gray_star={ slide.stars<=i }>
-                            {/each}
                         </div>
                     </div>
-                </div>
+                {/key}
             </SwiperSlide>
         {/each}
        
         
         
     </Swiper>
-    <button class="next1 swiper_btn" on:click={()=>{ count < slidesLenght2 ? count++ : count }} class:disable={count > (slidesLenght2-2)}><img src="{ swiper_arrow }" alt=""></button>
+    <button class="next1 swiper_btn"><img src="{ swiper_arrow }" alt=""></button>
 </div>
 {/if}
 
 <style lang="less">
+    .hidden{
+        opacity: 0;
+    }
     .slider_content{
         width: 450px;
         height: 402px;
@@ -227,5 +214,7 @@
         background: var(--Neutral_300) !important;
         pointer-events: none !important;
         transition: all .2s ease-out !important;
+        opacity: 0;
+        z-index: -1;
     }
 </style>
