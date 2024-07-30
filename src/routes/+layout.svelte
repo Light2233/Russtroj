@@ -284,6 +284,10 @@ on:change={({ detail }) => {
         display: flex;
         column-gap: 8px;
         width: 100%;
+        @media (max-width:350px) {
+            flex-direction: column;
+            row-gap: 20px;
+        }
     }
     .curcle_div{
         display: flex;

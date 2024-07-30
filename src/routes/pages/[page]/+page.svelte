@@ -435,14 +435,14 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        @media (max-width:700px) {
-            display: none;
-        }
     }
     .cost_calculation_block .header2{
         text-align: center;
         max-width: 50%;
         margin-bottom: 32px;
+        @media (max-width:600px) {
+            max-width: 100%;
+        }
     }
 
     /* general_director */  

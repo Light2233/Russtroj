@@ -136,18 +136,27 @@
         justify-content: space-between;
         position: relative;
         transition: .2s ease-out;
+        @media (max-width:800px) {
+            flex-direction:column;
+        }
     }
     .slide_swap{
         height: 100%;
         display: flex;
         align-items: end;
         column-gap: 4px;
+        @media (max-width:800px) {
+            justify-content: end;
+        }
     }
     .var{
         display: flex;
         flex-direction: column;
         row-gap: 8px;
         margin-top: 32px;
+        @media (max-width:800px) {
+            margin-top: 20px;
+        }
     }
     .var1{
         display: flex;
@@ -163,6 +172,9 @@
     }
     .var_quests_mr16{
         margin-top: 16px;
+        @media (max-width:420px) {
+            margin: 0;
+        }
     }
     .var_info{
         display: flex;
@@ -208,6 +220,12 @@
         border-radius: 50px;
         transition: all .2s ease-out;
     }
+    .var_quests .header3{
+        @media (max-width:800px) {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
     .contact{
         margin-top: 32px;
         display: flex;
@@ -232,11 +250,18 @@
         outline: none;
     }
     .quest_info{
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
     }
     .quest_info .main_sm_18{
         margin-left: 23px;
         margin-top: 4px;
+        @media (max-width:480px) {
+            font-size: 14px;
+        }
+        @media (max-width:320px) {
+            display: none;
+        }
     }
 
     .slide_cnt{
@@ -244,6 +269,9 @@
         right: 0;
         margin-right: 20px;
         margin-top: 20px;
+        @media (max-width:800px) {
+            flex-direction:column;
+        }
     }
     .slide_cnt_d{
         width: 4px;
@@ -251,6 +279,9 @@
         margin-bottom: 4px;
         background: var(--Neutral_300);
         transition: all .2s ease-out;
+        @media (max-width:500px) {
+            display: none;
+        }
     }
     .slide_cnt_a{
         background: var(--Neutral_900);
@@ -265,17 +296,27 @@
             flex-direction: column;
             row-gap: 20px;
         }
+        @media (max-width:420px) {
+            margin-top: 20px;
+        }
     }
     .house_area div{
         display: flex;
         align-items: center;
         column-gap: 12px;
         max-width: 150px;
+        @media (max-width:420px) {
+            max-width: 100%;
+        }
     }
     .house_area input{
         max-width: 60%;
         @media (max-width:800px) {
             max-width: 100%;
+        }
+        @media (max-width:420px) {
+            max-width: 100%;
+            width: 100%;
         }
     }
     
