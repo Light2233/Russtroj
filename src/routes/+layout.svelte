@@ -14,12 +14,17 @@
     import HamburgerMenu from './BurgerMenu.svelte';
     import { t, locale, locales } from "$lib/client/i18n";
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
-    import { page } from '$app/stores';
     import BurgerMenu from './BurgerMenu.svelte';
     import { onMount } from 'svelte';
     import { fly } from 'svelte/transition';
     import { inview } from 'svelte-inview';
+    import { enhance } from '$app/forms'
     import langStore from '$lib/client/localstore'
+    import PostApplicationModal from './PostApplicationModal.svelte';
+
+    import { page } from '$app/stores';
+
+    export let data;
 
     let showModal;
     let innerWidth;
@@ -37,7 +42,7 @@
     import { slide } from 'svelte/transition';
 
     const options = {
-        mask: '{+7} (000) 000-00-00',
+        mask: '{+0} (000) 000-00-00',
         lazy: true
     };
 
@@ -53,6 +58,10 @@
         langStore.set(newLang);
     };
 </script>
+{#if data.success}
+    <PostApplicationModal bind:data={data.fromBlock} bind:showModal={data.success}/>
+{/if}
+
 <CheckOutOrderModal bind:showModal />
 
 <svelte:head>
@@ -79,7 +88,7 @@
 
             <div class="main_header_info">
                 <div class="">
-                    <p class="main_sm_14">+3810645598062</p>
+                    <a href="tel:3810645598062" class="main_sm_14" target="_blank">+3810645598062</a>
                 </div>
                 <button class="main_black_btn main_sm_14" on:click={()=>{showModal = true}}>{$t("order")}</button>
                 {#if innerWidth<=800 && importbl}
@@ -108,10 +117,12 @@ on:change={({ detail }) => {
             <form
                 method="post"
                 action="?/sendApp"
-                enctype="multipart/form-data" 
+                enctype="multipart/form-data"
+                use:enhance
                 on:submit class:hidden={!isInView}
                 in:fly={{y:200,duration:1000}}
             >
+                <input type="hidden" name="blockName" value="Footer">
                 <p class="header1 white">{$t("footer")["title"]}</p>
                 <div class="input_place">
                     <input type="tel" name="phone" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
@@ -120,18 +131,18 @@ on:change={({ detail }) => {
                 </div>
                 <div class="contacts" class:hidden={!isInView} in:fly={{y:20,delay:200,duration:1000}}>
                     <div class="row_div">
-                        <a href="#" class="link main_sm_14">
+                        <a href="mailto:russtroj.ns@gmail.com" class="link main_sm_14" target="_blank">
                             russtroj.ns@gmail.com
                         </a>
-                        <a href="#" class="link main_sm_14">
+                        <a href="tel:3810645598062" class="link main_sm_14" target="_blank">
                             +3810645598062
                         </a>
                     </div>
                     <div class="curcle_div">
-                        <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle">
+                        <a href="https://wa.me/79169327130"  class="link main_sm_14 curcle" target="_blank">
                             <img src="{ ws }" alt="">
                         </a>
-                        <a href="#" class="link main_sm_14 curcle">
+                        <a href="https://t.me/russtroj" class="link main_sm_14 curcle" target="_blank">
                             <img src="{ tg }" alt="">
                         </a>
                     </div>
@@ -140,7 +151,7 @@ on:change={({ detail }) => {
         {/key}
     </div>
     <div class="footer">
-        <a href="" class="main_sm_14">
+        <a href="#" class="main_sm_14" target="_blank">
             {#if lang=='ru'}
                 {@html $t("footer")["privacy policy"]}
             {:else}

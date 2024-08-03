@@ -5,6 +5,24 @@ export default {
             "about": "О компании",
             "reviews" : "Отызвы"
         },
+        "postApplication":{
+            "CheckOutOrder" : {
+                "title" : "Заявка отправлена",
+                "desc" : "Мы перезвоним вам в ближайшее время"
+            },
+            "CulculatedCost" : {
+                "title" : "Заявка отправлена",
+                "desc" : "Наши специалисты уже приступили к расчету"
+            },
+            "Application" : {
+                "title" : "проект загружен",
+                "desc" : "Наши специалисты уже приступили к расчету"
+            },
+            "Footer" : {
+                "title" : "Заявка отправлена",
+                "desc" : "Мы перезвоним вам в ближайшее время"
+            }
+        },
         "more":{
             "btn":"Подробнее",
             "showmore" : "Показать больше..."
@@ -613,6 +631,24 @@ export default {
             "services" : "Services",
             "about" : "About us",
             "reviews" : "Reviews"
+        },
+        "postApplication":{
+            "CheckOutOrder" : {
+                "title" : "Application sent",
+                "desc" : "We will call you back shortly"
+            },
+            "CulculatedCost" : {
+                "title" : "Application sent",
+                "desc" : "Our specialists have already started calculating"
+            },
+            "Application" : {
+                "title" : "проект загружен",
+                "desc" : "Our specialists have already started calculating"
+            },
+            "Footer" : {
+                "title" : "Application sent",
+                "desc" : "We will call you back shortly"
+            }
         },
         "more":{
             "btn":"More details",

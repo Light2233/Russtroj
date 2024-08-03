@@ -1,6 +1,7 @@
 <script lang="ts">
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import application_bg from "$lib/assets/application_bg.webp"
+   
     import close_application from "$lib/assets/close_application.svg"
 
     import { imask } from '@imask/svelte';
@@ -8,14 +9,20 @@
     import { inview } from 'svelte-inview';
     import { fly } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
+
+
     const options = {
-        mask: '{+7} (000) 000-00-00',
+        mask: '{+0} (000) 000-00-00',
         lazy: true
     };
     let isInView = false;
     let value = '';
     let files
     let input
+    let showModal = false;
+    let form
+
+
 
 </script>
 <div class="application"
@@ -35,7 +42,8 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
         {/key}
     </div>
     {#key isInView}
-        <form method="post" action="?/sendApp" enctype="multipart/form-data" class:hidden={!isInView} in:fly={{y:70,duration:1000}}>
+        <form method="post" action="?/sendApp" enctype="multipart/form-data" class:hidden={!isInView} in:fly={{y:70,duration:1000}} bind:this={form}>
+            <input type="hidden" name="blockName" value="Application">
             <p class="header1">{$t("application")["title"]}</p>
             <div class="">
                 <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>

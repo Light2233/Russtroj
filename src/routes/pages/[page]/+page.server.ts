@@ -1,6 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import type { Actions } from './$types';
+import { redirect } from "@sveltejs/kit";
+
+
 
 import { sendAppTg } from "$lib/server/bot"
 
@@ -752,7 +755,7 @@ export const load: PageLoad = ({ params }) => {
 	};
 };
 
-
+    
 export const actions = {
 	sendApp: async ({request}) => {
         let data = await request.formData();
@@ -770,5 +773,6 @@ export const actions = {
         };
         
         await sendAppTg(requestForm);
-	}
+        redirect(302, `/pages/main?success=true&fromBlock=${roflData.blockName}`);
+}
 } satisfies Actions

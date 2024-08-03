@@ -1,10 +1,12 @@
 <script>
+    export let data
     export let showModal = false;
     let dialog; 
     $: if (dialog && showModal) dialog.showModal();
 
     import { t, locale, locales } from "$lib/client/i18n";
     import { imask } from '@imask/svelte';
+    import { onMount } from "svelte";
 
     const options = {
         mask: '{+7} (000) 000-00-00',
@@ -37,6 +39,13 @@
 			}
 		};
     };
+
+    onMount(()=>{
+        setTimeout(()=>{
+            showModal = false
+        },4000)
+        
+    })
 </script>
 
 <svelte:window use:wheel={{scrollable}} />
@@ -49,16 +58,8 @@ on:click|self={() => dialog.close()}
 
 
 <div class="dialog_content">
-    <h1 class="header1">{$t("checkout")["title"]}</h1>
-    <form action="">
-        <input type="hidden" name="blockName" value="CheckOutOrder">
-        <div class="">
-            <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
-            <input type="text"  placeholder="+7 (900) 000-00-00" bind:value={value}
-            use:imask={options}>
-        </div>
-        <button type="submit" class="main_black_btn">{$t("footer")["call"]}</button>
-    </form>
+    <h1 class="header1">{$t("postApplication")[data]["title"]}</h1>
+    <h3 class="header3">{$t("postApplication")[data]["desc"]}</h3>
 </div>
 </dialog>
 
@@ -113,10 +114,15 @@ on:click|self={() => dialog.close()}
         padding: 20px;
         display: flex;
         justify-content: space-between;
-        row-gap: 57px;
+        row-gap: 20px;
         flex-direction: column;
         background: white;
         max-width: 356px;
+        justify-content: center;
+        align-items: center;
+    }
+    h3{
+        text-align: center;
     }
     .dialog_content .header1{
         text-align: center;

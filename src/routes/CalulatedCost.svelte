@@ -43,7 +43,7 @@
 <!-- method="post" action="?/sendApp" enctype="multipart/form-data" -->
 
 <form method="post" action="?/sendApp" class="calc_content"  bind:this={form}>
-
+    <input type="hidden" name="blockName" value="CulculatedCost">
     {#each slides as slide, id(slide.id)}
         {#if slideCnt == slide.id}
             {#if slideCnt == slideslenght}
