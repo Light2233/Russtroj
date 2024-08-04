@@ -50,11 +50,11 @@ on:click|self={() => dialog.close()}
 
 <div class="dialog_content">
     <h1 class="header1">{$t("checkout")["title"]}</h1>
-    <form action="">
+    <form  method="post" action="?/sendApp">
         <input type="hidden" name="blockName" value="CheckOutOrder">
         <div class="">
             <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
-            <input type="text"  placeholder="+7 (900) 000-00-00" bind:value={value}
+            <input type="tel" name="phone" placeholder="+7 (900) 000-00-00" bind:value={value} required
             use:imask={options}>
         </div>
         <button type="submit" class="main_black_btn">{$t("footer")["call"]}</button>

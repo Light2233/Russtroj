@@ -80,9 +80,6 @@ on:change={({ detail }) => {
                         </div>
                         <div class="user">
                             <div class="avatar">
-                                <div class="">
-                                    <img src="" alt="">
-                                </div>
                                 <p class="main_sm_14">{slide["username"]}</p>
                             </div>  
                             <div class="stars">
