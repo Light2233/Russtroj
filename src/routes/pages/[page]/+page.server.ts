@@ -658,7 +658,7 @@ let pageContents: {[key: string]: PageContent} = {
             {
                 id:7,
                 name:"ПРИМЕРНАЯ ДЛИНА БАССЕЙНА В МЕТРАХ",
-                value:[],
+                value:[null,null],
                 questions:[],
             },
             {

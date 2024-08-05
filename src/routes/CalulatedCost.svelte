@@ -37,7 +37,12 @@
         form.insertAdjacentHTML('afterbegin', `<input type="hidden" name="answers" value='` + JSON.stringify(answers,) + `'' />`);
         form.submit();
     }
+  
 
+    function nextSlide(slide){
+        if(slide.value[0] && slide.value[1]) slideCnt++;
+        else return
+    }
 </script>
 
 <!-- method="post" action="?/sendApp" enctype="multipart/form-data" -->
@@ -59,7 +64,9 @@
                     </div>
                     <div class="slide_swap">
                         <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
-                        <button class="main_black_btn" type="submit" on:click|preventDefault={submit} >{$t("calculated")["buttons"]["submit"]}</button>
+                        {#if slide.value}
+                            <button class="main_black_btn" type="submit" on:click|preventDefault={submit} >{$t("calculated")["buttons"]["submit"]}</button>
+                        {/if}
                     </div>
                 </div>
                 
@@ -103,7 +110,15 @@
                         {#if slideCnt >1}
                             <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
                         {/if}
-                        <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value}>{$t("calculated")["buttons"]["next"]}</button>
+                        {#if slide.id == 7 || slide.id == 2}
+                            {#if slide.value[0] && slide.value[1]}
+                                <button class="main_black_btn" on:click={nextSlide(slide)} >{$t("calculated")["buttons"]["next"]}</button>
+                            {/if}
+                        {:else}
+                            {#if slide.value}
+                                <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value}>{$t("calculated")["buttons"]["next"]}</button>
+                            {/if}
+                        {/if}
                     </div>
                     
                 </div>
