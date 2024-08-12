@@ -3,16 +3,15 @@
     import application_bg from "$lib/assets/application_bg.webp"
    
     import close_application from "$lib/assets/close_application.svg"
-
+    import { page } from '$app/stores';
     import { imask } from '@imask/svelte';
     import { t, locale, locales } from "$lib/client/i18n";
     import { inview } from 'svelte-inview';
     import { fly } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
 
-
     const options = {
-        mask: '{+0} (000) 000-00-00',
+        mask: '{+000} 00 00000000',
         lazy: true
     };
     let isInView = false;
@@ -47,7 +46,7 @@ use:inview={{ unobserveOnEnter: true, rootMargin: '-25%' }}
             <p class="header1">{$t("application")["title"]}</p>
             <div class="">
                 <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
-                <input type="tel" name="phone" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={value}
+                <input type="tel" name="phone" required class="main_sm_14" placeholder="+381 00 00000000" bind:value={value}
                 use:imask={options}>
             </div>
             <div class="">

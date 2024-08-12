@@ -42,7 +42,7 @@
     import { slide } from 'svelte/transition';
 
     const options = {
-        mask: '{+0} (000) 000-00-00',
+        mask: '{+000} 00 00000000',
         lazy: true
     };
 
@@ -52,6 +52,8 @@
         lang = value;
         locale.set(lang);
     });
+
+    $: console.log()
 
     const switchLanguage = () => {
         const newLang = lang === 'ru' ? 'en' : 'ru';
@@ -125,7 +127,7 @@ on:change={({ detail }) => {
                 <input type="hidden" name="blockName" value="Footer">
                 <p class="header1 white">{$t("footer")["title"]}</p>
                 <div class="input_place">
-                    <input type="tel" name="phone" id="" required placeholder="+7 (900) 000-00-00" bind:value={value}
+                    <input type="tel" name="phone" id="" required placeholder="+381 00 00000000" bind:value={value}
                     use:imask={options}>
                     <button type="submit" class="main_white_btn">{$t("footer")["call"]}</button>
                 </div>
@@ -151,13 +153,6 @@ on:change={({ detail }) => {
         {/key}
     </div>
     <div class="footer">
-        <a href="#" class="main_sm_14" target="_blank">
-            {#if lang=='ru'}
-                {@html $t("footer")["privacy policy"]}
-            {:else}
-                { $t("footer")["privacy policy"]}
-            {/if}
-        </a>
         <p class="main_sm_14" >{ $t("footer")["studio"]}<span><img src="{ kewate_logo }" alt=""></span></p>
     </div>
 </footer>
@@ -387,7 +382,7 @@ on:change={({ detail }) => {
     .footer{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: end;
         padding: 20px 0;
         margin: 0 46px;
         border-top: 1px solid var(--Neutral_400);

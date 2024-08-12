@@ -50,8 +50,7 @@ import rus_style_modal from "$lib/assets/housestyles_modal/rus_style.webp"
 import shale_style_modal from "$lib/assets/housestyles_modal/shale_style.webp"
 import viking_style_modal from "$lib/assets/housestyles_modal/viking_style.webp"
 // import { stylesmodal } from '../../HouseStyles.svelte';
-import { page } from '$app/stores';
-
+import { page } from '$app/stores';  
 
 // chill zone images 
 
@@ -69,6 +68,13 @@ import open_bbq from "$lib/assets/gazebpstyles/open_bbq.webp"
 import semi_open_bbq from "$lib/assets/gazebpstyles/semi_open_bbq.webp"
 import closed_bbq from "$lib/assets/gazebpstyles/closed_bbq.webp"
  
+
+import { onMount } from 'svelte'
+
+let url = ``
+
+onMount(() => url = window.location.href);
+
 interface PageContent {
     title: Partial<Array<string>>,
     images: Partial<Array<string>>,
@@ -79,6 +85,7 @@ interface PageContent {
 }
 
 locale.set(`${locale}`);
+
 
 let pageContents: {[key: string]: PageContent} = {
     "main": {
@@ -759,7 +766,7 @@ export const load: PageLoad = ({ params }) => {
 export const actions = {
 	sendApp: async ({request}) => {
         let data = await request.formData();
-        let roflData = Object.fromEntries(data);
+        let roflData = Object.fromEntries(data);;
         let requestForm : RequestForm = {};
 
         
@@ -773,6 +780,7 @@ export const actions = {
         };
         
         await sendAppTg(requestForm);
-        redirect(302, `/pages/main?success=true&fromBlock=${roflData.blockName}`);
+
+        redirect(302, `${url}?success=true&fromBlock=${roflData.blockName}`);
 }
 } satisfies Actions

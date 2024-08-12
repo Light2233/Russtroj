@@ -2,13 +2,12 @@
 
     import { LazyImage, useLazyImage as lazyImage } from 'svelte-lazy-image';
     import { t, locale, locales } from "$lib/client/i18n";
-    
     import { fly } from "svelte/transition";
-
-    let slideCnt = 1
+    let slideCnt = 1    
+    
 
     export let slides;
-    export let page
+    export let page = ''
 
     let answers = []
     
@@ -16,7 +15,7 @@
     import { imask } from '@imask/svelte';
 
     const options = {
-        mask: '{+7} (000) 000-00-00',
+        mask: '{+000} 00 00000000',
         lazy: true
     };
 
@@ -58,7 +57,7 @@
                         <p class="main_sm_18">{$t("calculated")[page]["questions"][slide.id-1]["desc"]}</p>
                         <div class="contact">
                             <p class="header3">{$t("calculated")[page]["questions"][slide.id-1].tel}</p>
-                            <input type="tel" name="" id="" required class="main_sm_14" placeholder="+7 (900) 000-00-00" bind:value={slide.value}
+                            <input type="tel" name="" id="" required class="main_sm_14" placeholder="+381 00 00000000" bind:value={slide.value}
                             use:imask={options}>
                         </div>
                     </div>
@@ -108,15 +107,15 @@
                     </div>
                     <div class="slide_swap">
                         {#if slideCnt >1}
-                            <button class="main_black_btn" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
+                            <button class="main_black_btn" type="button" on:click={()=>{slideCnt > 1 ? slideCnt-- : 1}}>{$t("calculated")["buttons"]["back"]}</button>
                         {/if}
-                        {#if slide.id == 7 || slide.id == 2}
+                        {#if (slide.id == 7 && page=='pools' )|| (slide.id == 2 && page == 'main') }
                             {#if slide.value[0] && slide.value[1]}
-                                <button class="main_black_btn" on:click={nextSlide(slide)} >{$t("calculated")["buttons"]["next"]}</button>
+                                <button class="main_black_btn" on:click={nextSlide(slide)} type="button" >{$t("calculated")["buttons"]["next"]}</button>
                             {/if}
                         {:else}
                             {#if slide.value}
-                                <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value}>{$t("calculated")["buttons"]["next"]}</button>
+                                <button class="main_black_btn" on:click={()=>{slideCnt++}} disabled={!slide.value} type="button" >{$t("calculated")["buttons"]["next"]}</button>
                             {/if}
                         {/if}
                     </div>

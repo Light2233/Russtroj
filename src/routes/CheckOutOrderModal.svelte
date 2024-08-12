@@ -7,7 +7,7 @@
     import { imask } from '@imask/svelte';
 
     const options = {
-        mask: '{+0} (000) 000-00-00',
+        mask: '{+000} 00 00000000',
         lazy: true
     };
 
@@ -54,7 +54,7 @@ on:click|self={() => dialog.close()}
         <input type="hidden" name="blockName" value="CheckOutOrder">
         <div class="">
             <p class="header3">{$t("calculated")["main"]["questions"][5].tel}</p>
-            <input type="tel" name="phone" placeholder="+7 (900) 000-00-00" bind:value={value} required
+            <input type="tel" name="phone" placeholder="+381 00 00000000" bind:value={value} required
             use:imask={options}>
         </div>
         <button type="submit" class="main_black_btn">{$t("footer")["call"]}</button>

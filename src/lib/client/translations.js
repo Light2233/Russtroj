@@ -189,17 +189,17 @@ export default {
                     "name":"БЮДЖЕТ НА СТРОИТЕЛЬСТВО",
                     "questions":[
                         {
-                            "answ":"15–35 ТЫС. €",
+                            "answ":"10–30 ТЫС. €",
                         },
                         {
-                            "answ":"35–65 ТЫС. €",
+                            "answ":"30–60 ТЫС. €",
                         },
                         {
-                            "answ":"65–150 ТЫС. €",
+                            "answ":"60–145 ТЫС. €",
                         },
                         {
 
-                            "answ":"БОЛЕЕ 150 ТЫС. €",
+                            "answ":"БОЛЕЕ 145 ТЫС. €",
                         }
                     ]
                 },
@@ -817,17 +817,17 @@ export default {
                         "name":"construction budget",
                         "questions":[
                             {
-                                "answ":"15–35 thousand €",
+                                "answ":"10–30 thousand €",
                             },
                             {
-                                "answ":"35–65 thousand €",
+                                "answ":"30–60 thousand €",
                             },
                             {
-                                "answ":"65–150 thousand €",
+                                "answ":"60–145 thousand €",
                             },
                             {
     
-                                "answ":"more than 150 thousand €",
+                                "answ":"more than 145 thousand €",
                             }
                         ]
                     },
