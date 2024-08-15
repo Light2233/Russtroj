@@ -56,7 +56,7 @@
             {#key isInView1}
                 <div class="tagline" class:hidden={!isInView1} in:fly={{y:70,duration:1000}}>
                     <!-- <p class="tagline_title">ПОСТРОИМ {data.content.title} В СЕРБИИ ПО ГОТОВОМУ ИЛИ ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</p> -->
-                    <p class="tagline_title">{@html $t("welcome.title", { name: `${ get(t)("title.names")[currentpage][0]}` })}!</p>
+                    <h1 class="tagline_title">{@html $t("welcome.title", { name: `${ get(t)("title.names")[currentpage][0]}` })}!</h1>
                     {#if data.content.page =='main' }
                         <a href="#cost_calculation_block" class="main_black_btn">{$t("welcome.cost")}</a>
                     {/if}
